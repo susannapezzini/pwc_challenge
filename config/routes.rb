@@ -5,9 +5,16 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  # Banks
+  get 'dashboard', to: 'pages#dashboard'
+  get 'overview', to: 'pages#overview'
+  #get 'settings', to: 'pages#settings'
 
-  # Products
+  resources :banks do
 
-  # Pricings
+  end
+
+  resources :products do
+    resources :pricings, only: [:edit, :update]
+  end
+
 end

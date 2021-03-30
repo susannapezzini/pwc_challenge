@@ -47,8 +47,8 @@ BANKS = [{
   }
 ]
 
-
-you = User.create(name:'', email: 'hello@mail.com', password: '123456', admin: true)
+admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
+default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456')
 
 product_family = ProductFamily.create(name: 'product')
 service_family = ProductFamily.create(name: 'service')
