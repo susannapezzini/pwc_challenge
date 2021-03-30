@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'creating seeds'
+
 sub = Subscription.create(price: 5)
 you = User.create(first_name: 'thales', email: 'hello@mail.com', password: '123456', subscription: sub)
 bank = Bank.create(name: 'Banco CTT', subscription: sub)

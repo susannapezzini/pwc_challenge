@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+  store_accessor :pdf_sections
+
   belongs_to :product_family
-  has_many :bank_products
+  belongs_to :bank
+  has_many :pricings
 end
