@@ -10,6 +10,11 @@
   padding: 0 15vw;
 }
 
+.menu_section {
+  display: flex;
+  align-items: baseline;
+}
+
 .menu_icon {
   height: 1.5rem;
 }
@@ -20,6 +25,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 1rem;
   & p {
     text-transform: uppercase;
     letter-spacing: 3px;
