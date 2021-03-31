@@ -77,4 +77,4 @@ BANKS.each do |bank|
               bank: bank)
 end
 
-puts 'done motehfucker'
+puts 'done'
