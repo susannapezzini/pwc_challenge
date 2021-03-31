@@ -1,0 +1,33 @@
+.card {
+  border-radius: 3px;
+  // border: 1px solid $smoke;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin-bottom: 2rem;
+  background-color: $white;
+  position: relative;
+  width: 30%;
+  margin: 1rem;
+  padding: 2rem;
+  height: 350px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card_title {
+  font-family: $headers-font;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $orange;
+}
+
+.card_text{
+  font-size: 1.1rem;
+  a {
+    @include reset-link;
+    &:hover {
+      color: $red;
+    }
+  }
+}

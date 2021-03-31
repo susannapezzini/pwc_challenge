@@ -35,6 +35,7 @@
   &:hover {
     color: $white;
     background-color: $red;
+    text-decoration: none;
   }
 }
 
@@ -45,4 +46,12 @@
 
 .action_claim  {
   font-size: 1.5rem;
+}
+
+.link {
+  color: $red;
+  font-size: 1.1rem;
+  &:hover {
+    color: $red;
+  }
 }
