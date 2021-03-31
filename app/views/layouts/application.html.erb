@@ -10,6 +10,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+        <% %w(16 32 96).each do |size| %>
+      <%= favicon_link_tag asset_path "favicon-#{size}x#{size}.png", sizes: "#{size}x#{size}" %>
+    <%end%>
+
+    <% %w(57 60 72 76 114 120 144 152 180).each do |size| %>
+    <%= favicon_link_tag "apple-icon-#{size}x#{size}.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+    <% end %>
+    <%= favicon_link_tag "android-icon-192x192.png", type: 'image/png', sizes: "192x192" %>
   </head>
 
   <body>
