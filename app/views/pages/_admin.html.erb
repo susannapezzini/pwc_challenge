@@ -1,0 +1,41 @@
+<div class="contain">
+  <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'btn-outline right' %>
+  <h1>Welcome to your dashboard</h1>
+  <h6>Admin: <%=current_user.name%></h6>
+
+</div>
+
+<div class="contain-color">
+  <h2 class="h2">Bank section</h2>
+       <div class="cards">
+  <%= form_tag dashboard_path, class: "search", method: :get do %>
+    <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
+    <%= submit_tag "Search", class: "btn" %>
+  <% end %>
+
+    <% @banks.reverse.each do |b|%>
+      <div class="card">
+        <p class="card_title"><%= b.name.capitalize%></p class="card_title">
+        <p class="card_text"><strong><%= link_to 'Website', "#{b.website}", target: '_blank', class: 'card_text' %>: </strong> <%= b.website%></p>
+        <p class="card_text"><strong>Address:</strong> <%= b.address%></p>
+        <p class="card_text"><strong>Country:</strong> <%= b.country.capitalize%></p>
+        <div>
+        <%= link_to 'See more >', '#', class: 'link left' %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="action">
+  <p class="action_claim">Need to add a new bank?</p>
+  <%= link_to 'Create', new_bank_path, class: 'btn' %>
+  </div>
+</div>
+
+
+<div class="contain">
+</div>
+
+
+
+
+

@@ -1,5 +1,29 @@
-.container {
+.contain {
   max-width: 1522px;
   width: 100%;
-  padding: 6rem 10vw;
+  padding: 2rem 20vw;
+  position: relative;
+}
+
+
+.contain-color {
+  background-color: $smoke;
+  width: 100%;
+  padding: 2rem 20vw;
+}
+
+#values {
+  padding: 6rem 0;
+}
+
+.left {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.right {
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
 }

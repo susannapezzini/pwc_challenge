@@ -8,6 +8,18 @@ class PagesController < ApplicationController
 
   # Needs Auth and needs to be admin
   def dashboard
+    @banks = Bank.all
+
+    if params[:query].present?
+      sql_query = " \
+        banks.name @@ :query \
+        OR banks.country @@ :query \
+      "
+      @banks = @banks.where(sql_query, query: "%#{params[:query]}%")
+    end
+    if @banks.empty?
+      flash.now[:alert] = "Sorry, we could not find what you're looking for."
+    end
   end
 
   # Needs Auth
