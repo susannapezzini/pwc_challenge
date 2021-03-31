@@ -17,5 +17,28 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+    <footer>
+      <div class="footer_top">
+        <p class="footer_claim">
+        <%= link_to 'https://www.pwc.pt/', class: 'footer_claim', target: '_blank' do %>
+          Powered by PWC
+        <%end%>
+        </p>
+      </div>
+      <div class="footer_bottom">
+        <div class="footer_icon">
+          <%= link_to 'https://www.pwc.pt/', target: '_blank' do %>
+            <%= image_tag "pwc.png" %>
+          <%end%>
+          <%= link_to root_path do %>
+            <%= image_tag "logo.png" %>
+          <%end%>
+        </div>
+        <div class="footer_content">
+          <p class="footer_claim white">This is a Prototype</p>
+          <p class="footer_text">© 2015 - 2021 PwC. Todos os direitos reservados. "PwC" refere-se à rede de entidades que são membros da PricewaterhouseCoopers International Limited (PwCIL), cada uma das quais é uma entidade legal distinta e não atuam como agentes da PwCIL, nem das restantes entidades membros da network. A PwCIL não presta serviços a clientes. A PwCIL não assumirá qualquer responsabilidade perante terceiros por atos ou omissões praticados no exercício da atividade profissional das suas firmas membros, nem exerce qualquer controlo sobre, ou os vincula juridicamente. Nenhuma das entidades pertencentes à rede PwC exerce qualquer controlo sobre, nem vincula juridicamente as demais entidades no exercício da sua atividade profissional pelo que não poderão as mesmas ser responsabilizadas, a que título for, perante terceiros por atos ou omissões praticados no exercício das respectivas atividades profissionais.</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
