@@ -1,2 +1,32 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="hero" style="background-image: url('<%= image_path "bg.jpg" %>')">
+  <div class="hero_shadow">
+    <h1 class="hero_title">Welcome to Matrix</h1>
+    <p class="hero_claim">Here is what we do best</p>
+    <%= link_to 'Learn more', '#values', class: 'btn'%>
+  </div>
+</div>
+
+<div class="container" id="values">
+  <div class="proposition">
+    <div class="value">
+    <i class="fas fa-cogs"></i>
+    <h3 class="small_title">Check</h3>
+    <p>Conheça a plataforma Zone Check da PwC. Uma ferramenta que o ajuda na gestão eficaz de crises e na interrupção de cadeias de infeção durante a pandemia.</p>
+    </div>
+    <div class="value">
+    <i class="fas fa-chart-bar"></i>
+    <h3 class="small_title">Compare</h3>
+    <p>Conheça a plataforma Zone Check da PwC. Uma ferramenta que o ajuda na gestão eficaz de crises e na interrupção de cadeias de infeção durante a pandemia.</p>
+    </div>
+    <div class="value">
+    <i class="fas fa-record-vinyl"></i>
+    <h3 class="small_title">Target</h3>
+    <p>Conheça a plataforma Zone Check da PwC. Uma ferramenta que o ajuda na gestão eficaz de crises e na interrupção de cadeias de infeção durante a pandemia.</p>
+    </div>
+  </div>
+
+  <div class="action">
+    <p class="action_claim">Ready to go?</p>
+    <%= link_to 'Get started', dashboard_path, class: 'btn'%>
+  </div>
+</div>

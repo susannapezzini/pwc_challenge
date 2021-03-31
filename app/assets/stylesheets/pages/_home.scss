@@ -1,1 +1,50 @@
 // Specific CSS for your home-page
+
+.hero {
+  width: 100vw;
+  height: 90vh;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.hero_shadow {
+  width: 100vw;
+  height: 90vh;
+  background-color: rgba(150, 150, 150, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero_title {
+  color: $white;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+.hero_claim {
+  color: $white;
+  font-size: 1.5rem;
+  font-family: $headers-font;
+}
+
+
+.proposition {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value {
+  width: 30%;
+  margin: 0 2rem;
+  text-align: center;
+  & i {
+    font-size: 6rem;
+    color: $grey;
+    margin-bottom: 2rem;
+  }
+}
