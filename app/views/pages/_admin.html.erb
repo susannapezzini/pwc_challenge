@@ -1,0 +1,12 @@
+<div class="contain">
+  <h1>Hello <%=current_user.name%></h1>
+  <h6>Welcome to your dashboard</h6>
+</div>
+
+<div class="contain-color">
+  <h2 class="h2">Bank section</h2>
+</div>
+
+
+<%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'btn' %>
+

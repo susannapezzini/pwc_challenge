@@ -1,12 +1,5 @@
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <h2>Welcome to dashboard  <%= current_user.name %></h2>
-      <p>Admin: <%= current_user.admin? ? 'Yes' : 'No' %></p>
-      <%= link_to destroy_user_session_path, method: :delete, class: 'menu_link' do%>
-        <p>Logout</p>
-      <%end%>
-    </div>
-  </div>
-</div>
-
+<% if current_user.admin? %>
+  <%= render 'admin'%>
+<%else%>
+  <%= render 'client'%>
+<%end%>

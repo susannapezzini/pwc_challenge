@@ -1,5 +1,12 @@
-.container {
+.contain {
   max-width: 1522px;
   width: 100%;
-  padding: 6rem 10vw;
+  padding: 6rem 20vw;
+}
+
+
+.contain-color {
+  background-color: $smoke;
+  width: 100%;
+  padding: 2rem 20vw;
 }
