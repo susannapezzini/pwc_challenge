@@ -1,0 +1,39 @@
+.btn {
+  color: $white;
+  text-transform: uppercase;
+  font-family: $body-font;
+  background-color: $red;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  &:hover {
+    color: $white;
+  }
+}
+
+.btn-outline {
+  color: $red;
+  background-color: $white;
+  border: 1px solid $red;
+  text-transform: uppercase;
+  font-family: $body-font;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  &:hover {
+    color: $white;
+    background-color: $red;
+  }
+}
