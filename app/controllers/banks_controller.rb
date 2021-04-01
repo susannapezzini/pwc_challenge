@@ -37,7 +37,7 @@ class BanksController < ApplicationController
   def update
     if current_user.admin?
       @bank.update(bank_params)
-      redirect_to dashboard_path
+      redirect_to bank_path(@bank)
     else
       flash.now[:alert] = "Sorry, you dont have that permission."
       redirect_back(fallback_location: root_path)
