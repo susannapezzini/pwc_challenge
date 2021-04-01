@@ -10,6 +10,11 @@
   padding: 0 10vw;
 }
 
+.menu_section {
+  display: flex;
+  align-items: baseline;
+}
+
 .menu_icon {
   height: 1.5rem;
 }
@@ -20,6 +25,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 1rem;
+  border-bottom: 1px solid $orange;
   & p {
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -40,7 +47,7 @@
   }
   &:hover {
     text-decoration: none;
-    border-bottom: 2px solid $red;
+    border-bottom: 1px solid $red;
     & p {
       color: $red;
     }
@@ -48,7 +55,7 @@
 }
 
 .active {
-  border-bottom: 2px solid $red;
+  border-bottom: 1px solid $red;
   & p {
     color: $red;
   }

@@ -1,0 +1,17 @@
+<div class="container mt-3 text-center">
+  <div class="row justify-content-center">
+      <div class="col-5">
+        <div class="card border-info mb-3" style= "box-shadow: 0 0 15px rgba(0,0,0,0.2)">
+          <div class="card-header" style="font-size: 30px"><%= @bank.name.capitalize %></div>
+          <div class="card-body m-3">
+            <h4 class="card-title text-capitalize" style="font-weight: bold">Details </h4>
+            <p class="card-text text-capitalize" style="font-weight: bold">Website: <span style="font-weight: 300"><%#= @bank.website %></span> </p>
+            <p class="card-text text-capitalize" style="font-weight: bold">Address: <span style="font-weight: 300"><%= @bank.address %></span> </span>
+            <p class="card-text text-capitalize" style="font-weight: bold">Country: <span style="font-weight: 300"><%= @bank.country %></span> </p>
+          </div>
+        </div>
+    </div>
+    
+  </div>
+  <%= link_to 'Back', dashboard_path, class: 'btn'%>
+</div>

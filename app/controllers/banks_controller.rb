@@ -4,6 +4,10 @@ class BanksController < ApplicationController
     @banks = Bank.all
   end
 
+  def show
+    @bank = Bank.find(params[:id])
+  end
+
   def new
     @user = User.find(current_user.id)
     @bank = Bank.new

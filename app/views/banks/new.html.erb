@@ -3,7 +3,7 @@
   <% if @user.admin %>
     <%= simple_form_for @bank do |f| %>
       <%= f.input :name  %>
-      <%= f.input :website  %>
+      <%#= f.input :website  %>
       <%= f.input :address  %>
       <%= f.country_select :country, prompt: 'Select Country', class: 'form-control string optional' %>
       <br>
