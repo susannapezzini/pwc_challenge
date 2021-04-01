@@ -20,7 +20,17 @@
         <p class="card_text"><strong>Address:</strong> <%= b.address%></p>
         <p class="card_text"><strong>Country:</strong> <%= b.country.capitalize%></p>
         <div>
-        <%= link_to 'See more >', '#', class: 'link left' %>
+        <div class="card_action">
+          <%= link_to edit_bank_path(b), class: 'link' do %>
+            <i class="far fa-edit"></i>
+            <span>Edit</span>
+          <%end%>
+
+          <%= link_to '#', class: 'link' do %>
+            <i class="fas fa-angle-right"></i>
+            <span>See more</span>
+          <%end%>
+        </div>
         </div>
       </div>
     <%end%>
