@@ -1,5 +1,5 @@
 class WebsitesController < ApplicationController
-
+    
   def manage
     @bank = Bank.find(params[:id])
     @new_website = Website.new
@@ -9,9 +9,9 @@ class WebsitesController < ApplicationController
   def create
     @website = Website.new(website_params)
     @bank = Bank.find(params[:bank_id])
-  
+
     if @website.save
-      redirect_to manage_websites_path(@bank), notice: 'Bank was successfully created'
+      redirect_to manage_websites_path(@bank), notice: 'Website was successfully added!'
     else
       @websites = @bank.websites
       render "banks/manage"
@@ -19,7 +19,7 @@ class WebsitesController < ApplicationController
   end
 
   private
-  
+
   def website_params
     params.require(:website).permit(:url)
   end
