@@ -1,13 +1,6 @@
 <div class="contain">
-  <%#= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'link right' %>
-  <h1>Welcome to your dashboard</h1>
-  <h6>Admin: <%=current_user.name%></h6>
-
-</div>
-
-<div class="contain-color">
-  <%= form_tag dashboard_path, class: "search", method: :get do %>
-    <h6 class="small_title">Bank section</h6>
+  <%= form_tag banks_path, class: "search", method: :get do %>  
+    <h1>Banks list</h1>
     <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
     <%= submit_tag "Search", class: "btn" %>
   <% end %>
@@ -32,17 +25,4 @@
       </div>
     <%end%>
   </div>
-  <div class="action">
-  <p class="action_claim">Need to add a new bank?</p>
-  <%= link_to 'Create', new_bank_path, class: 'btn' %>
-  </div>
 </div>
-
-
-<div class="contain">
-</div>
-
-
-
-
-
