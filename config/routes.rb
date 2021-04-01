@@ -11,8 +11,13 @@ Rails.application.routes.draw do
   get 'overview', to: 'pages#overview'
   #get 'settings', to: 'pages#settings'
 
-  resources :banks do
+  get 'banks/:id/manage', to: 'websites#manage', as: "manage_websites"
 
+  resources :websites, only: [:delete]  
+
+  resources :banks do
+    resources :websites, only: [:create]  
+    
   end
 
   resources :products do
