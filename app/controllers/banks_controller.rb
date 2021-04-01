@@ -1,5 +1,5 @@
 class BanksController < ApplicationController
-  before_action :fetch_bank, only: %i[edit update]
+  before_action :fetch_bank, only: %i[edit update destroy]
   def index
     @banks = Bank.all
   end
@@ -29,6 +29,18 @@ class BanksController < ApplicationController
       flash.now[:alert] = "Sorry, you dont have that permission."
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def destroy
+    if current_user.admin?
+      @bank.destroy
+      redirect_to dashboard_path
+      # redirect_back(fallback_location: root_path)
+      else
+      flash.now[:alert] = "Sorry, you dont have that permission."
+      # redirect_to dashboard_path
+      redirect_back(fallback_location: root_path)
+      end
   end
 
   private
