@@ -1,11 +1,10 @@
 class BanksController < ApplicationController
-  before_action :fetch_bank, only: %i[edit update destroy]
+  before_action :fetch_bank, only: %i[show edit update destroy]
   def index
     @banks = Bank.all
   end
 
   def show
-    @bank = Bank.find(params[:id])
   end
 
   def new
@@ -38,13 +37,12 @@ class BanksController < ApplicationController
   def destroy
     if current_user.admin?
       @bank.destroy
-      redirect_to dashboard_path
-      # redirect_back(fallback_location: root_path)
-      else
+      redirect_to dashboard_path, notice: "Bank and products deleted successfully."
+    else
       flash.now[:alert] = "Sorry, you dont have that permission."
       # redirect_to dashboard_path
       redirect_back(fallback_location: root_path)
-      end
+    end
   end
 
   private

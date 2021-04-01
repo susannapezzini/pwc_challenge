@@ -13,7 +13,7 @@
                 <i class="far fa-edit"></i>
                 <span>Edit</span>
               <%end%>
-              <%= link_to '#', class: 'link' do %>
+              <%= link_to bank_path(@bank), method: :delete, class: 'link' , data: { confirm: 'This will delete permanently the bank. Are you sure to proceed?' } do %>
                 <i class="far fa-trash-alt"></i>
                 <span>Delete</span>
               <%end%>
