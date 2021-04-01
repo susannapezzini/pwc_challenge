@@ -1,9 +1,9 @@
-<div class="container mt-3 text-center">
+<div class="container mt-4 mb-4">
   <div class="row justify-content-center">
       <div class="col-5">
-        <div class="card border-info mb-3" style= "box-shadow: 0 0 15px rgba(0,0,0,0.2)">
+        <div class="card  mb-3" style= "box-shadow: 0 0 15px rgba(0,0,0,0.2)">
           <div class="card-header" style="font-size: 30px"><%= @bank.name.capitalize %></div>
-          <div class="card-body m-3">
+          <div class="card-body">
             <h4 class="card-title text-capitalize" style="font-weight: bold">Details </h4>
             <p class="card-text text-capitalize" style="font-weight: bold">Website: <span style="font-weight: 300"><%#= @bank.website %></span> </p>
             <p class="card-text text-capitalize" style="font-weight: bold">Address: <span style="font-weight: 300"><%= @bank.address %></span> </span>
@@ -21,7 +21,14 @@
           </div>
         </div>
     </div>
-    
   </div>
-  <%= link_to 'Back', dashboard_path, class: 'btn'%>
+</div>
+
+<div class="contain-color">
+  <h6 class="small_title"><%= @bank.name.capitalize%>'s products offer</h6>
+</div>
+
+
+<div class="contain">
+  <%= link_to 'Back', :back, class: 'btn'%>
 </div>
