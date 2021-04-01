@@ -3,9 +3,13 @@
   <% if @user.admin %>
     <%= simple_form_for @bank do |f| %>
       <%= f.input :name  %>
-      <%#= f.input :website  %>
       <%= f.input :address  %>
       <%= f.country_select :country, prompt: 'Select Country', class: 'form-control string optional' %>
+      
+      <%= simple_fields_for :website do |w| %>
+        <%= w.input :url, label: "Primary URL" %>
+      <% end %>
+
       <br>
       <%= f.submit class: 'btn' %>
     <% end %>

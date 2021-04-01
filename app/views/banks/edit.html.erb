@@ -2,10 +2,17 @@
 <h2 class="h2">Edit <%= @bank.name %></h2>
     <%= simple_form_for @bank do |f| %>
       <%= f.input :name  %>
-      <%#= f.association :website %>
       <%= f.input :address  %>
       <%= f.country_select :country, prompt: 'Select Country', class: 'form-control string optional' %>
-      <br>
+      <%= simple_fields_for @websites.first do |w| %>
+        <%= w.input :url, label: "Primary URL" %>
+      <% end %>
+      <% if @websites.length > 1 %>
+        <% @websites.each_with_index do |website, index| %>
+          <p><%= index == 0 ? "" : website.url %></p>
+        <% end %>
+        <%= link_to "Manage websites", root_path %>
+      <% end %>
       <%= f.submit class: 'btn' %>
     <% end %>
 </div>

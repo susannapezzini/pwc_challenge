@@ -4,9 +4,14 @@ class BanksController < ApplicationController
     @banks = Bank.all
   end
 
+  def show
+    @bank = Bank.find(params[:id])
+  end
+
   def new
     @user = User.find(current_user.id)
     @bank = Bank.new
+    @website = Website.new
   end
 
   def create
@@ -16,9 +21,12 @@ class BanksController < ApplicationController
     else
       render :new
     end
+
+    Website.create(url: params[:website][:url], bank_id: @bank.id)
   end
 
   def edit
+    @websites = @bank.websites
   end
 
   def update
@@ -38,6 +46,10 @@ class BanksController < ApplicationController
   end
 
   def bank_params
-    params.require(:bank).permit(:name, :website, :address, :country, :photo)
+    params.require(:bank).permit(:name, :website, :address, :country, :photo, :website)
+  end
+
+  def web_params
+    params.require(:bank).permit[:website]
   end
 end
