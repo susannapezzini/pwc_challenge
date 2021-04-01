@@ -6,12 +6,12 @@
 </div>
 
 <div class="contain-color">
-  <h6 class="small_title">Bank section</h6>
-       <div class="cards">
   <%= form_tag dashboard_path, class: "search", method: :get do %>
+    <h6 class="small_title">Bank section</h6>
     <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
     <%= submit_tag "Search", class: "btn" %>
   <% end %>
+       <div class="cards">
 
     <% @banks.reverse.each do |b|%>
       <div class="card">
