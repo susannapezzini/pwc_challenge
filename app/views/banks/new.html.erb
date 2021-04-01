@@ -6,7 +6,7 @@
       <%= f.input :address  %>
       <%= f.country_select :country, prompt: 'Select Country', class: 'form-control string optional' %>
       
-      <%= simple_fields_for :website do |w| %>
+      <%= simple_fields_for @website do |w| %>
         <%= w.input :url, label: "Primary URL" %>
       <% end %>
 
