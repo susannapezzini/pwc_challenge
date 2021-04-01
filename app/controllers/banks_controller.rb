@@ -1,4 +1,5 @@
 class BanksController < ApplicationController
+  before_action :fetch_bank, only: %i[edit update]
   def index
     @banks = Bank.all
   end
@@ -21,7 +22,24 @@ class BanksController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if current_user.admin?
+      @bank.update(bank_params)
+      redirect_to dashboard_path
+    else
+      flash.now[:alert] = "Sorry, you dont have that permission."
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
   private
+
+  def fetch_bank
+    @bank = Bank.find(params[:id])
+  end
 
   def bank_params
     params.require(:bank).permit(:name, :website, :address, :country, :photo)

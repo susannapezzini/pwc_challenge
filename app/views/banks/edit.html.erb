@@ -1,6 +1,5 @@
 <div class="form_container">
-<h2 class="h2">Add a new bank</h2>
-  <% if @user.admin %>
+<h2 class="h2">Edit <%= @bank.name %></h2>
     <%= simple_form_for @bank do |f| %>
       <%= f.input :name  %>
       <%#= f.input :website  %>
@@ -9,7 +8,4 @@
       <br>
       <%= f.submit class: 'btn' %>
     <% end %>
-  <% else %>
-    <h1>Does Not Have Permission to Access Content</h1>
-  <% end %>
 </div>

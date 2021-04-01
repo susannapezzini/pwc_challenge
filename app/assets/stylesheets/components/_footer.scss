@@ -39,14 +39,14 @@
   background-color: $orange;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  // flex-direction: column;
+  align-items: baseline;
   padding: 4rem 10vw;
 }
 
 .footer_icon {
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
   // justify-content: center;
   // align-items: flex-end;
   // height: 200px;
