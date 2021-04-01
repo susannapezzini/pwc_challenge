@@ -27,6 +27,13 @@
 
   <div class="action">
     <p class="action_claim">Ready to go?</p>
-    <%= link_to 'Get started', dashboard_path, class: 'btn'%>
+    
+    <% if current_user && current_user.admin? %>
+      <%= link_to 'Get started', dashboard_path, class: 'btn'%>
+    <%elsif current_user && !current_user.admin? %>
+      <%= link_to 'Get started', banks_path, class: 'btn'%>
+    <%else%>
+      <%= link_to 'Get started', dashboard_path, class: 'btn'%>
+    <%end%>
   </div>
 </div>

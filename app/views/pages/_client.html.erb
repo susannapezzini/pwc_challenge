@@ -1,5 +1,6 @@
 <div class="contain">
-<h1>Hello <%=current_user.name%></h1>
-  <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'btn' %>
+  <%#= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'link right' %>
+  <h1>Welcome to your dashboard</h1>
+  <h6>User: <%=current_user.name%></h6>
 
 </div>
