@@ -15,12 +15,12 @@
 
     <% @banks.reverse.each do |b|%>
       <div class="card">
-        <p class="card_title"><%= b.name.capitalize%></p class="card_title">
+        <p class="card_title"><strong><%= link_to "#{b.name}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
         <p class="card_text"><strong><%= link_to 'Website', "#{b.website}", target: '_blank', class: 'card_text' %>: </strong> <%= b.website%></p>
         <p class="card_text"><strong>Address:</strong> <%= b.address%></p>
         <p class="card_text"><strong>Country:</strong> <%= b.country.capitalize%></p>
         <div>
-        <%= link_to 'See more >', '#', class: 'link left' %>
+        <%= link_to 'See more >', bank_path(b.id), class: 'link left' %>
         </div>
       </div>
     <%end%>
