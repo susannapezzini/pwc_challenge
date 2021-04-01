@@ -1,18 +1,16 @@
 # == Schema Information
 #
-# Table name: banks
+# Table name: requests
 #
 #  id         :bigint           not null, primary key
-#  name       :string           not null
-#  address    :string
-#  country    :string
-#  bp_bank_id :integer
+#  content    :jsonb
+#  status     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 require "test_helper"
 
-class BankTest < ActiveSupport::TestCase
+class RequestTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

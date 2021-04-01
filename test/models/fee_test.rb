@@ -1,17 +1,19 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: fees
 #
 #  id          :bigint           not null, primary key
+#  product_id  :bigint           not null
 #  name        :string
 #  search_name :string
+#  category    :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-class Product < ApplicationRecord
-  has_many :subproducts
-  has_many :fees
+require "test_helper"
 
-  has_many :prices, through: :fees
-  has_many :banks, through: :subproducts
+class FeeTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

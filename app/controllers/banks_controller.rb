@@ -18,7 +18,7 @@ class BanksController < ApplicationController
   end
 
   def new
-    @user = User.find(current_user.id)
+    @user = User.find(current_user)
     @bank = Bank.new
     @website = Website.new
   end
