@@ -14,4 +14,10 @@ class Bank < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :pricings, through: :products
   has_many :users
+
+
+  validates :name, uniqueness: true
+
+  # The attribute 'name' needs to be unique and it is indexed (.where(name: ...))
+  # will run faster
 end
