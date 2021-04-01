@@ -11,6 +11,9 @@
       <%= link_to dashboard_path, class: "menu_link #{current_class?(dashboard_path)}" do%>
         <p>Dashboard</p>
       <%end%>
+      <%= link_to destroy_user_session_path, class: "menu_link", method: :delete do%>
+        <p>Logout</p>
+      <%end%>
     <% else %>
       <%= link_to new_user_session_path, class: "menu_link #{current_class?(new_user_session_path)}" do%>
         <p>Login</p>

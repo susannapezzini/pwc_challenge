@@ -4,3 +4,27 @@
   padding: 4rem 10vw;
   margin: 0 auto;
 }
+
+.search {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.search_input {
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid $grey;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  padding: 0.5rem 1rem;
+  color: $grey;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+

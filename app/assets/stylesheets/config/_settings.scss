@@ -22,3 +22,18 @@ p {
   font-family: $body-font;
   margin: 0;
 }
+a {
+  text-decoration: none;
+  &:visited {
+    text-decoration: none;
+  }
+  &:active {
+    text-decoration: none;
+  }
+  &:focus {
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}

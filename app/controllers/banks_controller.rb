@@ -1,4 +1,8 @@
 class BanksController < ApplicationController
+  def index
+    @banks = Bank.all
+  end
+
   def show
     @bank = Bank.find(params[:id])
   end
@@ -11,7 +15,7 @@ class BanksController < ApplicationController
   def create
     @bank = Bank.new(bank_params)
     if @bank.save
-      redirect_to bank_path(@bank), notice: 'Bank was successfully created'
+      redirect_to dashboard_path, notice: 'Bank was successfully created'
     else
       render :new
     end
