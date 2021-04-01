@@ -8,6 +8,11 @@
 
   <div class="menu_section">
     <% if user_signed_in? %>
+      <% if !current_user.admin?%>
+        <%= link_to banks_path, class: "menu_link #{current_class?(banks_path)}" do%>
+          <p>Banks</p>
+        <%end%>
+      <%end%>
       <%= link_to dashboard_path, class: "menu_link #{current_class?(dashboard_path)}" do%>
         <p>Dashboard</p>
       <%end%>
