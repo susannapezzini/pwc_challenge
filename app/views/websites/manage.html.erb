@@ -1,0 +1,14 @@
+<div class="container p-5">
+  <% @websites.each do |website| %>
+      <p><%= website.url %>
+      <%= link_to "#" do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+      </p>
+  <% end %>
+
+  <%= simple_form_for [@bank, @new_website] do |f| %>
+      <%= f.input :url, label: "Add new url" %>
+      <%= f.submit class: 'btn', label:"test" %>
+  <% end %>
+</div>

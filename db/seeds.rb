@@ -10,38 +10,35 @@ puts "Destroying all seeds..."
 Pricing.destroy_all
 Product.destroy_all
 ProductFamily.destroy_all
+Website.destroy_all
 Bank.destroy_all
 User.destroy_all
+
 
 puts 'Creating seeds'
 
 BANKS = [{
     name: 'banco ctt',
-    website: 'https://www.bancoctt.pt',
     address: 'Av. Dom João II 13, 1999-001 Lisboa',
     country: 'portugal'
   },
   {
     name: 'abanca',
-    website: 'https://www.abanca.pt',
     address: 'Rua Castilho, n.º 20, 1250-069, Lisboa',
     country: 'portugal'
   },
   {
     name: 'banco bai europa',
-    website: 'https://www.bancobaieuropa.pt',
     address: 'Rua Tierno Galvan Torre 3, 12º Piso, 1070-274 Lisboa',
     country: 'portugal'
   },
   {
     name: 'banco bic',
-    website: 'https://www.eurobic.pt',
     address: 'AVENIDA ANTÓNIO AUGUSTO DE AGUIAR, N.º 132',
     country: 'portugal'
   },
   {
     name: 'bankinter',
-    website: 'https://www.bankinter.pt',
     address: 'Praça Marquês de Pombal, n.º 13, 2.º Andar, 1250-162 Lisboa',
     country: 'portugal'
   }
@@ -77,4 +74,10 @@ BANKS.each do |bank|
               bank: bank)
 end
 
+Website.create(url: "https://www.bancoctt.pt", bank_id: Bank.where(name: "banco ctt").first.id)
+Website.create(url: "https://www.bancobaieuropa.pt", bank_id: Bank.where(name: "banco bai europa").first.id)
+Website.create(url: "https://www.eurobic.pt", bank_id: Bank.where(name: "banco bic").first.id)
+Website.create(url: "https://www.bankinter.pt", bank_id: Bank.where(name: "bankinter").first.id)
+Website.create(url: "https://www.bankinter.com", bank_id: Bank.where(name: "bankinter").first.id)
+Website.create(url: "https://www.abanca.pt", bank_id: Bank.where(name: "abanca").first.id)
 puts 'done'

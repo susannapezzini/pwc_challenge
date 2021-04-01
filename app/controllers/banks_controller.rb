@@ -1,5 +1,5 @@
 class BanksController < ApplicationController
-  before_action :fetch_bank, only: %i[show edit update destroy]
+  before_action :fetch_bank, only: %i[show edit update destroy manage]
   def index
     @banks = Bank.all
     if params[:query].present?
@@ -20,6 +20,7 @@ class BanksController < ApplicationController
   def new
     @user = User.find(current_user.id)
     @bank = Bank.new
+    @website = Website.new
   end
 
   def create
@@ -29,9 +30,12 @@ class BanksController < ApplicationController
     else
       render :new
     end
+
+    Website.create(url: params[:website][:url], bank_id: @bank.id)
   end
 
   def edit
+    @websites = @bank.websites
   end
 
   def update
@@ -55,6 +59,11 @@ class BanksController < ApplicationController
     end
   end
 
+  def manage
+    @websites = @bank.websites
+    @new_website = Website.new
+  end
+
   private
 
   def fetch_bank
@@ -62,6 +71,10 @@ class BanksController < ApplicationController
   end
 
   def bank_params
-    params.require(:bank).permit(:name, :website, :address, :country, :photo)
+    params.require(:bank).permit(:name, :website, :address, :country, :photo, :website)
+  end
+
+  def web_params
+    params.require(:bank).permit[:website]
   end
 end

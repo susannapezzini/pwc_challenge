@@ -15,6 +15,8 @@ class Bank < ApplicationRecord
   has_many :pricings, through: :products
   has_many :users
 
+  has_many :websites
+  accepts_nested_attributes_for :websites
 
   validates :name, uniqueness: true
 

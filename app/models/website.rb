@@ -8,6 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+
 class Website < ApplicationRecord
   belongs_to :bank
 end
