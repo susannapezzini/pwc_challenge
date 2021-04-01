@@ -33,3 +33,12 @@
     }
   }
 }
+
+.card_action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 1rem;
+  width: 80%;
+}
