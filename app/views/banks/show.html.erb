@@ -1,12 +1,10 @@
 <div class="contain pb-0">
-  <div class="crumbs">
-    <% unless current_user.admin?%>
+  <% unless current_user.admin?%>
+    <div class="crumbs">
       <%= link_to 'Banks', banks_path, class: 'link' %>
       <span> > <%= @bank.name.capitalize%></span>
-    <%else%>
-      <p class="link">Banks > <%= @bank.name.capitalize%></p>
-    <%end%>
-  </div>
+    </div>
+  <%end%>
 </div>
 
 
