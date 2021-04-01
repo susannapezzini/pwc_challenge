@@ -6,7 +6,7 @@
 </div>
 
 <div class="contain-color">
-  <h2 class="h2">Bank section</h2>
+  <h6 class="small_title">Bank section</h6>
        <div class="cards">
   <%= form_tag dashboard_path, class: "search", method: :get do %>
     <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
@@ -16,11 +16,21 @@
     <% @banks.reverse.each do |b|%>
       <div class="card">
         <p class="card_title"><%= b.name.capitalize%></p class="card_title">
-        <p class="card_text"><strong><%= link_to 'Website', "#{b.website}", target: '_blank', class: 'card_text' %>: </strong> <%= b.website%></p>
+        <p class="card_text"><strong><%= link_to 'Website', "#{b.websites.first.url}", target: '_blank', class: 'card_text' %>: </strong> <%= b.websites.first.url%></p>
         <p class="card_text"><strong>Address:</strong> <%= b.address%></p>
         <p class="card_text"><strong>Country:</strong> <%= b.country.capitalize%></p>
         <div>
-        <%= link_to 'See more >', '#', class: 'link left' %>
+        <div class="card_action">
+          <%= link_to edit_bank_path(b), class: 'link' do %>
+            <i class="far fa-edit"></i>
+            <span>Edit</span>
+          <%end%>
+
+          <%= link_to '#', class: 'link' do %>
+            <i class="fas fa-angle-right"></i>
+            <span>See more</span>
+          <%end%>
+        </div>
         </div>
       </div>
     <%end%>

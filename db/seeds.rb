@@ -10,8 +10,10 @@ puts "Destroying all seeds..."
 Pricing.destroy_all
 Product.destroy_all
 ProductFamily.destroy_all
+Website.destroy_all
 Bank.destroy_all
 User.destroy_all
+
 
 puts 'Creating seeds'
 
@@ -77,4 +79,5 @@ Website.create(url: "https://www.bancobaieuropa.pt", bank_id: Bank.where(name: "
 Website.create(url: "https://www.eurobic.pt", bank_id: Bank.where(name: "banco bic").first.id)
 Website.create(url: "https://www.bankinter.pt", bank_id: Bank.where(name: "bankinter").first.id)
 Website.create(url: "https://www.bankinter.com", bank_id: Bank.where(name: "bankinter").first.id)
+Website.create(url: "https://www.abanca.pt", bank_id: Bank.where(name: "abanca").first.id)
 puts 'done'
