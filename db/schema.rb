@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_190212) do
 
   create_table "websites", force: :cascade do |t|
     t.string "url"
+    t.string "description"
     t.bigint "bank_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
