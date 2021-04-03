@@ -1,5 +1,5 @@
 class BanksController < ApplicationController
-  before_action :fetch_bank, only: %i[show edit update destroy manage]
+  before_action :fetch_bank, only: %i[show edit update destroy]
   def index
     @banks = Bank.all
     if params[:query].present?
@@ -18,7 +18,7 @@ class BanksController < ApplicationController
   end
 
   def new
-    @user = User.find(current_user)
+    @user = current_user
     @bank = Bank.new
     @website = Website.new
   end
