@@ -24,7 +24,7 @@
           <%= link_to edit_bank_user_path(@bank, user) do %>
             <i class="far fa-edit"></i>
           <% end %>
-          <%= link_to edit_bank_user_path(@bank, user) do %>
+          <%= link_to bank_user_path(@bank, user), method: :delete, data: { confirm: 'Permanently delete user?' } do %>
             <i class="far fa-trash-alt"></i>
           <% end %>
         </div>
