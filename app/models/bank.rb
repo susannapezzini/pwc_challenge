@@ -11,11 +11,12 @@
 #  updated_at :datetime         not null
 #
 class Bank < ApplicationRecord
-  has_many :products, dependent: :destroy
+  has_many :subproducts, dependent: :destroy
+  has_many :products, through: :subproducts
+  has_many :websites, dependent: :destroy
   has_many :pricings, through: :products
-  has_many :users
+  has_many :users, dependent: :destroy
 
-  has_many :websites
   accepts_nested_attributes_for :websites
 
   validates :name, uniqueness: true
