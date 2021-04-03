@@ -1,0 +1,23 @@
+<div class="container p-5">
+  <h3 class="mb-5 text-center"><%= @bank.name %></h3>  
+  <div class="d-flex justify-content-center ">
+    <div class="p-5">
+    <h5>Websites: </h5>
+    <% @websites.each do |website| %>
+        <p><%= website.url %>
+        <%= link_to bank_website_path(@bank, website), method: :delete do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+        </p>
+    <% end %>
+    </div>
+    <div class="p-5">
+      <%= simple_form_for [@bank, @new_website] do |f| %>
+        <%= f.input :url, label: "Add Website URL" %>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+      <br><br>
+    </div>
+  </div>
+  <%= link_to 'Back', :back, class: 'btn btn-primary text-center d-inline'%>
+</div>

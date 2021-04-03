@@ -17,6 +17,28 @@
   }
 }
 
+//Giuseppe made this small class. Unable to work with existing css here.
+.btn-small{
+  color: $white;
+  text-transform: uppercase;
+  font-family: $body-font;
+  background-color: $red;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  &:hover {
+    color: $white;
+    background-color: $red;
+    text-decoration: none;
+  }
+  font-size: 0.9rem;
+  padding: 0.25rem 0.45rem;
+}
+
+
+
 .btn-outline {
   color: $red;
   background-color: $white;
