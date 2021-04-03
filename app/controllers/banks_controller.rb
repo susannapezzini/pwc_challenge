@@ -1,5 +1,5 @@
 class BanksController < ApplicationController
-  before_action :fetch_bank, only: %i[show edit update destroy users]
+  before_action :fetch_bank, only: %i[show edit update destroy]
   def index
     @banks = Bank.all
     if params[:query].present?
@@ -51,7 +51,7 @@ class BanksController < ApplicationController
   def destroy
     if current_user.admin?
       @bank.destroy
-      redirect_to dashboard_path, notice: "Bank and products deleted successfully."
+      redirect_to dashboard_path, notice: "The bank, its subproducts, and its users were deleted successfully."
     else
       flash.now[:alert] = "Sorry, you dont have that permission."
       # redirect_to dashboard_path
@@ -64,15 +64,15 @@ class BanksController < ApplicationController
     @new_website = Website.new
   end
 
-  def users
-    if current_user.admin?
-      @bank.users
-    else
-      flash.now[:alert] = "Sorry, you dont have that permission."
-      # redirect_to dashboard_path
-      redirect_back(fallback_location: root_path)
-    end
-  end
+  # def users
+  #   if current_user.admin?
+  #     @bank.users
+  #   else
+  #     flash.now[:alert] = "Sorry, you dont have that permission."
+  #     # redirect_to dashboard_path
+  #     redirect_back(fallback_location: root_path)
+  #   end
+  # end
 
   private
 

@@ -16,10 +16,7 @@ Rails.application.routes.draw do
 
   resources :banks do
     resources :websites, only: [:create, :index, :destroy]
-    
-    member do
-      get 'users'
-    end
+    resources :users
   end
 
   resources :products do

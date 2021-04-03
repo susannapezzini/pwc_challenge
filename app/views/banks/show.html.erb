@@ -30,18 +30,18 @@
       <div class="actions">
         <h3 class="mb-3">Actions:</h3>
         <%= link_to bank_websites_path(@bank), class: 'link mb-2' do %>
-          <i class="far fa-plus-square"></i>
+          <i class="fas fa-link"></i>
           <span>Manage Websites</span>
         <%end%>
-        <%= link_to users_bank_path(@bank), class: 'link mb-2' do %>
-          <i class="far fa-plus-square"></i>
+        <%= link_to bank_users_path(@bank), class: 'link mb-2' do %>
+          <i class="fas fa-users"></i>
           <span>Manage Users</span>
         <%end%>
         <%= link_to edit_bank_path(@bank), class: 'link mb-2' do %>
           <i class="far fa-edit"></i>
           <span>Edit Bank</span>
         <%end%>
-        <%= link_to bank_path(@bank), method: :delete, class: 'link' , data: { confirm: 'This will delete permanently the bank. Are you sure to proceed?' } do %>
+        <%= link_to bank_path(@bank), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the bank. Are you sure?' } do %>
           <i class="far fa-trash-alt"></i>
           <span>Delete Bank</span>
         <%end%>

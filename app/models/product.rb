@@ -13,5 +13,4 @@ class Product < ApplicationRecord
   has_many :fees
 
   has_many :prices, through: :fees
-  has_many :banks, through: :subproducts
 end
