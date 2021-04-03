@@ -1,0 +1,22 @@
+<div class="container text-center">
+  <h3 class="mt-5 mb-4"><%= "#{@product.name} Subproducts" %></h3>
+  <%= link_to "Create new subproduct", new_product_subproduct_path(@product), class: "btn btn-primary my-5" %>
+
+  <br><br>
+  <div class="text-left w-50 mx-auto mb-5 p-5">
+    <% @subproducts.each do |subproduct| %>
+      <%= link_to subproduct.name, product_subproduct_path(@product, subproduct)%>
+       | 
+      <%= link_to subproduct.bank.name, bank_path(subproduct.bank)%>
+       |
+      <%= link_to edit_product_subproduct_path(@product, subproduct) do %>
+        <i class="far fa-edit"></i>
+      <% end %>
+      <%= link_to product_subproduct_path(@product, subproduct), method: :delete, data: { confirm: 'Warning: This will delete all of the subproducts. Proceed?' } do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+  <%= link_to "Back", :back, class: "btn btn-primary" %>
+</div>
