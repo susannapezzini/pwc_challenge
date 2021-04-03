@@ -4,7 +4,7 @@
   <h6>Admin: <%=current_user.name%></h6>
 
 </div>
-
+<%= link_to "Product Section", products_path %>
 <div class="contain-color">
   <%= form_tag dashboard_path, class: "search", method: :get do %>
     <h6 class="small_title">Bank section</h6>
@@ -15,8 +15,6 @@
 
     <% @banks.reverse.each do |b|%>
       <div class="card">
-
-        <p class="card_title"><strong><%= link_to "#{b.name}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
         <p class="card_title"><strong><%= link_to "#{b.name.capitalize}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
 
         <p class="card_text"><strong><%#= link_to 'Website', "#{b.website}", target: '_blank', class: 'card_text' %>: </strong> <%#= b.website%></p>

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :pricings, only: [:edit, :update]
+    resources :subproducts
   end
 
 end
