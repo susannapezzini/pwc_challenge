@@ -31,7 +31,11 @@
         <h3 class="mb-3">Actions:</h3>
         <%= link_to bank_websites_path(@bank), class: 'link mb-2' do %>
           <i class="far fa-plus-square"></i>
-          <span>Manage websites</span>
+          <span>Manage Websites</span>
+        <%end%>
+        <%= link_to users_bank_path(@bank), class: 'link mb-2' do %>
+          <i class="far fa-plus-square"></i>
+          <span>Manage Users</span>
         <%end%>
         <%= link_to edit_bank_path(@bank), class: 'link mb-2' do %>
           <i class="far fa-edit"></i>
