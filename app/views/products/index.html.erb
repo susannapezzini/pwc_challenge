@@ -1,0 +1,18 @@
+<div class="container text-center">
+  <h1 class="mt-5 mb-4">Products</h1>
+  <%= link_to "Create new product", new_product_path, class: "btn btn-primary my-5" %>
+
+  <br><br>
+  <div class="text-left w-25 mx-auto mb-5 p-5">
+    <% @products.each do |product| %>
+      <%= link_to product.name, product_subproducts_path(product)%>
+      <%= link_to edit_product_path(product) do %>
+        <i class="far fa-edit"></i>
+      <% end %>
+      <%= link_to product_path(product), method: :delete, data: { confirm: 'Warning: This will delete all of the subproducts. Proceed?' } do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+</div>
