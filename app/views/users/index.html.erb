@@ -21,10 +21,10 @@
           <p><%= user.email %><p>
         </div>
         <div class="col-sm-2">
-          <%= link_to edit_bank_user_path(@bank, user) do %>
+          <%= link_to edit_user_path(user) do %>
             <i class="far fa-edit"></i>
           <% end %>
-          <%= link_to bank_user_path(@bank, user), method: :delete, data: { confirm: 'Permanently delete user?' } do %>
+          <%= link_to user_path(user), method: :delete, data: { confirm: 'Permanently delete user?' } do %>
             <i class="far fa-trash-alt"></i>
           <% end %>
         </div>
@@ -32,4 +32,8 @@
     <% end %>
   </div>
   <%= link_to "Add new user", new_bank_user_path, class: "btn btn-primary my-5" %>
+
+  <div class="text-center">
+    <%= link_to "Back", bank_path(@bank), class: "btn btn-primary" %>
+  </div>
 </div>

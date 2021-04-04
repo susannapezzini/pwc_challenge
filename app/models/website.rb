@@ -11,4 +11,5 @@
 
 class Website < ApplicationRecord
   belongs_to :bank
+  validates :url, length: {minimum: 5}
 end

@@ -12,16 +12,19 @@ Rails.application.routes.draw do
   #get 'settings', to: 'pages#settings'
 
 
-  resources :websites, only: [:delete]  
+
 
   resources :banks do
-    resources :websites, only: [:create, :index, :destroy]
-    resources :users
+    resources :websites, only: [:index, :create] # the 'new' form is displayed on the index page
+    resources :users, only: [:index, :new, :create]
   end
 
   resources :products do
     resources :pricings, only: [:edit, :update]
-    resources :subproducts
+    resources :subproducts, only: [:index, :new, :create]
   end
-
+  
+  resources :users, only: [:edit, :update, :destroy]
+  resources :websites, only: [:destroy]  # no edit, or update functionality in app
+  resources :subproducts, only: [:edit, :update, :destroy]
 end

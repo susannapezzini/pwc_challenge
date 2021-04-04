@@ -5,7 +5,7 @@
     <h5>Websites: </h5>
     <% @websites.each do |website| %>
         <p><%= website.url %>
-        <%= link_to bank_website_path(@bank, website), method: :delete, data: {confirm: "Permanently delete website?"} do %>
+        <%= link_to website_path(website), method: :delete, data: {confirm: "Permanently delete website?"} do %>
           <i class="far fa-trash-alt"></i>
         <% end %>
         </p>

@@ -7,7 +7,7 @@
                   autofocus: true,
                   input_html: { autocomplete: "email" }%>
       <%= f.input :name %>
-      <% if params[:action] == "new"%>
+      <% if params[:action] == "new" || params[:action] == "create"%>
         <%= f.input :password,
                     required: true,
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

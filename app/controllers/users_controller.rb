@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :authorize_admin
-  before_action :fetch_bank
-  before_action :fetch_user, only: %i[edit update]
+  before_action :fetch_bank, only: [:index, :new, :create]
+  before_action :fetch_user, only: %i[edit update destroy ]
+
   def index
     @users = @bank.users
   end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.bank = @bank
-    
+
     if @user.save
       redirect_to bank_users_path(@bank)
     else
@@ -26,19 +27,19 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to bank_users_path(@bank)
+      redirect_to bank_users_path(@user.bank)
     else
       render :edit
     end
   end
-  
-  
+
   def destroy
     @user = User.find(params[:id])
+    @bank = @user.bank
     @user.destroy
 
     if @user.destroy
-        redirect_to root_url, notice: "User deleted."
+        redirect_to bank_users_path(@bank), notice: "User deleted."
     end
   end
 
