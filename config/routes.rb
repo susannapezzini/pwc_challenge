@@ -15,11 +15,12 @@ Rails.application.routes.draw do
 
 
   resources :banks do
-    resources :websites, only: [:create, :index]
-    resources :users
+    resources :websites, only: [:index, :create] # the 'new' form is displayed on the index page
+    resources :users, only: [:index, :new, :create]
   end
 
-    resources :websites, only: [:destroy]  
+  resources :websites, only: [:destroy]  
+  resources :users, only: [:edit, :update, :destroy]
 
   resources :products do
     resources :pricings, only: [:edit, :update]
