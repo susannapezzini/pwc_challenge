@@ -4,7 +4,10 @@
   <h6>Admin: <%=current_user.name%></h6>
 
 </div>
-<%= link_to "Product Section", products_path %>
+<div class="text-center">
+  <%= link_to "Manage Subproducts", subproducts_path, class:"btn btn-primary" %>
+</div>
+
 <%= render "banks/bank_list" %>
 
 

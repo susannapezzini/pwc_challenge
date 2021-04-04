@@ -1,21 +1,32 @@
-<div class="container text-center">
+<div class="container text-center mx-auto">
   <h1 class="mt-5 mb-4">Products</h1>
   <%= link_to "Create new product", new_product_path, class: "btn btn-primary my-5" %>
 
-  <br><br>
-  <div class="text-left w-25 mx-auto mb-5 p-5">
-    <% @products.each do |product| %>
-      <%= link_to product.name, product_subproducts_path(product)%>
-      <%= link_to edit_product_path(product) do %>
-        <i class="far fa-edit"></i>
-      <% end %>
-      <%= link_to product_path(product), method: :delete, data: { confirm: 'Warning: This will delete all of the subproducts. Proceed?' } do %>
-        <i class="far fa-trash-alt"></i>
-      <% end %>
-      <br>
-    <% end %>
+  <div class="row justify-content-center border-bottom font-weight-bold">
+    <div class="col-2">Type</div>
+    <div class="col-2">Actions</div>
+    <div class="col-2">Total Subproducts</div>
   </div>
-
-  <%= link_to "Back", dashboard_path, class: "btn btn-primary" %>
-
+  <% @products.each do |product| %>
+    <div class="row justify-content-center">
+      <div class="col-2 text-left">
+        <%= link_to product.name, product_subproducts_path(product)%>
+      </div>
+      <div class="col-2">
+        <%= link_to edit_product_path(product) do %>
+          <i class="far fa-edit"></i>
+        <% end %>
+        <%= link_to product_path(product), method: :delete, data: { confirm: 'Warning: This will delete all of the subproducts. Proceed?' } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <div class="col-2">
+         <%= link_to "View (#{product.subproducts.count})", product_subproducts_path(product)%>
+      </div>
+    </div>
+  <% end %>
+  <div class="text-center">
+    <%= link_to "Manage subproducts", subproducts_path, class: "btn btn-primary my-5" %>
+    <%= link_to "Dashboard", dashboard_path, class: "btn btn-primary my-5" %>
+  </div>
 </div>

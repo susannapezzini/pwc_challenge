@@ -1,8 +1,8 @@
-  <%= simple_form_for [@product, @subproduct] do |f| %>
+<%= simple_form_for [@product, @subproduct] do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.association :product, disabled: true %>
+      <%= f.association :product %>
       <%= f.association :bank %>
       <%= f.input :name %>
     </div>
