@@ -73,6 +73,15 @@ housing_credit = Product.create!(name: "Housing Credit")
 puts "products created"
 
 Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
+  name: "Private Demand Deposit Account (Avg Balance <1000€)", search_name: "3.1 Conta D.O. Particulares (Nota 2) ")
+
+Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
+  name: "Private Demand Deposit Account (Avg Balance <1000-2500€)", search_name: "3.1 Conta D.O. Particulares (Nota 2) ")
+
+Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
+  name: "Private Demand Deposit Account (Balance >2500€", search_name: "3.1 Conta D.O. Particulares (Nota 2) ")
+
+Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
   name: "Bank Account with Direct Deposit Enabled", search_name: "3.2 Conta Ordenado")
 
 Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
@@ -133,6 +142,36 @@ Subproduct.create!(product_id: housing_credit.id, bank_id: banco_ctt.id,
 
 puts "subproducts created"
 
+Fee.create!(product_id: demand_deposit.id, name: "Account Management Fees", 
+  search_name: "3. Manutenção de conta", category: "Fixed")
+
+
+Fee.create!(product_id: demand_deposit.id, name: "Monthly Statement Fee", 
+  search_name: "1.1 Mensal (enviado ao domicílio)", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "Other requests besides monthly statement", 
+  search_name: "1.2 Outros, para além do indicado em 1.1", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "Statement replacement", 
+  search_name: "1.3 2ª Via", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "Additional copy of deposit receipt", 
+  search_name: "2. Fotocópias de segundas vias de talões de depósito", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "Depositing a check to receive cash", 
+  search_name: "4.1 Ao balcão, com apresentação de cheque", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "At the counter without check presentation", 
+  search_name: "4.2 Ao balcão, sem apresentação de cheque", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "Remote Bank Service Adherence/Online-Mobile Banking", 
+  search_name: "5. Adesão ao serviço de banca à distância", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "Deposit of metal coins (at least 100 coins per day per account)", 
+  search_name: "6. Depósito de moedas metálicas (igual ou superior a 100 moedas por dia e por conta)", category: "Optional")
+
+Fee.create!(product_id: demand_deposit.id, name: "Account Owners Change", 
+  search_name: "7. Alteração de titulares", category: "Optional")
 
 puts 'done'
 
