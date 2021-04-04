@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   #get 'settings', to: 'pages#settings'
 
 
-  resources :websites, only: [:delete]  
+
 
   resources :banks do
-    resources :websites, only: [:create, :index, :destroy]
+    resources :websites, only: [:create, :index]
     resources :users
   end
+
+    resources :websites, only: [:destroy]  
 
   resources :products do
     resources :pricings, only: [:edit, :update]

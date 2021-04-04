@@ -1,5 +1,5 @@
 class WebsitesController < ApplicationController
-  before_action :fetch_bank, only: [:index, :create, :destroy]
+  before_action :fetch_bank, only: [:index, :create]
 
   def index
     @websites = @bank.websites
@@ -21,6 +21,7 @@ class WebsitesController < ApplicationController
 
   def destroy
     @website = Website.find(params[:id])
+    @bank = @website.bank
     @website.destroy
 
     redirect_to bank_websites_path(@bank)
