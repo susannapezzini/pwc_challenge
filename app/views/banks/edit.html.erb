@@ -3,16 +3,24 @@
     <%= simple_form_for @bank do |f| %>
       <%= f.input :name  %>
       <%= f.input :address  %>
-      <%= f.country_select :country, prompt: 'Select Country', class: 'form-control string optional' %>
+      <%= f.input :country, priority: ["PT"]%>
+
       <%= simple_fields_for @websites.first do |w| %>
-        <%= w.input :url, label: "Primary URL" %>
+        <%= w.input :url, label: "Primary Website" %>
       <% end %>
+
       <% if @websites.length > 1 %>
+        <p class="d-inline">Other Websites</p>
+
         <% @websites.each_with_index do |website, index| %>
-          <p><%= index == 0 ? "" : website.url %></p>
+          <p class=""><%= index == 0 ? "" : website.url %></p>
         <% end %>
-        <%= link_to "Manage websites", root_path %>
+
+        <%= link_to bank_websites_path(@bank), class: 'link d-block mb-2' do %>
+          <i class="far fa-plus-square"></i>
+          <span>Manage Websites</span>
+        <%end%>
       <% end %>
-      <%= f.submit class: 'btn' %>
+      <%= f.submit class: 'btn btn-primary' %>
     <% end %>
 </div>

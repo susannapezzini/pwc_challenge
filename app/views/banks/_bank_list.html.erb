@@ -1,0 +1,44 @@
+<div class="contain">
+  <%= form_tag banks_path, class: "search", method: :get do %>  
+    <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
+    <%= submit_tag "Search", class: "btn" %>
+  <% end %>
+  <div class="cards">
+
+    <% @banks.reverse.each do |b|%>
+      <div class="bank-card">
+        <p class="card_title"><strong><%= link_to "#{b.name.capitalize}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
+        <p class="card_text"><strong>Primary Website:</strong><br><%= b.websites.first.url %></p>
+        <p class="card_text"><strong>Address:</strong><br><%= b.address.titleize%></p>
+        <p class="card_text"><strong>Country:</strong><br><%= b.country.capitalize%></p>
+        <div class="card_action">
+          <div class="actions">
+            <% if current_user.admin?%>
+              <%= link_to bank_websites_path(b), class: 'link' do %>
+                <i class="fas fa-link"></i>
+                <span>Manage Websites <%= "(#{b.websites.count})"%></span>
+              <%end%>
+              <%= link_to bank_users_path(b), class: 'link' do %>
+                <i class="fas fa-users"></i>
+                <span>Manage Users <%= "(#{b.users.count})"%></span>
+              <%end%>
+              <%= link_to edit_bank_path(b), class: 'link' do %>
+                <i class="far fa-edit"></i>
+                <span>Edit Bank</span>
+              <%end%>
+              <%= link_to bank_path(b), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the bank. Are you sure?' } do %>
+                <i class="far fa-trash-alt"></i>
+                <span>Delete Bank</span>
+              <%end%>
+            <%end%>
+              <%# Available to all users %>
+              <%= link_to bank_path(b), class: 'link' do %> 
+                <i class="fas fa-angle-right"></i>
+                <span>See more</span>
+              <%end%>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>

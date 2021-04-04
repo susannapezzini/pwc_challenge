@@ -1,0 +1,58 @@
+<div class="container text-center">
+
+  <h3 class="mt-5 mb-4">Subproducts</h3>
+  <%= link_to "Create new subproduct", @product ? new_product_subproduct_path(@product, @subproduct) : new_subproduct_path(@product), class: "btn btn-primary my-5" %>
+
+  <br><br>
+  <div class="row border-bottom font-weight-bold">
+    <div class="col-2">
+      Product
+    </div>
+    <div class="col-2">
+      Bank
+    </div>
+    <div class="col-4">
+      Subproduct
+    </div>
+    <div class="col-2">
+      Current Price
+    </div>
+    <div class="col-2">
+      Actions
+    </div>
+  </div>
+  <% @subproducts.each do |subproduct| %>
+    <div class="row">
+      <div class="col-2">
+        <%= link_to subproduct.product.name, product_subproducts_path(subproduct.product) %>
+      </div>
+      <div class="col-2">
+        <%= link_to subproduct.bank.name, bank_path(subproduct.bank)%>
+      </div>
+      <div class="col-4">
+        <%= link_to subproduct.name, subproduct_path(subproduct)%>
+      </div>
+      <div class="col-2">
+        <%#= subproduct.prices.last.amount%>
+        $0
+      </div>
+      <div class="col-2">
+        <%= link_to edit_subproduct_path(subproduct) do %>
+          <i class="far fa-edit"></i>
+        <% end %>
+        <%= link_to subproduct_path(subproduct), method: :delete, data: { confirm: 'Warning: This will delete all of the subproducts. Proceed?' } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  <div class="text-center mt-5">
+    <%# if viewing subproducts of a specific product %>
+    <% if @product %>
+      <%= link_to "View all", subproducts_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Manage Products", products_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
