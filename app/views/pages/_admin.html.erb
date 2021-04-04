@@ -5,43 +5,7 @@
 
 </div>
 <%= link_to "Product Section", products_path %>
-<div class="contain-color">
-  <%= form_tag dashboard_path, class: "search", method: :get do %>
-    <h6 class="small_title">Bank section</h6>
-    <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
-    <%= submit_tag "Search", class: "btn" %>
-  <% end %>
-  <div class="cards">
-
-    <% @banks.reverse.each do |b|%>
-      <div class="card">
-        <p class="card_title"><strong><%= link_to "#{b.name.capitalize}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
-
-        <p class="card_text"><strong><%#= link_to 'Website', "#{b.website}", target: '_blank', class: 'card_text' %>: </strong> <%#= b.website%></p>
-        <p class="card_text"><strong>Address:</strong> <%= b.address%></p>
-        <p class="card_text"><strong>Country:</strong> <%= b.country.capitalize%></p>
-        <div>
-        <div class="card_action">
-
-          <%= link_to bank_path(b), class: 'link' do %>
-            <i class="fas fa-angle-right"></i>
-            <span>See more</span>
-          <%end%>
-        </div>
-        </div>
-      </div>
-    <%end%>
-  </div>
-  <div class="action">
-  <p class="action_claim">Need to add a new bank?</p>
-  <%= link_to 'Create', new_bank_path, class: 'btn' %>
-  </div>
-</div>
-
-
-<div class="contain">
-</div>
-
+<%= render "banks/bank_list" %>
 
 
 

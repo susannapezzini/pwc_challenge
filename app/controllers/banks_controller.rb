@@ -2,6 +2,7 @@ class BanksController < ApplicationController
   before_action :fetch_bank, only: %i[show edit update destroy]
   def index
     @banks = Bank.all
+
     if params[:query].present?
       sql_query = " \
         banks.name @@ :query \
