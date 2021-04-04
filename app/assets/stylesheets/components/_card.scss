@@ -11,6 +11,21 @@
   height: 375px;
   flex-basis: calc(33% - 32px);
 }
+
+.bank-card {
+  border-radius: 3px;
+  // border: 1px solid $smoke;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin-bottom: 2rem;
+  background-color: $white;
+  position: relative;
+  // width: 30%;
+  margin: 1rem;
+  padding: 2rem;
+  height: 400px;
+  width: 400px;
+}
+
 .cards {
   display: flex;
   flex-flow: row wrap;

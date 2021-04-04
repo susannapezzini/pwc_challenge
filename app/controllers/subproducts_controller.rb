@@ -1,24 +1,35 @@
 class SubproductsController < ApplicationController
   before_action :authorize_admin
-  before_action :fetch_product, only: %i[index new create]
   before_action :fetch_subproduct, only: %i[edit update destroy]
   
   def index
-    @subproducts = @product.subproducts
+    #@product needed for route: /products/:id/subproducts but not route: /subproducts
+    if params[:product_id].present?
+      fetch_product
+      @subproducts = @product.subproducts
+    else 
+      @subproducts = Subproduct.all
+    end
   end
 
   def new
     @subproduct = Subproduct.new
-    @subproduct.product = @product
+    
+    #if arriving at this route from the /products/:id/subproducts/new, prefill the Product field
+    #else if arriving from /subproducts/new
+    if params[:product_id].present?
+      fetch_product
+      @subproduct.product = @product
+    end
   end
 
   def create
     @subproduct = Subproduct.new(subproduct_params)
-    @subproduct.product = @product
+    @product = Product.find(subproduct_params[:product_id])
     @subproduct.bank = Bank.find(subproduct_params[:bank_id])
 
     if @subproduct.save
-      redirect_to product_subproducts_path(@product), notice: 'Subproduct was successfully created'
+      redirect_to subproducts_path, notice: 'Subproduct was successfully created'
     else
       render :new
     end
@@ -32,7 +43,7 @@ class SubproductsController < ApplicationController
     @subproduct.bank = Bank.find(subproduct_params[:bank_id])
 
     if @subproduct.update(subproduct_params)
-      redirect_to product_subproducts_path(@subproduct.product), notice: 'Subproduct was successfully updated'
+      redirect_to subproducts_path, notice: 'Subproduct was successfully updated'
     else
       render :edit
     end
