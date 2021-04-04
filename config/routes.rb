@@ -19,12 +19,12 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :new, :create]
   end
 
-  resources :websites, only: [:destroy]  
-  resources :users, only: [:edit, :update, :destroy]
-
   resources :products do
     resources :pricings, only: [:edit, :update]
-    resources :subproducts
+    resources :subproducts, only: [:index, :new, :create]
   end
-
+  
+  resources :users, only: [:edit, :update, :destroy]
+  resources :websites, only: [:destroy]  # no edit, or update functionality in app
+  resources :subproducts, only: [:edit, :update, :destroy]
 end

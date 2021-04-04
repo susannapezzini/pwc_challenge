@@ -9,7 +9,7 @@
 #  updated_at  :datetime         not null
 #
 class Product < ApplicationRecord
-  has_many :subproducts
+  has_many :subproducts, dependent: :destroy
   has_many :fees
 
   has_many :prices, through: :fees

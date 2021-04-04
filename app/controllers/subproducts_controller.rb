@@ -1,11 +1,10 @@
 class SubproductsController < ApplicationController
-  before_action :fetch_subproduct, only: %i[edit update destroy]
-  before_action :fetch_product
   before_action :authorize_admin
-
+  before_action :fetch_product, only: %i[index new create]
+  before_action :fetch_subproduct, only: %i[edit update destroy]
+  
   def index
     @subproducts = @product.subproducts
-    @subproducts = Subproduct.all  
   end
 
   def new
@@ -29,19 +28,21 @@ class SubproductsController < ApplicationController
   end
 
   def update
-    @subproduct.product = @product
+    #@subproduct.product = Bank.find(subproduct_params[:bank_id])
     @subproduct.bank = Bank.find(subproduct_params[:bank_id])
-    
+
     if @subproduct.update(subproduct_params)
-      redirect_to product_subproducts_path(@product), notice: 'Subproduct was successfully updated'
+      redirect_to product_subproducts_path(@subproduct.product), notice: 'Subproduct was successfully updated'
     else
       render :edit
     end
   end
 
   def destroy
+    @product = @subproduct.product
+
     if @subproduct.destroy
-      redirect_to product_subproducts_path(@product), notice: "Subproduct removed"
+      redirect_to product_subproducts_path(@product, @subproduct), notice: "Subproduct removed"
     end
   end
 
