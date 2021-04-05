@@ -25,52 +25,59 @@ admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password:
 default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456')
 puts "users created"
 
-BANKS = [{
-    name: 'banco ctt',
-    address: 'Av. Dom João II 13, 1999-001 Lisboa',
-    country: 'Portugal'
+banco_ctt = Bank.create(
+  name: 'banco ctt',
+  address: 'Av. Dom João II 13, 1999-001 Lisboa',
+  country: 'Portugal',
+  websites_attributes: [
+  { 
+    url: "https://www.bancoctt.pt"
+  }])
+
+abanca = Bank.create(
+  name: 'abanca',
+  address: 'Rua Castilho, n.º 20, 1250-069, Lisboa',
+  country: 'Portugal',
+  websites_attributes: [
+  { 
+    url: "https://www.bancoctt.pt"
+  }])
+
+banco_bai = Bank.create(
+  name: 'banco bai europa',
+  address: 'Rua Tierno Galvan Torre 3, 12º Piso, 1070-274 Lisboa',
+  country: 'Portugal',
+  websites_attributes: [
+  { 
+    url: "https://www.bancobaieuropa.pt"
+  }])
+
+banco_bic = Bank.create(
+  name: 'banco bic',
+  address: 'Avenida Antonio Augusto De Aguiar, N.º 132',
+  country: 'Portugal',
+  websites_attributes: [
+  { 
+    url: "https://www.eurobic.pt"
+  }])
+
+bank_inter = Bank.create(
+  name: 'bankinter',
+  address: 'Praça Marquês de Pombal, n.º 13, 2.º Andar, 1250-162 Lisboa',
+  country: 'Portugal',
+  websites_attributes: [
+  { 
+    url: "https://www.bankinter.pt"
   },
   {
-    name: 'abanca',
-    address: 'Rua Castilho, n.º 20, 1250-069, Lisboa',
-    country: 'Portugal'
-  },
-  {
-    name: 'banco bai europa',
-    address: 'Rua Tierno Galvan Torre 3, 12º Piso, 1070-274 Lisboa',
-    country: 'Portugal'
-  },
-  {
-    name: 'banco bic',
-    address: 'Avenida Antonio Augusto De Aguiar, N.º 132',
-    country: 'Portugal'
-  },
-  {
-    name: 'bankinter',
-    address: 'Praça Marquês de Pombal, n.º 13, 2.º Andar, 1250-162 Lisboa',
-    country: 'Portugal'
-  }
-]
-banco_ctt = Bank.create!(BANKS[0])
-abanca = Bank.create!(BANKS[1])
-banco_bai = Bank.create!(BANKS[2])
-banco_bic = Bank.create!(BANKS[3])
-bankinter = Bank.create!(BANKS[4])
+    url:"https://www.bankinter.com"
+  }])
+  
 puts "banks created"
 
 Request.create
 abanca_doc = Document.create!(request_id: Request.first.id, bank_id: abanca.id)
 banco_bai_doc = Document.create!(request_id: Request.first.id, bank_id: banco_bai.id)
-
-
-Website.create!(url: "https://www.bancoctt.pt", bank_id: banco_ctt.id)
-Website.create!(url: "https://www.bancobaieuropa.pt", bank_id: banco_bai.id)
-Website.create!(url: "https://www.eurobic.pt", bank_id: banco_bic.id)
-Website.create!(url: "https://www.bankinter.pt", bank_id: bankinter.id)
-Website.create!(url: "https://www.bankinter.com", bank_id: bankinter.id)
-Website.create!(url: "https://www.abanca.pt", bank_id: abanca.id)
-puts "websites created"
-
 
 
 demand_deposit = Product.create!(name: "Demand Deposits")
@@ -80,6 +87,7 @@ puts "products created"
 
 Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
   name: "Private Demand Deposit Account (Avg Balance <1000€)", search_name: "3.1 Conta D.O. Particulares (Nota 2) ")
+
 
 Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
   name: "Private Demand Deposit Account (Avg Balance <1000-2500€)", search_name: "3.1 Conta D.O. Particulares (Nota 2) ")
@@ -137,7 +145,7 @@ Subproduct.create!(product_id: demand_deposit.id, bank_id: banco_bai.id,
 Subproduct.create!(product_id: demand_deposit.id, bank_id: banco_bai.id, 
   name: "Demand Deposits Account", search_name: "Conta de Serviços Mínimos Bancários")
 
-Subproduct.create!(product_id: term_deposit.id, bank_id: bankinter.id, 
+Subproduct.create!(product_id: term_deposit.id, bank_id: bank_inter.id, 
   name: "Test Product 123", search_name: "")
 
 Subproduct.create!(product_id: housing_credit.id, bank_id: banco_bic.id, 
@@ -220,26 +228,26 @@ puts 'done'
 
 
 
-# BANKS.each do |bank|
-#   bank = Bank.create(bank)
+# # BANKS.each do |bank|
+# #   bank = Bank.create(bank)
 
-  # # adding products to the banks
-  # pdf_sections1 = { sections: ['1.1', '17.1'] }
-  # demand_deposits = Product.create(
-  #             name: 'Demand deposits',
-  #             pdf_sections: pdf_sections1,
-  #             product_family: product_family,
-  #             bank: bank)
-  # pdf_sections2 = { sections: ['17.2'] }
-  # term_deposits = Product.create(
-  #             name: 'Term deposits',
-  #             pdf_sections: pdf_sections2,
-  #             product_family: product_family,
-  #             bank: bank)
-  # pdf_sections3 = { sections: ['2.1', '18.1'] }
-  # housing_credit = Product.create(
-  #             name: 'Housing credit',
-  #             pdf_sections: pdf_sections3,
-  #             product_family: product_family,
-  #             bank: bank)
-# end
+#   # # adding products to the banks
+#   # pdf_sections1 = { sections: ['1.1', '17.1'] }
+#   # demand_deposits = Product.create(
+#   #             name: 'Demand deposits',
+#   #             pdf_sections: pdf_sections1,
+#   #             product_family: product_family,
+#   #             bank: bank)
+#   # pdf_sections2 = { sections: ['17.2'] }
+#   # term_deposits = Product.create(
+#   #             name: 'Term deposits',
+#   #             pdf_sections: pdf_sections2,
+#   #             product_family: product_family,
+#   #             bank: bank)
+#   # pdf_sections3 = { sections: ['2.1', '18.1'] }
+#   # housing_credit = Product.create(
+#   #             name: 'Housing credit',
+#   #             pdf_sections: pdf_sections3,
+#   #             product_family: product_family,
+#   #             bank: bank)
+# # end
