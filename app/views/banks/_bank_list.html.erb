@@ -1,5 +1,6 @@
 <div class="contain">
   <%= form_tag banks_path, class: "search", method: :get do %>  
+    <h1 class="mb-4">Bank List</h1>
     <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
     <%= submit_tag "Search", class: "btn" %>
   <% end %>

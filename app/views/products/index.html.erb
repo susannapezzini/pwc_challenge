@@ -1,12 +1,36 @@
-<div class="container text-center mx-auto">
-  <h1 class="mt-5 mb-4">Products</h1>
-
-
+<div class="contain">
+  <h1 class="mb-4">Products</h1>
+    <% @products.each do |p|%>
+    <ul class="product_list">
+      <li><%= p.name%>, tot. <%=p.subproducts.count%>
+        <% if current_user && current_user.admin? %>
+          <%= link_to product_path(p), method: :delete, data: { confirm: 'This action will also delete all teh subproducts. Are you sure?'} do %>
+            <i class="far fa-trash-alt"></i>
+            <%# <span>Delete</span> %>
+          <%end%>
+        <%end%>
+      </li>
+    </ul>
+    <%end%>
+  <% if current_user.admin?%>
+  <%= link_to "Add new product family", new_product_path, class: "btn" %>
+<%end%>
+</div>
+<div class="bottom_nav">
+  <span>Jump to: 
+    <% @products.each do |p|%>
+      <span><%= link_to p.name, "#sub_#{p.id}", class: 'nav_link' %></span>
+    <%end%>
+    <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
 </div>
 
-<% @products.each do |p|%>
-  <div class="contain-color">
-    <h5 class="small_text"><%= p.name%>, tot. <%= p.subproducts.count%></h5>
+<% @products.each_with_index do |p, index|%>
+    <% if index.even?%>
+    <div class="contain-color" id="sub_<%= p.id%>">
+    <%else%>
+    <div class="contain" id="sub_<%= p.id%>">
+    <%end%>
+    <h5 class="small_text"><%= p.name%></h5>
 
       <div class="cards">
 
@@ -15,26 +39,25 @@
             <p class="card_title"><strong><%= link_to "#{b.name}", '#', class: 'card_title', style: "text-decoration: none;" %></strong></p>
             <p class="card_text"><strong>Bank:</strong><br><%= b.bank.name %></p>
             <p class="card_text"><strong>Current Price:</strong><br>$ 0</p>
-            <div class="card_action">
-              <% if current_user && current_user.admin?%>
-                <div class="actions">
-                  <%= link_to '#' do %>
-                  <i class="far fa-edit"></i>
-                  <% end %>
-                  <%= link_to '#' do %>
-                  <i class="far fa-trash-alt"></i>
-                  <% end %>
+              <% if current_user && current_user.admin? %>
+                <div class="card_action">
+                      <%= link_to edit_subproduct_path(b) do %>
+                      <i class="far fa-edit"></i>
+                      <span>Edit</span>
+                      <% end %>
+                      <%= link_to subproduct_path(b), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="far fa-trash-alt"></i>
+                      <span>Delete</span>
+                      <% end %>
+                </div>
               <%end%>
-            </div>
           </div>
 
         <%end%>
-      <%# </div> %>
+      </div>
   </div>
 <%end%>
 
 <div class="contain">
-<% if current_user.admin?%>
-  <%= link_to "Create new product", new_product_path, class: "btn btn-primary my-5" %>
-<%end%>
+
 </div>

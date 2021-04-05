@@ -14,7 +14,7 @@ const showButton = () => {
     console.log(bottomNav);
     const diff = (height - footer.offsetHeight);
     console.log({height});
-    if (height < 250) {
+    if (height < 150) {
       bottomNav.classList.remove('show');
       // console.log(up);
     } 
