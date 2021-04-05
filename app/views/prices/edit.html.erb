@@ -1,0 +1,22 @@
+<div class="container w-25 my-5">
+  <%= simple_form_for @price do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.association :fee %>
+      <%= f.association :subproduct %>
+      <%#= f.association :document %>
+      <%= f.input :name %>
+      <%= f.input :amount %>
+      <%= f.input :category %>
+      <%= f.input :tax_category %>
+      <%= f.input :tax %>
+      <%= f.input :tax_amount %>
+      <%= f.input :status %>
+    </div>
+
+    <div class="form-actions mb-5">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
