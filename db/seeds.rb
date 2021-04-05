@@ -53,6 +53,7 @@ default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: 
 product_family = ProductFamily.create(name: 'product')
 service_family = ProductFamily.create(name: 'service')
 
+
 BANKS.each do |bank|
   bank = Bank.create(bank)
 

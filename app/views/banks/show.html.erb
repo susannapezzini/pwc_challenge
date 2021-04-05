@@ -11,7 +11,9 @@
           </div>
         </div>
     </div>
-    
+
+    <%= link_to("Download", cl_private_download_url(@bank.files.first.key, :pdf, :attachment => true)) %>
+
   </div>
   <%= link_to 'Back', dashboard_path, class: 'btn'%>
 </div>

@@ -4,6 +4,7 @@
       <%= f.input :name  %>
       <%#= f.input :website  %>
       <%= f.input :address  %>
+      <%= f.input :files, as: :file, input_html: { multiple: true } %>
       <%= f.country_select :country, prompt: 'Select Country', class: 'form-control string optional' %>
       <br>
       <%= f.submit class: 'btn' %>
