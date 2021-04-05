@@ -1,6 +1,6 @@
 class SubproductsController < ApplicationController
   before_action :authorize_admin
-  before_action :fetch_subproduct, only: %i[edit update destroy]
+  before_action :fetch_subproduct, only: %i[edit update destroy show]
   
   def index
     #@product needed for route: /products/:id/subproducts but not route: /subproducts
@@ -49,6 +49,10 @@ class SubproductsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   def destroy
     @product = @subproduct.product
 
@@ -56,6 +60,7 @@ class SubproductsController < ApplicationController
       redirect_to product_subproducts_path(@product, @subproduct), notice: "Subproduct removed"
     end
   end
+
 
     private
       def subproduct_params
