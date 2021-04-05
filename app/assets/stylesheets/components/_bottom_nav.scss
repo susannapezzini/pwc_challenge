@@ -2,7 +2,8 @@
   position: fixed;
   bottom: 2rem;
   left: 50%;
-  margin-left: -25%;
+  //margin-left: -25%;
+  transform: translate(-50%, 0);
   z-index: 1001;
   background-color: $dark;
   color: $white;
@@ -15,6 +16,10 @@
   height: 3rem;
   opacity: 0;
   transition: opacity 0.3s ease-out;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
 }
 
 .nav_link {
