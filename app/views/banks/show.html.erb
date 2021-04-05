@@ -1,11 +1,3 @@
-<div class="contain pb-0">
-  <% unless current_user.admin?%>
-    <div class="crumbs">
-      <%= link_to 'Banks', banks_path, class: 'link' %>
-      <span> > <%= @bank.name.capitalize%></span>
-    </div>
-  <%end%>
-</div>
 
 <div class="bottom_nav">
   <span>Jump to: 

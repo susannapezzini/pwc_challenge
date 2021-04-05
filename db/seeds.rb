@@ -22,7 +22,6 @@ User.destroy_all
 puts 'Creating seeds'
 
 admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
-default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456')
 puts "users created"
 
 BANKS = [{
@@ -57,6 +56,8 @@ banco_bai = Bank.create!(BANKS[2])
 banco_bic = Bank.create!(BANKS[3])
 bankinter = Bank.create!(BANKS[4])
 puts "banks created"
+default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: abanca)
+
 
 Request.create
 abanca_doc = Document.create!(request_id: Request.first.id, bank_id: abanca.id)
