@@ -29,7 +29,7 @@ class SubproductsController < ApplicationController
     @subproduct.bank = Bank.find(subproduct_params[:bank_id])
 
     if @subproduct.save
-      redirect_to subproducts_path, notice: 'Subproduct was successfully created'
+      redirect_to bank_path(@subproduct.bank, anchor: 'subproducts'), notice: 'Subproduct was successfully created'
     else
       render :new
     end
@@ -43,7 +43,7 @@ class SubproductsController < ApplicationController
     @subproduct.bank = Bank.find(subproduct_params[:bank_id])
 
     if @subproduct.update(subproduct_params)
-      redirect_to subproducts_path, notice: 'Subproduct was successfully updated'
+      redirect_to bank_path(@subproduct.bank, anchor: 'subproducts'), notice: 'Subproduct was successfully updated'
     else
       render :edit
     end
@@ -53,7 +53,7 @@ class SubproductsController < ApplicationController
     @product = @subproduct.product
 
     if @subproduct.destroy
-      redirect_to product_subproducts_path(@product, @subproduct), notice: "Subproduct removed"
+      redirect_to bank_path(@subproduct.bank, anchor: 'subproducts'), notice: "Subproduct removed"
     end
   end
 

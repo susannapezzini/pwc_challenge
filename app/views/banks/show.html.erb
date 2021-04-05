@@ -19,6 +19,7 @@
 
 
   <div class="contain">
+    <%= link_to 'Back', :back , class: 'btn-outline float-right mb-4'%>
     <h1 class="mb-4"><%= @bank.name.capitalize %></h1>
     <div class="admin">
     <div class="details">
@@ -29,7 +30,7 @@
     <%end%>
     <p><strong>Address: </strong><%=@bank.address%></p>
     <p><strong>Country: </strong><%=@bank.country%></p>
-    </div>
+  </div>
 
 
 <% if current_user.admin?%>
@@ -56,23 +57,24 @@
 </div>
 </div>
 
-<div class="contain-color" id="subbproducts">
+<div class="contain-color" id="subproducts">
   <h6 class="small_title"><%= @bank.name.capitalize%>'s Subproducts offer</h6>
     <div class="cards">
 
-      <% @subproducts.each do |b|%>
+      <% @subproducts.reverse.each do |b|%>
         <div class="bank-card">
-          <p class="card_title"><strong><%= link_to "#{b.search_name}", '#', class: 'card_title', style: "text-decoration: none;" %></strong></p>
+          <p class="card_title"><strong><%= link_to "#{b.name}", '#', class: 'card_title', style: "text-decoration: none;" %></strong></p>
           <p class="card_text"><strong>Product Family:</strong><br><%= b.product.name %></p>
+          <p class="card_text"><strong>Price:</strong><br></p>
           <% if current_user.admin?%>
             <div class="card_action">
-              <%= link_to '#', class: 'link mb-2' do %>
+              <%= link_to edit_bank_subproduct_path(@bank), class: 'link' do %>
               <i class="far fa-edit"></i>
-              <span>Edit Subproduct</span>
+              <span>Edit</span>
               <%end%>
-              <%= link_to '#', method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the bank. Are you sure?' } do %>
+              <%= link_to subproduct_path(b), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the product. Are you sure?' } do %>
               <i class="far fa-trash-alt"></i>
-              <span>Delete Subproduct</span>
+              <span>Delete</span>
               <%end%>
             </div>
           <%end%>
@@ -80,31 +82,48 @@
       <%end%>
     </div>
   <% if current_user.admin?%>
-    <%= link_to 'Add New Subproduct', new_bank_subproduct_path(@bank), class: 'btn'%>
+    <div class="text-center">
+      <%= link_to 'Add New Subproduct', new_bank_subproduct_path(@bank), class: 'btn'%>
+    </div>
   <%end%>
 </div>
 
-<%if current_user && current_user.admin?%>
+<%if current_user && current_user.admin? %>
 <div class="contain" id="users">
   <h6 class="small_title"><%= @bank.name.capitalize%>'s Users</h6>
-      <div class="cards">
+    <% if @users.any?%>
+    <div class="cards">
 
       <% @users.each do |b|%>
         <div class="bank-card">
           <p class="card_title"><strong><%= link_to "#{b.name}", '#', class: 'card_title', style: "text-decoration: none;" %></strong></p>
           <p class="card_text"><strong>Email:</strong><br><%= b.email %></p>
           <% if current_user.admin?%>
-          <div class="card_action">
-          </div>
+            <div class="card_action">
+              <%= link_to edit_user_path(b), class: 'link' do %>
+              <i class="far fa-edit"></i>
+              <span>Edit</span>
+              <%end%>
+              <%= link_to user_path(b), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the product. Are you sure?' } do %>
+              <i class="far fa-trash-alt"></i>
+              <span>Delete</span>
+              <%end%>
+            </div>
           <%end%>
         </div>
       <%end%>
     </div>
-    <%= link_to 'Add New User', new_bank_user_path(@bank), class: 'btn'%>
+    <%else%>
+    <p class="text-center">Sorry, there are no users for this bank yet.</p>
+    <%end%>
+
+    <div class="text-center">
+      <%= link_to 'Add New User', new_bank_user_path(@bank), class: 'btn'%>
+    </div>
 </div>
 <%end%>
 
 <div class="contain">
-  <%= link_to 'Back', banks_path, class: 'btn'%>
 </div>
+
 

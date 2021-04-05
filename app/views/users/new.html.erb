@@ -1,8 +1,7 @@
 <div class="form_container">
-  <h3 class="mb-5">Register new account for <%= @bank.name %></h3>
+  <%= link_to "Back", :back, class: "btn-outline float-right" %>
+  <h1 class="mb-5">Register new account for <%= @bank.name %></h1>
   <%= render "form" %>
 </div>
 
-<div class="text-center">
-  <%= link_to "Back", :back, class: "btn btn-primary" %>
-</div>
+
