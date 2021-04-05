@@ -54,7 +54,7 @@ class BanksController < ApplicationController
   def destroy
     if current_user.admin?
       @bank.destroy
-      redirect_to dashboard_path, notice: "The bank, its subproducts, and its users were deleted successfully."
+      redirect_to banks_path, notice: "The bank, its subproducts, and its users were deleted successfully."
     else
       flash.now[:alert] = "Sorry, you dont have that permission."
       # redirect_to dashboard_path

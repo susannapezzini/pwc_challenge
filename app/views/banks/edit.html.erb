@@ -5,22 +5,17 @@
       <%= f.input :address  %>
       <%= f.input :country, priority: ["PT"]%>
 
-      <%= simple_fields_for @websites.first do |w| %>
-        <%= w.input :url, label: "Primary Website" %>
-      <% end %>
+      <%#= simple_fields_for @websites.first do |w| %>
+        <%#= w.input :url, label: "Primary Website" %>
+      <%# end %>
 
-      <% if @websites.length > 1 %>
-        <p class="d-inline">Other Websites</p>
 
-        <% @websites.each_with_index do |website, index| %>
-          <p class=""><%= index == 0 ? "" : website.url %></p>
-        <% end %>
 
-        <%= link_to bank_websites_path(@bank), class: 'link d-block mb-2' do %>
-          <i class="far fa-plus-square"></i>
-          <span>Manage Websites</span>
-        <%end%>
-      <% end %>
+        <%#= link_to bank_websites_path(@bank), class: 'link d-block mb-2' do %>
+          <%# <i class="far fa-plus-square"></i>
+          <span>Manage Websites</span> %>
+        <%#end%>
+      <%# end %>
       <%= f.submit class: 'btn btn-primary' %>
     <% end %>
 </div>

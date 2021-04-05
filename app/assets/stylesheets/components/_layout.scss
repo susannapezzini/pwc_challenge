@@ -11,7 +11,6 @@
   background-color: $smoke;
   width: 100%;
   padding: 2rem 12vw;
-  height: 1000px;
 }
 
 #values {
@@ -28,4 +27,8 @@
   position: absolute;
   top: 2rem;
   right: 15vw;
+}
+
+.float-right {
+  float: right;
 }
