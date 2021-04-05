@@ -15,41 +15,15 @@ ActiveRecord::Schema.define(version: 2021_04_01_190212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
-  end
-
-  create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
-    t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
   create_table "banks", force: :cascade do |t|
     t.string "name", null: false
-    t.string "website", null: false
     t.string "address"
     t.string "country"
+    t.integer "bp_bank_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["bp_bank_id"], name: "index_banks_on_bp_bank_id", unique: true
+    t.index ["name"], name: "index_banks_on_name", unique: true
   end
 
   create_table "documents", force: :cascade do |t|
@@ -94,32 +68,11 @@ ActiveRecord::Schema.define(version: 2021_04_01_190212) do
     t.index ["subproduct_id"], name: "index_prices_on_subproduct_id"
   end
 
-  create_table "pricings", force: :cascade do |t|
-    t.datetime "date_added", null: false
-    t.string "file_url"
-    t.string "file_ext"
-    t.jsonb "metadata", default: {}
-    t.bigint "product_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_pricings_on_product_id"
-  end
-
-  create_table "product_families", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.jsonb "pdf_sections", default: {}, null: false
-    t.bigint "product_family_id", null: false
-    t.bigint "bank_id", null: false
+    t.string "search_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["bank_id"], name: "index_products_on_bank_id"
-    t.index ["product_family_id"], name: "index_products_on_product_family_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -170,17 +123,12 @@ ActiveRecord::Schema.define(version: 2021_04_01_190212) do
     t.index ["bank_id"], name: "index_websites_on_bank_id"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "documents", "banks"
   add_foreign_key "documents", "requests"
   add_foreign_key "fees", "products"
   add_foreign_key "prices", "documents"
   add_foreign_key "prices", "fees"
   add_foreign_key "prices", "subproducts"
-  add_foreign_key "pricings", "products"
-  add_foreign_key "products", "banks"
-  add_foreign_key "products", "product_families"
   add_foreign_key "subproducts", "banks"
   add_foreign_key "subproducts", "products"
   add_foreign_key "users", "banks"
