@@ -8,19 +8,16 @@
 
 puts "Destroying all seeds..."
 
-Document.destroy_all
 Price.destroy_all
 Fee.destroy_all
-Product.destroy_all
-Request.destroy_all
-Subproduct.destroy_all
 Website.destroy_all
+Document.destroy_all
+Product.destroy_all
+Subproduct.destroy_all
+Request.destroy_all
+
 Bank.destroy_all
 User.destroy_all
-
-
-# Request.create
-# Document.create(request_id: Request.first.id)
 
 puts 'Creating seeds'
 
@@ -60,6 +57,11 @@ banco_bai = Bank.create!(BANKS[2])
 banco_bic = Bank.create!(BANKS[3])
 bankinter = Bank.create!(BANKS[4])
 puts "banks created"
+
+Request.create
+abanca_doc = Document.create!(request_id: Request.first.id, bank_id: abanca.id)
+banco_bai_doc = Document.create!(request_id: Request.first.id, bank_id: banco_bai.id)
+
 
 Website.create!(url: "https://www.bancoctt.pt", bank_id: banco_ctt.id)
 Website.create!(url: "https://www.bancobaieuropa.pt", bank_id: banco_bai.id)
@@ -186,33 +188,33 @@ Fee.create!(product_id: demand_deposit.id, name: "Commission for account mainten
 Fee.create!(product_id: demand_deposit.id, name: "Account Management Fee", 
   search_name: "1. Manutenção de conta", category: "Optional")
 
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 5)
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 4.10)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 5, document_id: banco_bai_doc.id)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 4.10, document_id: banco_bai_doc.id)
 
 Fee.create!(product_id: demand_deposit.id, name: "Cash Withdrawal", 
   search_name: "2. Levantamento de numerário", category: "Optional")
 
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 20)
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 20, document_id: banco_bai_doc.id)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0, document_id: banco_bai_doc.id)
 
 Fee.create!(product_id: demand_deposit.id, name: "USD withdrawal in USD accounts", 
   search_name: "3. Levantamento USD em contas USD", category: "Optional")
 
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 0)
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 0, document_id: banco_bai_doc.id)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0, document_id: banco_bai_doc.id)
 
 
 Fee.create!(product_id: demand_deposit.id, name: "Integrated Statement", 
   search_name: "4. Extracto integrado", category: "Optional")
 
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 0)
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 0, document_id: banco_bai_doc.id)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0, document_id: banco_bai_doc.id)
 
 Fee.create!(product_id: demand_deposit.id, name: "Single Statement", 
   search_name: "5. Extracto avulso", category: "Optional")
 
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 0)
-# Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.first.id, amount: 0, document_id: banco_bai_doc.id)
+  Price.create!(fee_id: Fee.last.id, subproduct_id: banco_bai.subproducts.last.id, amount: 0, document_id: banco_bai_doc.id)
 
 puts 'done'
 
