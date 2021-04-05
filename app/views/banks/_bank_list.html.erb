@@ -1,15 +1,19 @@
 <div class="contain">
+    <% if current_user && current_user.admin?%>
+      <%= link_to 'Add new bank', banks_new_path, class:'btn-outline float-right mb-5' %>
+    <%end%>
   <%= form_tag banks_path, class: "search", method: :get do %>  
     <h1 class="mb-4">Bank List</h1>
     <%= text_field_tag :query, params[:query], class: "search_input", placeholder: "Type a bank name..."%>
-    <%= submit_tag "Search", class: "btn" %>
+    <%= submit_tag "Search", class: 'btn' %>
   <% end %>
   <div class="cards">
 
     <% @banks.reverse.each do |b|%>
+    <% web = b.websites.any? ? b.websites.first.url : 'N/a' %>
       <div class="bank-card">
         <p class="card_title"><strong><%= link_to "#{b.name.capitalize}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
-        <p class="card_text"><strong>Primary Website:</strong><br><%= b.websites.first.url %></p>
+        <p class="card_text"><strong>Primary Website:</strong><br><%= web %></p>
         <p class="card_text"><strong>Address:</strong><br><%= b.address.titleize%></p>
         <p class="card_text"><strong>Country:</strong><br><%= b.country.capitalize%></p>
         <div class="card_action">

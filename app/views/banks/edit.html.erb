@@ -3,6 +3,7 @@
     <%= simple_form_for @bank do |f| %>
       <%= f.input :name  %>
       <%= f.input :address  %>
+      <%= f.input :files, as: :file, input_html: { multiple: true } %>
       <%= f.input :country, priority: ["PT"]%>
 
       <%#= simple_fields_for @websites.first do |w| %>

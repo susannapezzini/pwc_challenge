@@ -16,10 +16,12 @@ class Bank < ApplicationRecord
   has_many :websites, dependent: :destroy
   has_many :pricings, through: :products
   has_many :users, dependent: :destroy
-
+  has_many_attached :files
+  
   accepts_nested_attributes_for :websites
 
   validates :name, uniqueness: true
+  validates :name, :address, :country, presence: true
 
   # The attribute 'name' needs to be unique and it is indexed (.where(name: ...))
   # will run faster

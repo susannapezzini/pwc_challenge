@@ -29,7 +29,7 @@ class BanksController < ApplicationController
   def create
     @bank = Bank.new(bank_params)
     if @bank.save
-      redirect_to dashboard_path, notice: 'Bank was successfully created'
+      redirect_to banks_path, notice: 'Bank was successfully created'
     else
       render :new
     end
@@ -84,7 +84,7 @@ class BanksController < ApplicationController
   end
 
   def bank_params
-    params.require(:bank).permit(:name, :website, :address, :country, :photo, :website)
+    params.require(:bank).permit(:name, :website, :address, :country, :website, files: [])
   end
 
   def web_params

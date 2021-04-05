@@ -1,0 +1,35 @@
+<div class="contain mb-5">
+<%= link_to 'Back', :back, class: 'btn-outline float-right'%>
+
+</div>
+
+<div class="container mb-5">
+  <div class="row">    
+    <div class="col-4">
+      Fee
+    </div>
+
+    <div class="col-4">
+      Cost
+    </div>
+  </div>
+
+  <% @subproduct.fees.each do |fee| %>
+    <div class="row">
+      <div class="col-4">
+        <%= fee.name %>
+      </div>
+      <div class="col-4">
+        <%= fee.prices.last.amount %>
+        <%= link_to "Edit", edit_price_path(fee.prices.last) %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row border-top">
+    <div class="col-4">Total</div>
+    <div class="col-4">
+      <%= @subproduct.fees.sum { |fee| fee.prices.last.amount }%>
+    </div>
+  </div>
+</div>
