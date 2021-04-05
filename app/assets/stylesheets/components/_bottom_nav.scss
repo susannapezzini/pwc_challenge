@@ -3,7 +3,7 @@
   bottom: 2rem;
   left: 50%;
   //margin-left: -25%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -2rem);
   z-index: 1001;
   background-color: $dark;
   color: $white;
@@ -16,10 +16,12 @@
   height: 3rem;
   opacity: 0;
   transition: opacity 0.3s ease-out;
-  -webkit-transform: translate(-50%, 0);
-  -moz-transform: translate(-50%, 0);
-  -ms-transform: translate(-50%, 0);
-  -o-transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, -2rem);
+  -moz-transform: translate(-50%, -2rem);
+  -ms-transform: translate(-50%, -2rem);
+  -o-transform: translate(-50%, -2rem);
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
 }
 
 .nav_link {
@@ -27,7 +29,7 @@
   color:$white;
   padding: 0 1rem;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-right: 1px solid $white;
