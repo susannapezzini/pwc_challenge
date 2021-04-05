@@ -2,7 +2,9 @@
   <h1 class="mb-4">Products</h1>
     <% @products.each do |p|%>
     <ul class="product_list">
-      <li><%= p.name%>, tot. <%=p.subproducts.count%>
+      <li> <%=link_to "#sub_#{p.id}", class: 'link' do%>
+      <%= p.name%>, tot. <%=p.subproducts.count%>
+      <%end%>
         <% if current_user && current_user.admin? %>
           <%= link_to product_path(p), method: :delete, data: { confirm: 'This action will also delete all teh subproducts. Are you sure?'} do %>
             <i class="far fa-trash-alt"></i>
