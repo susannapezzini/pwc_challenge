@@ -8,7 +8,7 @@
 
 def add_last_fee_to_all_subproducts_of(bank, product_type)
     bank.subproducts.where(product_id: product_type.id).each do |s|
-      p Price.create!(fee_id: Fee.last.id, subproduct_id: s.id, amount: rand(20), document_id: Document.first.id)
+      Price.create!(fee_id: Fee.last.id, subproduct_id: s.id, amount: rand(20), document_id: Document.first.id)
       puts
     end
 end
