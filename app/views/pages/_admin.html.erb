@@ -2,17 +2,20 @@
   <%#= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'link right' %>
   <h1>Welcome to your dashboard</h1>
   <h6>Admin: <%=current_user.name%></h6>
-    <div class="actions">
-    <p>Jump to: Pending Requests Sync</p>
-  </div>
+    <div id="bottom_nav">
+      <span>Jump to: 
+        <span><%= link_to 'Pending', '#pending', class: 'nav_link' %></span>
+        <span><%= link_to 'Request', '#requests', class: 'nav_link' %></span>
+      </span>
+    </div>
 
 </div>
 
-<div class="contain-color">
+<div class="contain-color" id="pending">
 <h6 class="small_title">Pending</h6>
 <%= link_to 'Add New Request', '#', class: 'btn'%>
 </div>
-<div class="contain">
+<div class="contain" id="requests">
 <h6 class="small_title">Requests</h6>
 </div>
 

@@ -1,0 +1,7 @@
+#bottom_nav {
+  position: fixed;
+  bottom: 2rem;
+  left: 45%;
+  margin: 0 auto;
+  z-index: 1001;
+}
