@@ -31,16 +31,21 @@
     <div class="contain" id="sub_<%= p.id%>">
     <%end%>
     <h5 class="small_text"><%= p.name%></h5>
-
+      <% if current_user && current_user.admin? %>
+        <%= link_to 'add subproduct', new_product_subproduct_path(p), class: 'btn'%>
+        <%end%>
       <div class="cards">
-
         <% p.subproducts.each do |b|%>
           <div class="bank-card">
             <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
             <p class="card_text"><strong>Bank:</strong><br><%= b.bank.name %></p>
             <p class="card_text"><strong>Current Price:</strong><br>$ 0</p>
-              <% if current_user && current_user.admin? %>
                 <div class="card_action">
+                      <%= link_to subproduct_path(b), class: 'link' do %> 
+                      <i class="fas fa-angle-right"></i>
+                      <span>See more</span>
+                      <%end%>
+              <% if current_user && current_user.admin? %>
                       <%= link_to edit_subproduct_path(b) do %>
                       <i class="far fa-edit"></i>
                       <span>Edit</span>
@@ -49,8 +54,8 @@
                       <i class="far fa-trash-alt"></i>
                       <span>Delete</span>
                       <% end %>
-                </div>
               <%end%>
+                </div>
           </div>
 
         <%end%>

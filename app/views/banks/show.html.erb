@@ -58,9 +58,13 @@
           <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
           <p class="card_text"><strong>Product Family:</strong><br><%= b.product.name %></p>
           <p class="card_text"><strong>Price:</strong><br></p>
-          <% if current_user.admin?%>
             <div class="card_action">
-              <%= link_to edit_bank_subproduct_path(@bank), class: 'link' do %>
+            <%= link_to subproduct_path(b), class: 'link' do %> 
+              <i class="fas fa-angle-right"></i>
+              <span>See more</span>
+            <%end%>
+          <% if current_user.admin?%>
+              <%= link_to edit_bank_subproduct_path(@bank, b), class: 'link' do %>
               <i class="far fa-edit"></i>
               <span>Edit</span>
               <%end%>
@@ -68,8 +72,8 @@
               <i class="far fa-trash-alt"></i>
               <span>Delete</span>
               <%end%>
-            </div>
           <%end%>
+            </div>
         </div>
       <%end%>
     </div>

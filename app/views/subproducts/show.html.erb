@@ -21,7 +21,10 @@
       </div>
       <div class="col-4">
         <%= fee.prices.last.amount %>
-        <%= link_to "Edit", edit_price_path(fee.prices.last) %>
+        <%= link_to edit_price_path(fee.prices.last) do %>
+          <i class="far fa-edit"></i>
+          <span>Edit</span>
+        <%end%>
       </div>
     </div>
   <% end %>
