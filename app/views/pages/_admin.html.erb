@@ -2,13 +2,22 @@
   <%#= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'link right' %>
   <h1>Welcome to your dashboard</h1>
   <h6>Admin: <%=current_user.name%></h6>
+    <div class="actions">
+    <p>Jump to: Pending Requests Sync</p>
+  </div>
 
 </div>
-<div class="text-center">
-  <%= link_to "Manage Subproducts", subproducts_path, class:"btn btn-primary" %>
+
+<div class="contain-color">
+<h6 class="small_title">Pending</h6>
+<%= link_to 'Add New Request', '#', class: 'btn'%>
+</div>
+<div class="contain">
+<h6 class="small_title">Requests</h6>
 </div>
 
-<%= render "banks/bank_list" %>
+
+<%#= render "banks/bank_list" %>
 
 
 

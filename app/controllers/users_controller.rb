@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user.bank = @bank
 
     if @user.save
-      redirect_to bank_users_path(@bank)
+      redirect_to bank_path(@bank)
     else
       render :new
     end

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :banks do
     resources :websites, only: [:index, :create] # the 'new' form is displayed on the index page
+    resources :subproducts, only: %i[index show new create]
     resources :users, only: [:index, :new, :create]
   end
 

@@ -16,6 +16,8 @@ class BanksController < ApplicationController
   end
 
   def show
+    @users = @bank.users
+    @subproducts = @bank.subproducts
   end
 
   def new

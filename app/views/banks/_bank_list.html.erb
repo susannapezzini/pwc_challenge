@@ -13,24 +13,6 @@
         <p class="card_text"><strong>Country:</strong><br><%= b.country.capitalize%></p>
         <div class="card_action">
           <div class="actions">
-            <% if current_user.admin?%>
-              <%= link_to bank_websites_path(b), class: 'link' do %>
-                <i class="fas fa-link"></i>
-                <span>Manage Websites <%= "(#{b.websites.count})"%></span>
-              <%end%>
-              <%= link_to bank_users_path(b), class: 'link' do %>
-                <i class="fas fa-users"></i>
-                <span>Manage Users <%= "(#{b.users.count})"%></span>
-              <%end%>
-              <%= link_to edit_bank_path(b), class: 'link' do %>
-                <i class="far fa-edit"></i>
-                <span>Edit Bank</span>
-              <%end%>
-              <%= link_to bank_path(b), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the bank. Are you sure?' } do %>
-                <i class="far fa-trash-alt"></i>
-                <span>Delete Bank</span>
-              <%end%>
-            <%end%>
               <%# Available to all users %>
               <%= link_to bank_path(b), class: 'link' do %> 
                 <i class="fas fa-angle-right"></i>
