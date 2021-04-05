@@ -16,7 +16,8 @@ class Bank < ApplicationRecord
   has_many :websites, dependent: :destroy
   has_many :pricings, through: :products
   has_many :users, dependent: :destroy
-
+  has_many_attached :files
+  
   accepts_nested_attributes_for :websites
 
   validates :name, uniqueness: true
