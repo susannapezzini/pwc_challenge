@@ -21,6 +21,10 @@ class SubproductsController < ApplicationController
       fetch_product
       @subproduct.product = @product
     end
+
+    if params[:bank_id].present?
+      @subproduct.bank = Bank.find(params[:bank_id])
+    end
   end
 
   def create
