@@ -105,6 +105,8 @@ Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id,
   
 Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
   name: "Future Account", search_name: "3.4 Conta Future (Nota 3)")
+
+  
   
 Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
   name: " Kids Account", search_name: "3.5 Conta Kids (Nota 4)")
@@ -160,6 +162,11 @@ puts "subproducts created"
 # Abanca Demand Deposit Fees
 Fee.create!(product_id: demand_deposit.id, name: "Account Management Fees", 
   search_name: "3. Manutenção de conta", category: "Fixed")
+
+  abanca.subproducts.where(product_id: demand_deposit.id) do |s|
+    puts s.name
+    Price.create!(fee_id: Fee.last.id, subproduct_id: s.id, amount: 5, document_id: banco_bai_doc.id)
+  end
 
 Fee.create!(product_id: demand_deposit.id, name: "Monthly Statement Fee", 
   search_name: "1.1 Mensal (enviado ao domicílio)", category: "Optional")
