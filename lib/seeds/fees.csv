@@ -1,0 +1,36 @@
+﻿id;product_id;name;search_name;category
+;Demand Deposits;Account management fees;3. Manutenção de conta ;3': 'Manutenção de conta',
+;Demand Deposits;Monthly statement fee;1.1 Mensal (enviado ao domicílio) ;1. Emissão de extrato
+;Demand Deposits;Other requests besides monthly statement;1.2 Outros, para além do indicado em 1.1 ;1. Emissão de extrato
+;Demand Deposits;Statement replacement;1.3 2ª Via;1. Emissão de extrato
+;Demand Deposits;Additional copy of deposit receipt;2. Fotocópias de segundas vias de talões de depósito;
+;Demand Deposits;Depositing a check to receive cash;4.1 Ao balcão, com apresentação de cheque;4. Levantamento de numerário
+;Demand Deposits;Cash withdrawal at the counter without check presentation;4.2 Ao balcão, sem apresentação de cheque;4. Levantamento de numerário
+;Demand Deposits;Online-mobile banking;5. Adesão ao serviço de banca à distância;
+;Demand Deposits;Deposit of metal coins (at least 100 coins per day per account);6. Depósito de moedas metálicas (igual ou superior a 100 moedas por dia e por conta) ;
+;Demand Deposits;Account owners change;7. Alteração de titulares;
+;Demand Deposits;Commission for account maintenance;4.Comissão de manutenção de conta;
+;Demand Deposits;Monthly statement;1.Extrato Integrado mensal;
+;Demand Deposits;Monthly statement replacement;5.Emissão 2ª Via - Extrato Integrado;
+;Demand Deposits;Warning replacement printing and other documents;4.Emissão 2ªs Vias de Avisos e Outros Documentos;
+;Demand Deposits;Cash withdrawal at the counter ( >= 2 withdrawals);2.Levantamento de Numerário ao Balcão (A partir de 2 levantamentos ao Balcão, inclusivé);
+;Demand Deposits;Cash deposit at the counter;3.Depósito em moeda metálica (>= 100 moedas);
+;Demand Deposits;Account owner change;5.Alteração de titularidade (titular/ represen...;
+;Demand Deposits;Balance Inquiry at the counter;2.Consulta de Saldo de conta DO com comprovativo;
+;Demand Deposits;Consulting the transations on the account;3.Consulta de Movimentos de conta;
+;Demand Deposits;Commissions for bank overdraft;1.Comissões por descoberto bancário;
+;Demand Deposits;Account management fee;1. Manutenção de conta;
+;Demand Deposits;Integrated statement;4. Extracto integrado;
+;Demand Deposits;Single statement;5. Extracto avulso;
+;Demand Deposits;Cash Withdrawal;2. Levantamento de numerário;
+;Demand Deposits;USD withdrawal in USD accounts;3. Levantamento USD em contas USD;
+;Demand Deposits;Account mantainance fee;Comissão de Manutenção de Conta;
+;Demand Deposits;Fee for Cash Withdrawal;Comissão de Levantamento de Numerário;
+;Demand Deposits;Owners Change Fee;Comissão de Alteração de Titularidade;
+;Demand Deposits;Account Management;1. Comissão de manutenção de conta;
+;Demand Deposits;Bank Overdraft;10. Descoberto bancário;
+;Demand Deposits;Cash Withdrawal;5. Levantamento de numerário;
+;Demand Deposits;Balance inquery at the counter;6. Pedido de saldo ao balcão;
+;Demand Deposits;Owners changing;7. Alteração de titularidade / intervenientes;
+;Demand Deposits;Cash deposit at the counter (>= 100 coins);8. Depósito de moeda metálica (? a 100 moedas);
+;Demand Deposits;Documents replacement;9. Segundas vias (pedido na agência);

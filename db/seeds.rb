@@ -36,7 +36,7 @@ puts "users created"
 
 
 
-csv_options = { headers:true, col_sep: ';', header_converters: :symbol, encoding:'iso-8859-1:utf-8'}
+csv_options = { headers:true, col_sep: ';', header_converters: :symbol, encoding:'utf-8'}
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'banks.csv'))
 #id;bp_bank_id;name;address;country
 CSV.foreach("lib/seeds/banks.csv", csv_options) do |row|
@@ -62,6 +62,125 @@ term_deposit = Product.create!(name: "Term Deposits")
 housing_credit = Product.create!(name: "Housing Credit")
 puts "products created"
 
+#id;product_id;name;search_name;category
+CSV.foreach("lib/seeds/fees.csv", csv_options) do |row|
+  fee = Fee.new(row)
+  fee.product = get_product(row[:product_id])
+  fee.save!
+end
+puts "fees created"
+
+#id;product_id;name;search_name;category
+CSV.foreach("lib/seeds/fees.csv", csv_options) do |row|
+  fee = Fee.new(row)
+  fee.product = get_product(row[:product_id])
+  fee.save!
+end
+puts "fees created"
+
+CSV.foreach("lib/seeds/subproducts.csv", csv_options) do |row|
+  p row
+end
+puts "subproducts created"
+
+
+
+# def add_last_fee_to_all_subproducts_of(bank, product_type)
+#     bank.subproducts.where(product_id: product_type.id).each do |s|
+#       Price.create!(fee_id: Fee.last.id, subproduct_id: s.id, amount: rand(20), document_id: Document.first.id)
+#       puts
+#     end
+# end
+
+# Fee.create!(product_id: demand_deposit.id, name: "Monthly Statement Fee", 
+#   search_name: "1.1 Mensal (enviado ao domicílio)", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Other requests besides monthly statement", 
+#   search_name: "1.2 Outros, para além do indicado em 1.1", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Statement replacement", 
+#   search_name: "1.3 2ª Via", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Additional copy of deposit receipt", 
+#   search_name: "2. Fotocópias de segundas vias de talões de depósito", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Depositing a check to receive cash", 
+#   search_name: "4.1 Ao balcão, com apresentação de cheque", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "At the counter without check presentation", 
+#   search_name: "4.2 Ao balcão, sem apresentação de cheque", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Remote Bank Service Adherence/Online-Mobile Banking", 
+#   search_name: "5. Adesão ao serviço de banca à distância", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Deposit of metal coins (at least 100 coins per day per account)", 
+#   search_name: "6. Depósito de moedas metálicas (igual ou superior a 100 moedas por dia e por conta)", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Account Owners Change", 
+#   search_name: "7. Alteração de titulares", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# # Banco CTT Demand Deposit Fees
+
+# Fee.create!(product_id: demand_deposit.id, name: "Commission for account maintenance", 
+#   search_name: "4.Comissão de manutenção de conta", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_ctt, demand_deposit)
+
+# # Banco Bai Demand Deposit Fees  "
+# Fee.create!(product_id: demand_deposit.id, name: "Account Management Fee", 
+#   search_name: "1. Manutenção de conta", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Integrated Statement", 
+#   search_name: "4. Extracto integrado", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Cash Withdrawal", 
+#   search_name: "2. Levantamento de numerário", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "USD withdrawal in USD accounts", 
+#   search_name: "3. Levantamento USD em contas USD", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Single Statement", 
+#   search_name: "5. Extracto avulso", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
 #   name: "Private Demand Deposit Account (Avg Balance <1000€)", search_name: "3.1 Conta D.O. Particulares (Nota 2) ")
 
@@ -81,8 +200,6 @@ puts "products created"
   
 # Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
 #   name: "Future Account", search_name: "3.4 Conta Future (Nota 3)")
-
-  
   
 # Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
 #   name: " Kids Account", search_name: "3.5 Conta Kids (Nota 4)")
