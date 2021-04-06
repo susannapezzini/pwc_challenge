@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :fees, only: [:new, :create]
   end
 
-  resources :fees
+  resources :fees, only: %i[edit update]
   resources :prices
   resources :requests, only: %i[update]
 end

@@ -5,6 +5,7 @@
 </div>
 
 <div class="contain-color">
+  <div class="admin">
     <div class="table">
       <div class="cell">
         <p class="headers_title">Fee</p>
@@ -27,13 +28,17 @@
         </div>
       <%end%>
       <svg height="3" width="100%" class="mt-4">
-        <line x1="0" y1="0" x2="60%" y2="0" />
+        <line x1="0" y1="0" x2="100%" y2="0" />
       </svg>
         <div class="cell mt-4">
           <p class="cell_content bold">Total</p>
           <p class="cell_content bold">$ <%= @subproduct.prices.sum { |price| price.amount } %></p>
         </div>
     </div>
+    <% if current_user && current_user.admin?%>
+      <%= link_to 'Add new fee', new_subproduct_fee_path(@subproduct), class:'btn' %>
+    <%end%>
+  </div>
 
 </div>
 

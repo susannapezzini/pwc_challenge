@@ -1,0 +1,30 @@
+<div class="form_container">
+<h2 class="h2">Add a new fee </h2>
+  <h5>Bank: <%= @subproduct.bank.name.capitalize %></h5>
+  <h5>Subproduct: <%= @subproduct.name.capitalize%></h5>
+  <h5 class="orange mt-3">Fee details:</h5>
+  <% if current_user && current_user.admin? %>
+    <%= simple_form_for [@subproduct, @fee] do |f| %>
+      <%= f.input :name  %>
+      <%= f.input :category, label: 'Fee category'  %>
+      <h5 class="orange mt-3">Price details:</h5>
+      
+      <%= simple_fields_for @price do |w| %>
+      <%#= w.association :subproduct, placeholder: @subproduct %>
+      <%#= w.association :document %>
+      <%#= w.input :name %>
+      <%= w.input :amount %>
+      <%= w.input :category, label: 'Price category' %>
+      <%= w.input :tax_category %>  
+      <%= w.input :tax %>
+      <%= w.input :tax_amount %>
+      <%= w.input :status %>
+      <% end %>
+
+      <br>
+      <%= f.submit class: 'btn' %>
+    <% end %>
+  <% else %>
+    <h1>Does Not Have Permission to Access Content</h1>
+  <% end %>
+</div>
