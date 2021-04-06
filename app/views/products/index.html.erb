@@ -2,7 +2,7 @@
   <h1 class="mb-4">Products</h1>
     <% @products.each do |p|%>
     <ul class="product_list">
-      <li> <%=link_to "#sub_#{p.id}", class: 'link' do%>
+      <li> <%=link_to "#sub_#{p.id}", class: 'link'   do%>
       <%= p.name%>, tot. <%=p.subproducts.count%>
       <%end%>
         <% if current_user && current_user.admin? %>
