@@ -20,6 +20,7 @@ Request.destroy_all
 Bank.destroy_all
 User.destroy_all
 
+#helper methods
 def get_bank(bank_name)
   Bank.find_by(name: bank_name)
 end
@@ -36,21 +37,19 @@ def get_fee(fee_name)
   Fee.find_by(name: fee_name)
 end
 
-
 # puts 'Creating seeds'
-admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
-default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: get_bank("abanca"))
-puts "users created"
-
-
-
 
 csv_options = { headers:true, col_sep: ';', header_converters: :symbol, encoding:'utf-8'}
+
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'banks.csv'))
 #id;bp_bank_id;name;address;country
 CSV.foreach("lib/seeds/banks.csv", csv_options) do |row|
   Bank.create!(row)
 end
+
+admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
+default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: get_bank("abanca"))
+puts "users created"
 
 #id;bank_id;url;description
 CSV.foreach("lib/seeds/websites.csv", csv_options) do |row|
@@ -91,10 +90,7 @@ end
 puts "subproducts created"
 
 #id;fee_id;subproduct_id;document_id;name;amount;category;tax;tax_amount;tax_category;status
-i = 0
 CSV.foreach("lib/seeds/prices.csv", csv_options) do |row|
-  puts i
-  i+=1
   price = Price.new(row)
   price.subproduct = get_subproduct(row[:subproduct_id])
   price.fee = get_fee(row[:fee_id])

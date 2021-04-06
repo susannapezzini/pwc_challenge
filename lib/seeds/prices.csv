@@ -213,11 +213,11 @@
 ;Owners Change Fee;Conta BK Mini;;placeholder - bancobic;17;;;;;
 ;Owners Change Fee;Conta B Prime;;placeholder - bancobic;15;;;;;
 ;Owners Change Fee;Conta Serviços Mínimos Bancários - Basic Services Account;;placeholder - bancobic;8;;;;;
-;Account Management;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;4;;;;;
-;Account Management;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;18;;;;;
-;Account Management;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;9;;;;;
-;Account Management;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;6;;;;;
-;Account Management;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;3;;;;;
+";Account Management;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;4;;;;;"
+";Account Management;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;18;;;;;"
+";Account Management;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;9;;;;;"
+";Account Management;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;6;;;;;"
+";Account Management;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;3;;;;;"
 ;Account Management;Demand Deposit Account with Future;;placeholder - bancobic;3;;;;;
 ;Account Management;Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;19;;;;;
 ;Account Management;Demand Deposits Account for Insolvency;;placeholder - bancobic;19;;;;;
@@ -230,11 +230,11 @@
 ;Account Management;EuroBic Senior Account with credit and resources > 35000€;;placeholder - bancobic;2;;;;;
 ;Account Management;EuroBic Plus Account (out of market) without maturity credit;;placeholder - bancobic;2;;;;;
 ;Account Management;EuroBic Plus Account (out of market) with maturity credit;;placeholder - bancobic;19;;;;;
-;Bank Overdraft;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;2;;;;;
-;Bank Overdraft;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;18;;;;;
-;Bank Overdraft;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;8;;;;;
-;Bank Overdraft;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;6;;;;;
-;Bank Overdraft;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;10;;;;;
+";Bank Overdraft;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;2;;;;;"
+";Bank Overdraft;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;18;;;;;"
+";Bank Overdraft;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;8;;;;;"
+";Bank Overdraft;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;6;;;;;"
+";Bank Overdraft;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;10;;;;;"
 ;Bank Overdraft;Demand Deposit Account with Future;;placeholder - bancobic;8;;;;;
 ;Bank Overdraft;Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;16;;;;;
 ;Bank Overdraft;Demand Deposits Account for Insolvency;;placeholder - bancobic;5;;;;;
@@ -247,11 +247,11 @@
 ;Bank Overdraft;EuroBic Senior Account with credit and resources > 35000€;;placeholder - bancobic;15;;;;;
 ;Bank Overdraft;EuroBic Plus Account (out of market) without maturity credit;;placeholder - bancobic;18;;;;;
 ;Bank Overdraft;EuroBic Plus Account (out of market) with maturity credit;;placeholder - bancobic;9;;;;;
-;Cash Withdrawal;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;11;;;;;
-;Cash Withdrawal;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;7;;;;;
-;Cash Withdrawal;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;10;;;;;
-;Cash Withdrawal;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;17;;;;;
-;Cash Withdrawal;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;17;;;;;
+";Cash Withdrawal;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;11;;;;;"
+";Cash Withdrawal;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;7;;;;;"
+";Cash Withdrawal;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;10;;;;;"
+";Cash Withdrawal;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;17;;;;;"
+";Cash Withdrawal;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;17;;;;;"
 ;Cash Withdrawal;Demand Deposit Account with Future;;placeholder - bancobic;1;;;;;
 ;Cash Withdrawal;Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;16;;;;;
 ;Cash Withdrawal;Demand Deposits Account for Insolvency;;placeholder - bancobic;11;;;;;
@@ -264,11 +264,11 @@
 ;Cash Withdrawal;EuroBic Senior Account with credit and resources > 35000€;;placeholder - bancobic;1;;;;;
 ;Cash Withdrawal;EuroBic Plus Account (out of market) without maturity credit;;placeholder - bancobic;13;;;;;
 ;Cash Withdrawal;EuroBic Plus Account (out of market) with maturity credit;;placeholder - bancobic;10;;;;;
-;Balance inquery at the counter;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;8;;;;;
-;Balance inquery at the counter;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;9;;;;;
-;Balance inquery at the counter;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;9;;;;;
-;Balance inquery at the counter;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;0;;;;;
-;Balance inquery at the counter;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;1;;;;;
+";Balance inquery at the counter;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;8;;;;;"
+";Balance inquery at the counter;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;9;;;;;"
+";Balance inquery at the counter;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;9;;;;;"
+";Balance inquery at the counter;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;0;;;;;"
+";Balance inquery at the counter;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;1;;;;;"
 ;Balance inquery at the counter;Demand Deposit Account with Future;;placeholder - bancobic;15;;;;;
 ;Balance inquery at the counter;Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;5;;;;;
 ;Balance inquery at the counter;Demand Deposits Account for Insolvency;;placeholder - bancobic;1;;;;;
@@ -281,11 +281,11 @@
 ;Balance inquery at the counter;EuroBic Senior Account with credit and resources > 35000€;;placeholder - bancobic;13;;;;;
 ;Balance inquery at the counter;EuroBic Plus Account (out of market) without maturity credit;;placeholder - bancobic;15;;;;;
 ;Balance inquery at the counter;EuroBic Plus Account (out of market) with maturity credit;;placeholder - bancobic;1;;;;;
-;Owners changing;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;11;;;;;
-;Owners changing;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;1;;;;;
-;Owners changing;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;11;;;;;
-;Owners changing;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;0;;;;;
-;Owners changing;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;8;;;;;
+";Owners changing;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;11;;;;;"
+";Owners changing;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;1;;;;;"
+";Owners changing;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;11;;;;;"
+";Owners changing;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;0;;;;;"
+";Owners changing;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;8;;;;;"
 ;Owners changing;Demand Deposit Account with Future;;placeholder - bancobic;17;;;;;
 ;Owners changing;Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;12;;;;;
 ;Owners changing;Demand Deposits Account for Insolvency;;placeholder - bancobic;13;;;;;
@@ -298,11 +298,11 @@
 ;Owners changing;EuroBic Senior Account with credit and resources > 35000€;;placeholder - bancobic;4;;;;;
 ;Owners changing;EuroBic Plus Account (out of market) without maturity credit;;placeholder - bancobic;5;;;;;
 ;Owners changing;EuroBic Plus Account (out of market) with maturity credit;;placeholder - bancobic;3;;;;;
-;Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;19;;;;;
-;Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;1;;;;;
-;Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;2;;;;;
-;Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;5;;;;;
-;Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;17;;;;;
+";Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;19;;;;;"
+";Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;1;;;;;"
+";Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;2;;;;;"
+";Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;5;;;;;"
+";Cash deposit at the counter (>= 100 coins);Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;17;;;;;"
 ;Cash deposit at the counter (>= 100 coins);Demand Deposit Account with Future;;placeholder - bancobic;13;;;;;
 ;Cash deposit at the counter (>= 100 coins);Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;4;;;;;
 ;Cash deposit at the counter (>= 100 coins);Demand Deposits Account for Insolvency;;placeholder - bancobic;2;;;;;
@@ -315,11 +315,11 @@
 ;Cash deposit at the counter (>= 100 coins);EuroBic Senior Account with credit and resources > 35000€;;placeholder - bancobic;1;;;;;
 ;Cash deposit at the counter (>= 100 coins);EuroBic Plus Account (out of market) without maturity credit;;placeholder - bancobic;12;;;;;
 ;Cash deposit at the counter (>= 100 coins);EuroBic Plus Account (out of market) with maturity credit;;placeholder - bancobic;14;;;;;
-;Documents replacement;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;12;;;;;
-;Documents replacement;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;8;;;;;
-;Documents replacement;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;1;;;;;
-;Documents replacement;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;19;;;;;
-;Documents replacement;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;1;;;;;
+";Documents replacement;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;12;;;;;"
+";Documents replacement;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;8;;;;;"
+";Documents replacement;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;1;;;;;"
+";Documents replacement;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;19;;;;;"
+";Documents replacement;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;1;;;;;"
 ;Documents replacement;Demand Deposit Account with Future;;placeholder - bancobic;9;;;;;
 ;Documents replacement;Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;13;;;;;
 ;Documents replacement;Demand Deposits Account for Insolvency;;placeholder - bancobic;19;;;;;
