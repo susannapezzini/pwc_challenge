@@ -11,7 +11,7 @@ class WebsitesController < ApplicationController
     @new_website.bank = @bank
 
     if @new_website.save
-      redirect_to bank_websites_path(@bank), notice: 'Bank was successfully created'
+      redirect_to bank_websites_path(@bank), notice: 'Url was successfully added'
     else
       @websites = @bank.websites # needed to render index
       render :index

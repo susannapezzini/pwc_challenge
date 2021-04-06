@@ -1,61 +1,125 @@
-<div class="contain pb-0">
-  <% unless current_user.admin?%>
-    <div class="crumbs">
-      <%= link_to 'Banks', banks_path, class: 'link' %>
-      <span> > <%= @bank.name.capitalize%></span>
+
+<div class="bottom_nav">
+  <span>Jump to: 
+    <span><%= link_to 'Products', '#subproducts', class: 'nav_link' %></span>
+    <% if current_user.admin?%>
+    <span><%= link_to 'Users', '#users', class: 'nav_link' %></span>
+    <%end%>
+    <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+  </span>
+</div>
+
+
+  <div class="contain">
+    <%= link_to 'Back', :back , class: 'btn-outline float-right mb-4'%>
+    <h1 class="mb-4"><%= @bank.name.capitalize %></h1>
+    <div class="admin">
+    <div class="details">
+    <h3 class="mb-3">Details:</h3>
+    <p><strong>Websites: </strong></p>
+    <% @bank.websites.each do |w|%>
+      <p><%= w.url%></p>
+    <%end%>
+    <p><strong>Address: </strong><%=@bank.address%></p>
+    <p><strong>Country: </strong><%=@bank.country%></p>
+  </div>
+
+
+<% if current_user.admin?%>
+<div class="actions">
+  <h3 class="mb-3">Actions:</h3>
+  <%= link_to bank_websites_path(@bank), class: 'link mb-2' do %>
+    <i class="fas fa-link"></i>
+    <span>Manage Websites</span>
+  <%end%>
+  <%#= link_to bank_users_path(@bank), class: 'link mb-2' do %>
+    <%# <i class="fas fa-users"></i>
+    <span>Manage Users</span> %>
+  <%#end%>
+  <%= link_to edit_bank_path(@bank), class: 'link mb-2' do %>
+    <i class="far fa-edit"></i>
+    <span>Edit Bank</span>
+  <%end%>
+  <%= link_to bank_path(@bank), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the bank. Are you sure?' } do %>
+    <i class="far fa-trash-alt"></i>
+    <span>Delete Bank</span>
+  <%end%>
+</div>
+<%end%>
+</div>
+</div>
+
+<div class="contain-color" id="subproducts">
+  <h6 class="small_title"><%= @bank.name.capitalize%>'s Subproducts offer</h6>
+    <div class="cards">
+
+      <% @subproducts.reverse.each do |b|%>
+        <div class="bank-card">
+          <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
+          <p class="card_text"><strong>Product Family:</strong><br><%= b.product.name %></p>
+          <p class="card_text"><strong>Price:</strong><br></p>
+            <div class="card_action">
+            <%= link_to subproduct_path(b), class: 'link' do %> 
+              <i class="fas fa-angle-right"></i>
+              <span>See more</span>
+            <%end%>
+          <% if current_user.admin?%>
+              <%= link_to edit_bank_subproduct_path(@bank, b), class: 'link' do %>
+              <i class="far fa-edit"></i>
+              <span>Edit</span>
+              <%end%>
+              <%= link_to subproduct_path(b), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the product. Are you sure?' } do %>
+              <i class="far fa-trash-alt"></i>
+              <span>Delete</span>
+              <%end%>
+          <%end%>
+            </div>
+        </div>
+      <%end%>
+    </div>
+  <% if current_user.admin?%>
+    <div class="text-center">
+      <%= link_to 'Add New Subproduct', new_bank_subproduct_path(@bank), class: 'btn'%>
     </div>
   <%end%>
 </div>
 
+<%if current_user && current_user.admin? %>
+<div class="contain" id="users">
+  <h6 class="small_title"><%= @bank.name.capitalize%>'s Users</h6>
+    <% if @users.any?%>
+    <div class="cards">
 
-<% if current_user.admin?%>
-  <div class="contain">
-    <div class="admin">
-<%else%>
-  <div class="container mb-4 mt-4">
-    <div class="row justify-content-center">
-<%end%>
-      <div class="col-5">
-        <div class="card  mb-3" style= "box-shadow: 0 0 15px rgba(0,0,0,0.2)">
-          <div class="card-header" style="font-size: 30px"><%= @bank.name.capitalize %></div>
-          <div class="card-body">
-            <p class="card-text text-capitalize" style="font-weight: bold">Details </p>
-            <p class="card-text text-capitalize" style="font-weight: bold">Website: <span style="font-weight: 300"><%#= @bank.website %></span> </p>
-            <p class="card-text text-capitalize" style="font-weight: bold">Address: <span style="font-weight: 300"><%= @bank.address %></span> </span>
-            <p class="card-text text-capitalize" style="font-weight: bold">Country: <span style="font-weight: 300"><%= @bank.country %></span> </p>
-          </div>
+      <% @users.each do |b|%>
+        <div class="bank-card">
+          <p class="card_title"><strong><%= link_to "#{b.name}", '#', class: 'card_title', style: "text-decoration: none;" %></strong></p>
+          <p class="card_text"><strong>Email:</strong><br><%= b.email %></p>
+          <% if current_user.admin?%>
+            <div class="card_action">
+              <%= link_to edit_user_path(b), class: 'link' do %>
+              <i class="far fa-edit"></i>
+              <span>Edit</span>
+              <%end%>
+              <%= link_to user_path(b), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the product. Are you sure?' } do %>
+              <i class="far fa-trash-alt"></i>
+              <span>Delete</span>
+              <%end%>
+            </div>
+          <%end%>
         </div>
+      <%end%>
     </div>
-    <% if current_user.admin?%>
-      <div class="actions">
-        <h3 class="mb-3">Actions:</h3>
-        <%= link_to bank_websites_path(@bank), class: 'link mb-2' do %>
-          <i class="fas fa-link"></i>
-          <span>Manage Websites</span>
-        <%end%>
-        <%= link_to bank_users_path(@bank), class: 'link mb-2' do %>
-          <i class="fas fa-users"></i>
-          <span>Manage Users</span>
-        <%end%>
-        <%= link_to edit_bank_path(@bank), class: 'link mb-2' do %>
-          <i class="far fa-edit"></i>
-          <span>Edit Bank</span>
-        <%end%>
-        <%= link_to bank_path(@bank), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the bank. Are you sure?' } do %>
-          <i class="far fa-trash-alt"></i>
-          <span>Delete Bank</span>
-        <%end%>
-      </div>
+    <%else%>
+    <p class="text-center">Sorry, there are no users for this bank yet.</p>
     <%end%>
-      </div>
-      </div>
 
-<div class="contain-color">
-  <h6 class="small_title"><%= @bank.name.capitalize%>'s products offer</h6>
+    <div class="text-center">
+      <%= link_to 'Add New User', new_bank_user_path(@bank), class: 'btn'%>
+    </div>
 </div>
-
+<%end%>
 
 <div class="contain">
-  <%= link_to 'Back', banks_path, class: 'btn'%>
 </div>
+
 

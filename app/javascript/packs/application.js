@@ -7,6 +7,8 @@ import Rails from "@rails/ujs"
 // import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import { showButton } from "plugins/showButton"
+import { scrollToTop } from "plugins/scrollToTop"
 
 Rails.start()
 // Turbolinks.start()
@@ -25,5 +27,6 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('DOMContentLoaded', () => {
-
+  showButton();
+  scrollToTop();
 });

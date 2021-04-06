@@ -16,6 +16,8 @@ class BanksController < ApplicationController
   end
 
   def show
+    @users = @bank.users
+    @subproducts = @bank.subproducts
   end
 
   def new
@@ -27,7 +29,7 @@ class BanksController < ApplicationController
   def create
     @bank = Bank.new(bank_params)
     if @bank.save
-      redirect_to dashboard_path, notice: 'Bank was successfully created'
+      redirect_to banks_path, notice: 'Bank was successfully created'
     else
       render :new
     end
@@ -52,7 +54,7 @@ class BanksController < ApplicationController
   def destroy
     if current_user.admin?
       @bank.destroy
-      redirect_to dashboard_path, notice: "The bank, its subproducts, and its users were deleted successfully."
+      redirect_to banks_path, notice: "The bank, its subproducts, and its users were deleted successfully."
     else
       flash.now[:alert] = "Sorry, you dont have that permission."
       # redirect_to dashboard_path

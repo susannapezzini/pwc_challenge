@@ -9,9 +9,17 @@
   <div class="menu_section">
     <% if user_signed_in? %>
       <% if !current_user.admin?%>
-        <%= link_to banks_path, class: "menu_link #{current_class?(banks_path)}" do%>
-          <p>Banks</p>
+        <%= link_to overview_path, class: "menu_link #{current_class?(overview_path)}" do%>
+            <p>Compare</p>
         <%end%>
+      <%end%>
+      <% if current_user.admin?%>
+        <%= link_to products_path, class: "menu_link #{current_class?(products_path)}" do%>
+            <p>Products</p>
+        <%end%>
+      <%end%>
+      <%= link_to banks_path, class: "menu_link #{current_class?(banks_path)}" do%>
+          <p>Banks</p>
       <%end%>
       <%= link_to dashboard_path, class: "menu_link #{current_class?(dashboard_path)}" do%>
         <p>Dashboard</p>

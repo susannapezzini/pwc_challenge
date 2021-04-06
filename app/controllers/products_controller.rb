@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
   before_action :fetch_product, only: %i[edit update destroy]
-  before_action :authorize_admin
+  # before_action :authorize_admin
   
   def index
-    @products = Product.all  
+    @products = Product.all
   end
 
   def new

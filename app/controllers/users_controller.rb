@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user.bank = @bank
 
     if @user.save
-      redirect_to bank_users_path(@bank)
+      redirect_to bank_path(@bank, anchor: 'users')
     else
       render :new
     end
@@ -26,8 +26,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    @bank = @user.bank
     if @user.update(user_params)
-      redirect_to bank_users_path(@user.bank)
+      redirect_to bank_path(@bank, anchor: 'users')
     else
       render :edit
     end
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     if @user.destroy
-        redirect_to bank_users_path(@bank), notice: "User deleted."
+      redirect_to bank_path(@bank, anchor: 'users'), notice: "User deleted."
     end
   end
 

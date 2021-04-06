@@ -21,6 +21,7 @@ class Bank < ApplicationRecord
   accepts_nested_attributes_for :websites
 
   validates :name, uniqueness: true
+  validates :name, :address, :country, presence: true
 
   # The attribute 'name' needs to be unique and it is indexed (.where(name: ...))
   # will run faster

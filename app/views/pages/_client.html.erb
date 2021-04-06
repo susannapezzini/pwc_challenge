@@ -1,6 +1,20 @@
 <div class="contain">
   <%#= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'link right' %>
   <h1>Welcome to your dashboard</h1>
-  <h6>User: <%=current_user.name%></h6>
-
 </div>
+
+<div class="contain">
+  <h3 class="small_title mb-3">
+    Details
+  </h3>
+  <p>Name: <%=current_user.name%></p>
+  <p>Email: <%=current_user.email%></p>
+  <p>Bank: <%= link_to "#{current_user.bank.name.capitalize}", bank_path(current_user.bank), class: 'link'%></p>
+</div>
+<div class="contain-color">
+  <h6 class="small_title">
+    Saved views
+  </h6>
+</div>
+
+<div class="contain"></div>
