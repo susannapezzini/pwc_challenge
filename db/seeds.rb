@@ -33,7 +33,7 @@ puts 'Creating seeds'
 admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
 puts "users created"
 puts 'creating requests'
-20.times do
+10.times do
   Request.create(content: 'I am a rquest and I am supposed to provide useful content', status: status.sample)
 end
 
@@ -249,7 +249,7 @@ Fee.create!(product_id: demand_deposit.id, name: "Single Statement",
   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
 
 puts 'creating random prices'
-20.times do
+10.times do
   Price.create(fee: Fee.all.sample, subproduct: Subproduct.all.sample, amount: rand(20), document: Document.all.sample )
 end
 
