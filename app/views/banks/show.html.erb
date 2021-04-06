@@ -57,7 +57,16 @@
         <div class="bank-card">
           <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
           <p class="card_text"><strong>Product Family:</strong><br><%= b.product.name %></p>
-          <p class="card_text"><strong>Price:</strong><br></p>
+          <p class="card_text"><strong>Fees:</strong>
+            
+            <% b.product.fees[0..2].each do |f|%><br>
+              <%= f.name%>
+            <%end%>
+            <span>...</span>
+            </p>
+          <p class="card_text"><strong>Total Price:</strong><br>$ <%= b.prices.sum { |price| price.amount } %></p>
+
+          
             <div class="card_action">
             <%= link_to subproduct_path(b), class: 'link' do %> 
               <i class="fas fa-angle-right"></i>

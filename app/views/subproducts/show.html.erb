@@ -1,9 +1,46 @@
-<div class="contain mb-5">
-<%= link_to 'Back', :back, class: 'btn-outline float-right'%>
+<div class="contain">
+  <%= link_to 'Back', :back, class: 'btn-outline float-right'%>
+  <h1><%= @subproduct.name%></h1>
+  <h2 class="small_title"><%= @subproduct.bank.name.capitalize%></h2>
+</div>
+
+<div class="contain-color">
+    <div class="table">
+      <div class="cell">
+        <p class="headers_title">Fee</p>
+        <p class="headers_title">Cost
+          <%if current_user && current_user.admin?%>
+            /Edit
+          <%end%>
+        </p>
+      </div>
+      <% @subproduct.prices.each do |price| %>
+        <div class="cell">
+          <span class="cell_content"><%= price.fee.name %></span>
+          <span class="cell_content">$ <%= price.amount %>
+          <%if current_user && current_user.admin?%>
+            <%= link_to edit_price_path(price), class: 'link' do %>
+              <i class="far fa-edit"></i>
+            <%end%>
+          <%end%>
+          </span>
+        </div>
+      <%end%>
+      <svg height="3" width="100%" class="mt-4">
+        <line x1="0" y1="0" x2="60%" y2="0" />
+      </svg>
+        <div class="cell mt-4">
+          <p class="cell_content bold">Total</p>
+          <p class="cell_content bold">$ <%= @subproduct.prices.sum { |price| price.amount } %></p>
+        </div>
+    </div>
 
 </div>
 
-<div class="container mb-5">
+<div class="contain mb-5">
+</div>
+
+<%# <div class="container mb-5">
   <div class="row">    
     <div class="col-4">
       Fee
@@ -12,29 +49,29 @@
     <div class="col-4">
       Cost
     </div>
-  </div>
+  </div> %>
 
   <%# Subproduct.includes(price: :fee).order('fees.name ASC') %>
   <%# @subproduct.prices.order(:amount).each do |price| %>
-  <% @subproduct.prices.each do |price| %>
-    <div class="row">
+  <%# @subproduct.prices.each do |price| %>
+    <%# <div class="row">
       <div class="col-4">
-        <%= price.fee.name %>
-      </div>
-      <div class="col-4">
-        <%= price.amount %>
-        <%= link_to edit_price_path(price) do %>
-          <i class="far fa-edit"></i>
+        <%#= price.fee.name %>
+      <%# </div>
+      <div class="col-4"> %>
+        <%#= price.amount %>
+        <%#= link_to edit_price_path(price) do %>
+          <%# <i class="far fa-edit"></i>
           <span>Edit</span>
-        <%end%>
-      </div>
-    </div>
-  <% end %>
+        <%#end%>
+      <%# </div>
+    </div> %> 
+  <%# end %>
 
-  <div class="row border-top">
+  <%# <div class="row border-top">
     <div class="col-4">Total</div>
-    <div class="col-4">
-      <%= @subproduct.prices.sum { |price| price.amount }%>
-    </div>
+    <div class="col-4"> %>
+      <%#= @subproduct.prices.sum { |price| price.amount } %>
+    <%# </div>
   </div>
-</div>
+</div>  %>

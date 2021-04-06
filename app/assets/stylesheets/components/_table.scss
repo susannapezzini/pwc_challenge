@@ -1,0 +1,33 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $smoke;
+  & svg {
+    stroke: $orange;
+    stroke-width: 3px;
+  }
+}
+
+.cell {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.headers_title {
+  font-family: $headers-font;
+  font-size: 1.5rem;
+  color: $orange;
+  // margin-right: 20rem;
+  font-weight: 500;
+}
+
+.cell_content {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: 500;
+}
