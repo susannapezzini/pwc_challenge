@@ -1,0 +1,46 @@
+﻿id;product_id;bank_id;name;search_name
+;Demand Deposits;abanca;Private Demand Deposit Account (Avg Balance <1000€);3.1 Conta D.O. Particulares (Nota 2)
+;Demand Deposits;abanca;Private Demand Deposit Account (Avg Balance <1000-2500€);3.1 Conta D.O. Particulares (Nota 2)
+;Demand Deposits;abanca;Private Demand Deposit Account (Avg Balance >2500€);3.1 Conta D.O. Particulares (Nota 2)
+;Demand Deposits;abanca;Bank Account with Direct Deposit Enabled;3.2 Conta Ordenado
+;Demand Deposits;abanca;Standard Account (doesn't admit new hirings);3.3 Conta Standard (não admite novas contratações)
+;Demand Deposits;abanca;Future Account;3.4 Conta Future (Nota 3)
+;Demand Deposits;abanca;Kids Account;3.5 Conta Kids (Nota 4)
+;Demand Deposits;abanca;Global Account;3.6 Conta Global (Nota 5)
+;Demand Deposits;abanca;Basic Account;3.7 Conta Base (Nota 6)
+;Demand Deposits;abanca;Private Account;3.8 Conta Private (Nota 7)
+;Demand Deposits;abanca;Value Account;3.9 Conta Value (Nota 8)
+;Demand Deposits;abanca;Smart Account;3.10 Conta Smart (Nota 9)
+;Demand Deposits;abanca;Minimal Bank Services Account;3.12 Conta Serviços Mínimos Bancários (Nota 11)
+;Demand Deposits;abanca;ABANCA International Account;3.14 Conta ABANCA Internacional (Nota 17)
+;Demand Deposits;banco ctt;Bank Account CTT;Conta Banco CTT
+;Demand Deposits;banco ctt;Junior Account;Conta Júnior (Montante Mínimo de Abertura 25,00€)
+;Demand Deposits;banco ctt;Base Account;Conta Base
+;Demand Deposits;banco ctt;Bank Account with Minimum Services;Conta de Serviços Mínimos Bancários
+;Demand Deposits;banco bai;Demand Deposits Account;Conta Depósito à Ordem (EUR/ Moeda Estrangeira)
+;Demand Deposits;banco bai;Minimum Banking Services Account;Conta de Serviços Mínimos Bancários
+;Demand Deposits;bankinter;Conta Mais Ordenado;Conta Mais Ordenado
+;Demand Deposits;bankinter;Conta Bankinter (idade igual ou superior a 18 anos).;Conta Bankinter (idade igual ou superior a 18 anos).
+;Demand Deposits;bankinter;Conta Bankinter em Moeda Estrangeira;Conta Bankinter em Moeda Estrangeira.- Conta B Portugal em Moeda Estrangeira (Clientes Portugueses Não Residentes) - Contas encerradas à comercialização a partir de 15 de Novembro de 2013 inclusivé.
+;Demand Deposits;bankinter;Conta B Dynamic ;Conta B Dynamic (idades entre 18 e 54 anos), Conta B Relax (idade igual ou superior a 55 anos), Conta Premier (Clientes Segmento Premier), Conta B Portugal (Clientes Portugueses Não Residentes) - Contas encerradas à comercialização a partir de 15 de Novembro de 2013 inclusivé.
+;Demand Deposits;bankinter;Conta Internacional;Conta Internacional (Clientes Estrangeiros Não Residentes em Portugal) - encerrada à comercialização. 
+;Demand Deposits;bankinter;Conta BK Mini;Conta BK Mini (Antiga Conta B Teen), Conta Mediador de Seguros e Conta Private (Clientes Segmento Private) Conta Pessoal (Clientes Crédito ao Consumo via internet- descontinuada) Conta B Kid (idades entre 0 e 13 anos), Conta B U (Estudantes Universitários).
+;Demand Deposits;bankinter;Conta B Prime;Conta B Prime (Conta Ordenado para Clientes Barclaycard - descontinuada) Conta B Dynamic + (Conta Ordenado para Clientes com idades entre 18 e 54 anos), Conta B Relax + (Conta Ordenado para Clientes com idade igual ou superior a 55 anos), Conta Premier + (Conta Ordenado para Clientes Segmento Premier), Conta B Prime Plus (Conta Ordenado para Clientes Barclaycard e para Clientes captados no âmbito da Parceria entre: Plurimarketing – Telemarketing e Marketing Directo, SA., Connecta – Avanzia – Call Center, LDA., AXA Portugal, Companhia de Seguros, SA. e o Bankinter) - Contas descontinuadas.
+;Demand Deposits;bankinter;Conta Serviços Mínimos Bancários - Basic Services Account;Conta Serviços Mínimos Bancários Basic Services Account
+;Demand Deposits;banco bic;Conta à Ordem Financial Assets≤ 2.500,00€;Conta à Ordem (5), Conta à Ordem Emigrantes (5), Conta Ordenado XL (12), Conta Cool (contratações anteriores a 13 de novembro de 2014)  (4)(3). Contas fora de comercialização: Conta à Ordem Sucursal Financeira Exterior Madeira (5)(6), Conta Privilégio 55 (5)(7), Conta Ordenado  Privilégio 55 (7)(12)(13) Património financeiro
+;Demand Deposits;banco bic;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;Conta à Ordem (5), Conta à Ordem Emigrantes (5), Conta Ordenado XL (12), Conta Cool (contratações anteriores a 13 de novembro de 2014)  (4)(3). Contas fora de comercialização: Conta à Ordem Sucursal Financeira Exterior Madeira (5)(6), Conta Privilégio 55 (5)(7), Conta Ordenado  Privilégio 55 (7)(12)(13)Património financeiro
+;Demand Deposits;banco bic;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;Conta à Ordem (5), Conta à Ordem Emigrantes (5), Conta Ordenado XL (12), Conta Cool (contratações anteriores a 13 de novembro de 2014)  (4)(3). Contas fora de comercialização: Conta à Ordem Sucursal Financeira Exterior Madeira (5)(6), Conta Privilégio 55 (5)(7), Conta Ordenado  Privilégio 55 (7)(12)(13) Património financeiro
+;Demand Deposits;banco bic;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;Conta à Ordem (5), Conta à Ordem Emigrantes (5), Conta Ordenado XL (12), Conta Cool (contratações anteriores a 13 de novembro de 2014)  (4)(3). Contas fora de comercialização: Conta à Ordem Sucursal Financeira Exterior Madeira (5)(6), Conta Privilégio 55 (5)(7), Conta Ordenado  Privilégio 55 (7)(12)(13) Património financeiro
+;Demand Deposits;banco bic;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;Conta à Ordem (5), Conta à Ordem Emigrantes (5), Conta Ordenado XL (12), Conta Cool (contratações anteriores a 13 de novembro de 2014)  (4)(3). Contas fora de comercialização: Conta à Ordem Sucursal Financeira Exterior Madeira (5)(6), Conta Privilégio 55 (5)(7), Conta Ordenado  Privilégio 55 (7)(12)(13) Património financeiro
+;Demand Deposits;banco bic;Demand Deposit Account with Future;Conta à Ordem com Futuro
+;Demand Deposits;banco bic;Cool Account (for contracts from 13 for november 2014);Conta Cool (contratações a partir de 13 de novembro 2014)
+;Demand Deposits;banco bic;Demand Deposits Account for Insolvency;Conta à Ordem Massa Insolvente
+;Demand Deposits;banco bic;BIC Account for International Account;Conta BIC Salário Internacional (Fora de comercialização)
+;Demand Deposits;banco bic;EuroBic Prime Account with paycheck domiciliation with bonus conditions;Conta EuroBic Prime com domiciliação de vencimento Com condições de bonificação
+;Demand Deposits;banco bic;EuroBic Prime Account with paycheck domiciliation without bonus conditions;Conta EuroBic Prime sem domiciliação de vencimento Sem condições de bonificação
+;Demand Deposits;banco bic;EuroBic 365 Account with paycheck domiciliation without bonus conditions;Conta EuroBic 365 com domiciliação de vencimento Sem condições de bonificação
+;Demand Deposits;banco bic;EuroBic 365 Account with paycheck domiciliation with bonus conditions;Conta EuroBic 365 com domiciliação de vencimento Com condições de bonificação
+;Demand Deposits;banco bic;EuroBic Senior Account without crédit and resources =< 35.000€;Conta EuroBic Sénior Sem crédito de vencimento e recursos ≤ 35.000 €
+;Demand Deposits;banco bic;EuroBic Senior Account with credit and resources > 35000€;Conta EuroBic Sénior com crédito de vencimento ou recursos > 35.000 €
+;Demand Deposits;banco bic;EuroBic Plus Account (out of market) without maturity credit;Conta EuroBic Mais (Fora de comercialização) Sem crédito de vencimento
+;Demand Deposits;banco bic;EuroBic Plus Account (out of market) with maturity credit;Conta EuroBic Mais (Fora de comercialização) com crédito de vencimento
