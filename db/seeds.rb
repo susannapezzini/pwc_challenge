@@ -34,7 +34,7 @@ admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password:
 puts "users created"
 puts 'creating requests'
 20.times do
-  Request.create(content: Faker::TvShows::GameOfThrones.quote, status: status.sample)
+  Request.create(content: 'I am a rquest and I am supposed to provide useful content', status: status.sample)
 end
 
 banco_ctt = Bank.create(
