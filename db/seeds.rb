@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+status = %w[pending active]
+
 def add_last_fee_to_all_subproducts_of(bank, product_type)
     bank.subproducts.where(product_id: product_type.id).each do |s|
       Price.create!(fee_id: Fee.last.id, subproduct_id: s.id, amount: rand(20), document_id: Document.first.id)
@@ -30,6 +32,10 @@ puts 'Creating seeds'
 
 admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
 puts "users created"
+puts 'creating requests'
+20.times do
+  Request.create(content: Faker::TvShows::GameOfThrones.quote, status: status.sample)
+end
 
 banco_ctt = Bank.create(
   name: 'banco ctt',
@@ -82,10 +88,15 @@ bank_inter = Bank.create(
 puts "banks created"
 default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: abanca)
 
-
+puts 'creating documents'
 Request.create
 abanca_doc = Document.create!(request_id: Request.first.id, bank_id: abanca.id)
 banco_bai_doc = Document.create!(request_id: Request.first.id, bank_id: banco_bai.id)
+
+20.times do
+  Document.create(request: Request.all.sample, bank: Bank.all.sample)
+end
+
 
 
 demand_deposit = Product.create!(name: "Demand Deposits")
@@ -236,6 +247,12 @@ Fee.create!(product_id: demand_deposit.id, name: "USD withdrawal in USD accounts
 Fee.create!(product_id: demand_deposit.id, name: "Single Statement", 
   search_name: "5. Extracto avulso", category: "Optional")
   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+puts 'creating random prices'
+20.times do
+  Price.create(fee: Fee.all.sample, subproduct: Subproduct.all.sample, amount: rand(20), document: Document.all.sample )
+end
+
 
 puts 'done'
 

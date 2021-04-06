@@ -9,6 +9,13 @@ class PagesController < ApplicationController
   # Needs Auth and needs to be admin
   def dashboard
     @banks = Bank.all
+    @documents = Document.all
+    @requests = Request.all
+    @completed = []
+
+    @pending = @documents.select { |d| d.request.status == 'pending' }
+    @completed = @documents.select { |d| d.request.status == 'active' }
+
 
     if params[:query].present?
       sql_query = " \
