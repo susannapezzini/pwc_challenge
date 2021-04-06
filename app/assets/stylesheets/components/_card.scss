@@ -10,6 +10,16 @@
   padding: 2rem;
   height: 375px;
   flex-basis: calc(33% - 32px);
+  &-color {
+    background-color: $smoke;
+  }
+  &-noheight {
+    height: auto;
+  }
+
+  &-taller {
+    height: 50vh;
+  }
 }
 
 .bank-card {
@@ -23,8 +33,7 @@
   // width: 30%;
   margin: 1rem;
   padding: 2rem;
-  height: 400px;
-  width: 400px;
+  height: 375px;
 }
 
 .cards {
@@ -42,6 +51,12 @@
 
 .card_text{
   font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.6rem;
+  &-small {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
   a {
     @include reset-link;
     &:hover {
@@ -55,7 +70,7 @@
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   left: 2rem;
   width: calc(100% - 64px);
 }

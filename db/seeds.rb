@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'csv'
 
+require 'csv'
+status = %w[pending active]
 
 puts "Destroying all seeds..."
 Price.destroy_all
@@ -50,6 +51,10 @@ end
 admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
 default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: get_bank("abanca"))
 puts "users created"
+puts 'creating requests'
+10.times do
+  Request.create(content: 'I am a rquest and I am supposed to provide useful content', status: status.sample)
+end
 
 #id;bank_id;url;description
 CSV.foreach("lib/seeds/websites.csv", csv_options) do |row|
@@ -63,6 +68,11 @@ Request.create
 puts "request created"
 abanca_doc = Document.create!(request_id: Request.first.id, bank_id: get_bank("abanca").id)
 banco_bai_doc = Document.create!(request_id: Request.first.id, bank_id: get_bank("banco bai").id)
+
+20.times do
+  Document.create(request: Request.all.sample, bank: Bank.all.sample)
+end
+
 
 
 demand_deposit = Product.create!(name: "Demand Deposits")
@@ -246,6 +256,7 @@ puts "prices created"
 
 # puts "subproducts created"
 
+
 # # Abanca Demand Deposit Fees
 # Fee.create!(product_id: demand_deposit.id, name: "Account Management Fees", 
 #   search_name: "3. Manutenção de conta", category: "Fixed")
@@ -390,3 +401,107 @@ puts "prices created"
 # #   #             product_family: product_family,
 # #   #             bank: bank)
 # # # end
+=======
+# # Abanca Demand Deposit Fees
+# Fee.create!(product_id: demand_deposit.id, name: "Account Management Fees", 
+#   search_name: "3. Manutenção de conta", category: "Fixed")
+
+#   abanca.subproducts.where(product_id: demand_deposit.id).each do |s|
+#     Price.create!(fee_id: Fee.last.id, subproduct_id: s.id, amount: 5, document_id: banco_bai_doc.id)
+#   end
+
+# Fee.create!(product_id: demand_deposit.id, name: "Monthly Statement Fee", 
+#   search_name: "1.1 Mensal (enviado ao domicílio)", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Other requests besides monthly statement", 
+#   search_name: "1.2 Outros, para além do indicado em 1.1", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Statement replacement", 
+#   search_name: "1.3 2ª Via", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Additional copy of deposit receipt", 
+#   search_name: "2. Fotocópias de segundas vias de talões de depósito", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Depositing a check to receive cash", 
+#   search_name: "4.1 Ao balcão, com apresentação de cheque", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "At the counter without check presentation", 
+#   search_name: "4.2 Ao balcão, sem apresentação de cheque", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Remote Bank Service Adherence/Online-Mobile Banking", 
+#   search_name: "5. Adesão ao serviço de banca à distância", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Deposit of metal coins (at least 100 coins per day per account)", 
+#   search_name: "6. Depósito de moedas metálicas (igual ou superior a 100 moedas por dia e por conta)", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Account Owners Change", 
+#   search_name: "7. Alteração de titulares", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(abanca, demand_deposit)
+
+# # Banco CTT Demand Deposit Fees
+
+# Fee.create!(product_id: demand_deposit.id, name: "Commission for account maintenance", 
+#   search_name: "4.Comissão de manutenção de conta", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_ctt, demand_deposit)
+
+# # Banco Bai Demand Deposit Fees  "
+# Fee.create!(product_id: demand_deposit.id, name: "Account Management Fee", 
+#   search_name: "1. Manutenção de conta", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Integrated Statement", 
+#   search_name: "4. Extracto integrado", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Cash Withdrawal", 
+#   search_name: "2. Levantamento de numerário", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "USD withdrawal in USD accounts", 
+#   search_name: "3. Levantamento USD em contas USD", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# Fee.create!(product_id: demand_deposit.id, name: "Single Statement", 
+#   search_name: "5. Extracto avulso", category: "Optional")
+#   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
+
+# puts 'creating random prices'
+# 10.times do
+#   Price.create(fee: Fee.all.sample, subproduct: Subproduct.all.sample, amount: rand(20), document: Document.all.sample )
+# end
+
+
+puts 'done'
+
+
+# # BANKS.each do |bank|
+# #   bank = Bank.create(bank)
+
+#   # # adding products to the banks
+#   # pdf_sections1 = { sections: ['1.1', '17.1'] }
+#   # demand_deposits = Product.create(
+#   #             name: 'Demand deposits',
+#   #             pdf_sections: pdf_sections1,
+#   #             product_family: product_family,
+#   #             bank: bank)
+#   # pdf_sections2 = { sections: ['17.2'] }
+#   # term_deposits = Product.create(
+#   #             name: 'Term deposits',
+#   #             pdf_sections: pdf_sections2,
+#   #             product_family: product_family,
+#   #             bank: bank)
+#   # pdf_sections3 = { sections: ['2.1', '18.1'] }
+#   # housing_credit = Product.create(
+#   #             name: 'Housing credit',
+#   #             pdf_sections: pdf_sections3,
+#   #             product_family: product_family,
+#   #             bank: bank)
+# # end

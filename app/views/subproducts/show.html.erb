@@ -4,8 +4,19 @@
   <h2 class="small_title"><%= @subproduct.bank.name.capitalize%></h2>
 </div>
 
+<%if current_user && current_user.admin?%>
+  <div class="bottom_nav">
+    <span>Jump to: 
+      <span><%= link_to 'Table', '#table', class: 'nav_link' %></span>
+      <span><%= link_to 'Requests', '#requests', class: 'nav_link' %></span>
+      <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+    </span>
+  </div>
+<%end%>
+
 <div class="contain-color">
-    <div class="table">
+  <div class="admin">
+    <div class="table" id="table">
       <div class="cell">
         <p class="headers_title">Fee</p>
         <p class="headers_title">Cost
@@ -27,17 +38,49 @@
         </div>
       <%end%>
       <svg height="3" width="100%" class="mt-4">
-        <line x1="0" y1="0" x2="60%" y2="0" />
+        <line x1="0" y1="0" x2="100%" y2="0" />
       </svg>
         <div class="cell mt-4">
           <p class="cell_content bold">Total</p>
           <p class="cell_content bold">$ <%= @subproduct.prices.sum { |price| price.amount } %></p>
         </div>
     </div>
+    <% if current_user && current_user.admin?%>
+      <%= link_to 'Add new fee', new_subproduct_fee_path(@subproduct), class:'btn' %>
+    <%end%>
+  </div>
 
 </div>
 
-<div class="contain mb-5">
+<div class="contain mb-5 mt-5" id="requests">
+  <% if current_user && current_user.admin? %>
+  <h6 class="small_title">Requests for <%= @subproduct.name%></h6>
+  <div class="cards">
+    <% @subproduct.prices.reverse.each do |p|%>
+      <div class="card card-taller" id="request_<%= p.document.request.id%>">
+        <p class="card_title">Request #<%= p.document.id %></p>
+        <p class="card_text card_text-small"><strong>Content:</strong> <%= p.document.request.content%></p>
+        <p class="card_text card_text-small"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'link link-small' %></p>
+        <p class="card_text card_text-small"><strong>Cost:</strong> <%= p.amount %></p>
+        <p class="card_text card_text-small"><strong>Fee:</strong> <%= p.fee.name %></p>
+        <p class="card_text card_text-small"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
+        <p class="card_text card_text-small"><strong>Files:</strong> <%= p.document.file_url%></p>
+        <p class="card_text card_text-small"><strong>Date added:</strong> <%= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
+        <p class="card_text card_text-small"><strong>Status:</strong> <%= p.document.request.status.capitalize%></p>
+        <div class="card_action">
+          <% if p.document.request.status == 'pending'%>
+            <%= link_to request_path(p.document.request), method: :patch, class: 'link' do%>
+              <i class="far fa-check-circle"></i>
+              <span>Mark as done</span>
+            <%end%>
+          <%else%>
+            <i class="far fa-check-circle success"></i>
+          <%end%>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <%end%>
 </div>
 
 <%# <div class="container mb-5">

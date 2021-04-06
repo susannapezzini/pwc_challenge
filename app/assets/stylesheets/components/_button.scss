@@ -12,6 +12,7 @@
   letter-spacing: 3px;
   padding: 0.5rem 1rem;
   margin: 1rem 0;
+  display: inline-block;
   &:hover {
     color: $white;
   }
@@ -75,5 +76,16 @@
   font-size: 1.1rem;
   &:hover {
     color: $red;
+  }
+  &-small {
+  font-size: 0.75rem;
+  }
+}
+
+.success {
+  color: $green;
+  &:hover {
+    color: $green;
+    text-decoration: underline;
   }
 }
