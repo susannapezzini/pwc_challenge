@@ -18,7 +18,7 @@
   }
 
   &-taller {
-    height: 70vh;
+    height: 60vh;
   }
 }
 
@@ -51,6 +51,8 @@
 
 .card_text{
   font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.6rem;
   a {
     @include reset-link;
     &:hover {
