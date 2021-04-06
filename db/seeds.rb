@@ -28,6 +28,15 @@ def get_product(product_name)
   Product.find_by(name: product_name)
 end
 
+def get_subproduct(name)
+  Subproduct.find_by(name: name) # in case there are subproudcts with more than one name
+end
+
+def get_fee(fee_name)
+  Fee.find_by(name: fee_name)
+end
+
+
 # puts 'Creating seeds'
 admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
 default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: get_bank("abanca"))
@@ -77,9 +86,22 @@ CSV.foreach("lib/seeds/subproducts.csv", csv_options) do |row|
   subproduct.product = get_product(row[:product_id])
   subproduct.bank = get_bank(row[:bank_id])
   subproduct.save!
+
 end
 puts "subproducts created"
 
+#id;fee_id;subproduct_id;document_id;name;amount;category;tax;tax_amount;tax_category;status
+i = 0
+CSV.foreach("lib/seeds/prices.csv", csv_options) do |row|
+  puts i
+  i+=1
+  price = Price.new(row)
+  price.subproduct = get_subproduct(row[:subproduct_id])
+  price.fee = get_fee(row[:fee_id])
+  price.document = Document.first
+  price.save!
+end
+puts "prices created"
 
 
 # def add_last_fee_to_all_subproducts_of(bank, product_type)
@@ -151,30 +173,6 @@ puts "subproducts created"
 # Fee.create!(product_id: demand_deposit.id, name: "Single Statement", 
 #   search_name: "5. Extracto avulso", category: "Optional")
 #   add_last_fee_to_all_subproducts_of(banco_bai, demand_deposit)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
