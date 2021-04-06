@@ -20,16 +20,24 @@ Request.destroy_all
 Bank.destroy_all
 User.destroy_all
 
-admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
-puts "users created"
-
 def get_bank(bank_name)
   Bank.find_by(name: bank_name)
 end
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'banks.csv'))
+def get_product(product_name)
+  Product.find_by(name: product_name)
+end
+
+# puts 'Creating seeds'
+admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)
+default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: get_bank("abanca"))
+puts "users created"
+
+
+
 
 csv_options = { headers:true, col_sep: ';', header_converters: :symbol, encoding:'iso-8859-1:utf-8'}
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'banks.csv'))
 #id;bp_bank_id;name;address;country
 CSV.foreach("lib/seeds/banks.csv", csv_options) do |row|
   Bank.create!(row)
@@ -41,72 +49,18 @@ CSV.foreach("lib/seeds/websites.csv", csv_options) do |row|
   website.bank = get_bank(row[:bank_id])
   website.save!
 end
+puts "websites created"
 
-# puts 'Creating seeds'
-
-
-
-# banco_ctt = Bank.create(
-#   name: 'banco ctt',
-#   address: 'Av. Dom João II 13, 1999-001 Lisboa',
-#   country: 'Portugal',
-#   websites_attributes: [
-#   { 
-#     url: "https://www.bancoctt.pt"
-#   }])
-
-# abanca = Bank.create(
-#   name: 'abanca',
-#   address: 'Rua Castilho, n.º 20, 1250-069, Lisboa',
-#   country: 'Portugal',
-#   websites_attributes: [
-#   { 
-#     url: "https://www.bancoctt.pt"
-#   }])
-
-# banco_bai = Bank.create(
-#   name: 'banco bai europa',
-#   address: 'Rua Tierno Galvan Torre 3, 12º Piso, 1070-274 Lisboa',
-#   country: 'Portugal',
-#   websites_attributes: [
-#   { 
-#     url: "https://www.bancobaieuropa.pt"
-#   }])
-
-# banco_bic = Bank.create(
-#   name: 'banco bic',
-#   address: 'Avenida Antonio Augusto De Aguiar, N.º 132',
-#   country: 'Portugal',
-#   websites_attributes: [
-#   { 
-#     url: "https://www.eurobic.pt"
-#   }])
-
-# bank_inter = Bank.create(
-#   name: 'bankinter',
-#   address: 'Praça Marquês de Pombal, n.º 13, 2.º Andar, 1250-162 Lisboa',
-#   country: 'Portugal',
-#   websites_attributes: [
-#   { 
-#     url: "https://www.bankinter.pt"
-#   },
-#   {
-#     url:"https://www.bankinter.com"
-#   }])
-  
-# puts "banks created"
-# default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: abanca)
+Request.create
+puts "request created"
+abanca_doc = Document.create!(request_id: Request.first.id, bank_id: get_bank("abanca").id)
+banco_bai_doc = Document.create!(request_id: Request.first.id, bank_id: get_bank("banco bai").id)
 
 
-# Request.create
-# abanca_doc = Document.create!(request_id: Request.first.id, bank_id: abanca.id)
-# banco_bai_doc = Document.create!(request_id: Request.first.id, bank_id: banco_bai.id)
-
-
-# demand_deposit = Product.create!(name: "Demand Deposits")
-# term_deposit = Product.create!(name: "Term Deposits")
-# housing_credit = Product.create!(name: "Housing Credit")
-# puts "products created"
+demand_deposit = Product.create!(name: "Demand Deposits")
+term_deposit = Product.create!(name: "Term Deposits")
+housing_credit = Product.create!(name: "Housing Credit")
+puts "products created"
 
 # Subproduct.create!(product_id: demand_deposit.id, bank_id: abanca.id, 
 #   name: "Private Demand Deposit Account (Avg Balance <1000€)", search_name: "3.1 Conta D.O. Particulares (Nota 2) ")
@@ -254,6 +208,53 @@ end
 
 # puts 'done'
 
+# banco_ctt = Bank.create(
+#   name: 'banco ctt',
+#   address: 'Av. Dom João II 13, 1999-001 Lisboa',
+#   country: 'Portugal',
+#   websites_attributes: [
+#   { 
+#     url: "https://www.bancoctt.pt"
+#   }])
+
+# abanca = Bank.create(
+#   name: 'abanca',
+#   address: 'Rua Castilho, n.º 20, 1250-069, Lisboa',
+#   country: 'Portugal',
+#   websites_attributes: [
+#   { 
+#     url: "https://www.bancoctt.pt"
+#   }])
+
+# banco_bai = Bank.create(
+#   name: 'banco bai europa',
+#   address: 'Rua Tierno Galvan Torre 3, 12º Piso, 1070-274 Lisboa',
+#   country: 'Portugal',
+#   websites_attributes: [
+#   { 
+#     url: "https://www.bancobaieuropa.pt"
+#   }])
+
+# banco_bic = Bank.create(
+#   name: 'banco bic',
+#   address: 'Avenida Antonio Augusto De Aguiar, N.º 132',
+#   country: 'Portugal',
+#   websites_attributes: [
+#   { 
+#     url: "https://www.eurobic.pt"
+#   }])
+
+# bank_inter = Bank.create(
+#   name: 'bankinter',
+#   address: 'Praça Marquês de Pombal, n.º 13, 2.º Andar, 1250-162 Lisboa',
+#   country: 'Portugal',
+#   websites_attributes: [
+#   { 
+#     url: "https://www.bankinter.pt"
+#   },
+#   {
+#     url:"https://www.bankinter.com"
+#   }])
 
 # # # BANKS.each do |bank|
 # # #   bank = Bank.create(bank)
