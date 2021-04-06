@@ -18,7 +18,7 @@
   }
 
   &-taller {
-    height: 60vh;
+    height: 75vh;
   }
 }
 
@@ -53,6 +53,10 @@
   font-size: 1.1rem;
   margin: 0;
   line-height: 1.6rem;
+  &-small {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
   a {
     @include reset-link;
     &:hover {
