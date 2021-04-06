@@ -5,7 +5,7 @@
     <div class="bottom_nav">
       <span>Jump to: 
         <span><%= link_to 'Pending', '#pending', class: 'nav_link' %></span>
-        <span><%= link_to 'Completed', '#requests', class: 'nav_link' %></span>
+        <span><%= link_to 'Completed', '#completed', class: 'nav_link' %></span>
         <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
       </span>
     </div>
@@ -13,11 +13,11 @@
 </div>
 
 <div class="contain-color" id="pending">
-<h6 class="small_title">Pending</h6>
+<h6 class="small_title">Pending Requests</h6>
   <div class="cards">
     <% @pending.each do |p|%>
       <% p.prices.each do |p| %>
-        <div class="card card-taller">
+        <div class="card card-taller" id="request_<%= p.document.request.id%>">
           <p class="card_title">Request #<%= p.document.id %></p>
           <p class="card_text"><strong>Content:</strong> <%= p.document.request.content%></p>
           <p class="card_text"><strong>Files:</strong> <%= p.document.file_url%></p>
@@ -41,12 +41,12 @@
     <%end%>
   </div>
 </div>
-<div class="contain" id="requests">
-<h6 class="small_title">Completed</h6>
+<div class="contain" id="completed">
+<h6 class="small_title">Completed Requests</h6>
   <div class="cards">
     <% @completed.reverse.each do |p|%>
       <% p.prices.each do |p| %>
-        <div class="card card-taller card-color">
+        <div class="card card-taller card-color" id="request_<%= p.document.request.id%>">
           <p class="card_title">Request #<%= p.document.id %></p>
           <p class="card_text"><strong>Content:</strong> <%= p.document.request.content%></p>
           <p class="card_text"><strong>Files:</strong> <%= p.document.file_url%></p>

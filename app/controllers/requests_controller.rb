@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   def update
     @request.status = 'active'
     @request.save
-    redirect_to dashboard_path(anchor: :completed), notice: 'Request successfully updated'
+    redirect_to dashboard_path(anchor: "request_#{@request.id}"), notice: 'Request successfully updated'
   end
   def set_request
     @request = Request.find(params[:id])
