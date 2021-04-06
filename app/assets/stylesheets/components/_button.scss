@@ -77,6 +77,9 @@
   &:hover {
     color: $red;
   }
+  &-small {
+  font-size: 0.75rem;
+  }
 }
 
 .success {
