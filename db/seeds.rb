@@ -70,16 +70,13 @@ CSV.foreach("lib/seeds/fees.csv", csv_options) do |row|
 end
 puts "fees created"
 
-#id;product_id;name;search_name;category
-CSV.foreach("lib/seeds/fees.csv", csv_options) do |row|
-  fee = Fee.new(row)
-  fee.product = get_product(row[:product_id])
-  fee.save!
-end
-puts "fees created"
 
+#id;product_id;bank_id;name;search_name
 CSV.foreach("lib/seeds/subproducts.csv", csv_options) do |row|
-  p row
+  subproduct = Subproduct.new(row)
+  subproduct.product = get_product(row[:product_id])
+  subproduct.bank = get_bank(row[:bank_id])
+  subproduct.save!
 end
 puts "subproducts created"
 
