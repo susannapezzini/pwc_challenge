@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # get 'requests/update'
   get 'banks/new'
   get 'banks/create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -34,4 +35,5 @@ Rails.application.routes.draw do
 
   resources :fees
   resources :prices
+  resources :requests, only: %i[update]
 end

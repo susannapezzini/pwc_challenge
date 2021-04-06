@@ -17,7 +17,7 @@
   <div class="cards">
     <% @pending.each do |p|%>
       <% p.prices.each do |p| %>
-        <div class="card card-noheight">
+        <div class="card card-taller">
           <p class="card_title">Request #<%= p.document.id %></p>
           <p class="card_text"><strong>Content:</strong> <%= p.document.request.content%></p>
           <p class="card_text"><strong>Files:</strong> <%= p.document.file_url%></p>
@@ -26,6 +26,16 @@
           <p class="card_text"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
           <p class="card_text"><strong>Date added:</strong> <%= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
           <p class="card_text"><strong>Status:</strong> <%= p.document.request.status.capitalize%></p>
+          <div class="card_action">
+              <%= link_to subproduct_path(p.subproduct), class: 'link' do %> 
+                <i class="fas fa-angle-right"></i>
+                <span>See more</span>
+              <%end%>
+              <%= link_to request_path(p.document.request), method: :patch, class: 'link' do%>
+                <i class="far fa-check-circle"></i>
+                <span>Mark as done</span>
+              <%end%>
+          </div>
         </div>
       <%end%>
     <%end%>
@@ -34,17 +44,22 @@
 <div class="contain" id="requests">
 <h6 class="small_title">Completed</h6>
   <div class="cards">
-    <% @completed.each do |p|%>
+    <% @completed.reverse.each do |p|%>
       <% p.prices.each do |p| %>
-        <div class="card card-noheight card-color">
+        <div class="card card-taller card-color">
           <p class="card_title">Request #<%= p.document.id %></p>
           <p class="card_text"><strong>Content:</strong> <%= p.document.request.content%></p>
           <p class="card_text"><strong>Files:</strong> <%= p.document.file_url%></p>
-          <p class="card_text"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
-          <p class="card_text"><strong>Product:</strong> <%= p.subproduct.name%></p>
+          <p class="card_text"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'success' %></p>
+          <p class="card_text"><strong>Product:</strong> <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'success'%></p>
           <p class="card_text"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
           <p class="card_text"><strong>Date added:</strong> <%= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
           <p class="card_text"><strong>Status:</strong> <%= p.document.request.status.capitalize%></p>
+          <div class="card_action">
+            <div class="actions">
+              <i class="far fa-check-circle success"></i>   
+            </div>
+          </div>
         </div>
       <%end%>
     <%end%>

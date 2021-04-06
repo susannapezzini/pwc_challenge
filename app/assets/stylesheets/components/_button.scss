@@ -77,3 +77,11 @@
     color: $red;
   }
 }
+
+.success {
+  color: $green;
+  &:hover {
+    color: $green;
+    text-decoration: underline;
+  }
+}
