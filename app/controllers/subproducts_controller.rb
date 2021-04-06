@@ -54,7 +54,8 @@ class SubproductsController < ApplicationController
   end
 
   def show
-    Subproduct.includes(price: :fee).order('fees.name ASC')    
+    Subproduct.includes(price: :fee).order('fees.name ASC')
+    
   end
 
   def destroy

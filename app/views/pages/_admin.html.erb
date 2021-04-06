@@ -5,7 +5,7 @@
     <div class="bottom_nav">
       <span>Jump to: 
         <span><%= link_to 'Pending', '#pending', class: 'nav_link' %></span>
-        <span><%= link_to 'Completed', '#requests', class: 'nav_link' %></span>
+        <span><%= link_to 'Completed', '#completed', class: 'nav_link' %></span>
         <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
       </span>
     </div>
@@ -13,17 +13,19 @@
 </div>
 
 <div class="contain-color" id="pending">
-<h6 class="small_title">Pending</h6>
+  <h6 class="small_title">Pending Requests</h6>
   <div class="cards">
     <% @pending.each do |p|%>
       <% p.prices.each do |p| %>
-        <div class="card card-taller">
+        <div class="card card-taller" id="request_<%= p.document.request.id%>">
           <p class="card_title">Request #<%= p.document.id %></p>
           <p class="card_text"><strong>Content:</strong> <%= p.document.request.content%></p>
           <p class="card_text"><strong>Files:</strong> <%= p.document.file_url%></p>
+          <p class="card_text"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
           <p class="card_text"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
           <p class="card_text"><strong>Product:</strong> <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link'%></p>
-          <p class="card_text"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
+          <p class="card_text"><strong>Fee:</strong> <%= p.fee.name %></p>
+          <p class="card_text"><strong>Cost:</strong> <%= p.amount %></p>
           <p class="card_text"><strong>Date added:</strong> <%= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
           <p class="card_text"><strong>Status:</strong> <%= p.document.request.status.capitalize%></p>
           <div class="card_action">
@@ -41,18 +43,20 @@
     <%end%>
   </div>
 </div>
-<div class="contain" id="requests">
-<h6 class="small_title">Completed</h6>
+<div class="contain" id="completed">
+<h6 class="small_title">Completed Requests</h6>
   <div class="cards">
     <% @completed.reverse.each do |p|%>
       <% p.prices.each do |p| %>
-        <div class="card card-taller card-color">
+        <div class="card card-taller card-color" id="request_<%= p.document.request.id%>">
           <p class="card_title">Request #<%= p.document.id %></p>
           <p class="card_text"><strong>Content:</strong> <%= p.document.request.content%></p>
           <p class="card_text"><strong>Files:</strong> <%= p.document.file_url%></p>
+          <p class="card_text"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
           <p class="card_text"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'success' %></p>
           <p class="card_text"><strong>Product:</strong> <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'success'%></p>
-          <p class="card_text"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
+          <p class="card_text"><strong>Fee:</strong> <%= p.fee.name %></p>
+          <p class="card_text"><strong>Cost:</strong> <%= p.amount %></p>
           <p class="card_text"><strong>Date added:</strong> <%= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
           <p class="card_text"><strong>Status:</strong> <%= p.document.request.status.capitalize%></p>
           <div class="card_action">
