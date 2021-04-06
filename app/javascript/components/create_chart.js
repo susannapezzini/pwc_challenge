@@ -1,4 +1,3 @@
-const ctx = document.getElementById('compareChart');
 const createChart = (ctx, bankName1, price1, bankName2, price2) => {
   const myChart = new Chart(ctx, {
     type: 'bar',
