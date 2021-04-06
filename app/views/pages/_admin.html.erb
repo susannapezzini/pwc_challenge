@@ -56,9 +56,7 @@
           <p class="card_text"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'success' %></p>
           <p class="card_text"><strong>Product:</strong> <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'success'%></p>
           <p class="card_text"><strong>Fee:</strong> <%= p.fee.name %></p>
-          <p class="card_text"><strong>Cost:</strong> <%= p.amount %></p>
           <p class="card_text"><strong>Date added:</strong> <%= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
-          <p class="card_text"><strong>Status:</strong> <%= p.document.request.status.capitalize%></p>
           <div class="card_action">
             <div class="actions">
               <i class="far fa-check-circle success"></i>   
