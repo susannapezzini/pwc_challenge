@@ -9,7 +9,7 @@
   margin: 1rem;
   padding: 2rem;
   height: 375px;
-  flex-basis: calc(33% - 32px);
+  flex-basis: calc(33% - 24px);
   &-color {
     background-color: $smoke;
   }
@@ -18,12 +18,12 @@
   }
 
   &-taller {
-    height: 80vh;
+    height: 60vh;
   }
 }
 
 .bank-card {
-  flex-basis: calc(33% - 32px);
+  flex-basis: calc(33% - 24px);
   border-radius: 3px;
   // border: 1px solid $smoke;
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -72,5 +72,5 @@
   position: absolute;
   bottom: 2rem;
   left: 2rem;
-  width: calc(100% - 64px);
+  width: calc(100% - 48px);
 }
