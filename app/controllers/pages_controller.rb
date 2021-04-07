@@ -31,6 +31,8 @@ class PagesController < ApplicationController
 
   # Needs Auth
   def overview
+    @banks = Bank.all
+    @subproducts = Subproduct.all
   end
 
 
