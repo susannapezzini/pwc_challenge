@@ -214,9 +214,9 @@
 ;Owners Change Fee;Conta B Prime;;placeholder - bankinter;7;;;;;
 ;Owners Change Fee;Conta Serviços Mínimos Bancários - Basic Services Account;;placeholder - bankinter;7;;;;;
 ;Account Management;Conta à Ordem Financial Assets≤ 2.500,00€;;placeholder - bancobic;4;;;;;
-;Account Management;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;333333333333333;;;;;
+;Account Management;Conta à Ordem Financial Assets> 2.500,00€ e ≤ 5.000,00€;;placeholder - bancobic;3,33;;;;;
 ;Account Management;Conta à Ordem Financial Assets> 5.000,00€ e ≤ 15.000,00€;;placeholder - bancobic;2,5;;;;;
-;Account Management;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;166666666666667;;;;;
+;Account Management;Conta à Ordem Financial Asset Financial Assets> 15.000,00€ e ≤ 50.000,00€;;placeholder - bancobic;1,67;;;;;
 ;Account Management;Conta à Ordem Financial Asset Financial Assets> Financial Assets> 50.000,00€;;placeholder - bancobic;0;;;;;
 ;Account Management;Demand Deposit Account with Future;;placeholder - bancobic;0;;;;;
 ;Account Management;Cool Account (for contracts from 13 for november 2014);;placeholder - bancobic;0;;;;;
