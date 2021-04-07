@@ -52,7 +52,7 @@ admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password:
 default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: '123456', bank: get_bank("abanca"))
 puts "users created"
 puts 'creating requests'
-10.times do
+30.times do
   Request.create(content: 'I am a request and I am supposed to provide useful content', status: status.sample)
 end
 
@@ -64,12 +64,10 @@ CSV.foreach("lib/seeds/websites.csv", csv_options) do |row|
 end
 puts "websites created"
 
-Request.create
-puts "request created"
 abanca_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("abanca").id)
-banco_bai_doc = Document.create!(request: Request.all.sample  , bank_id: get_bank("banco bai").id)
+banco_bai_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("banco bai").id)
 
-20.times do
+30.times do
   Document.create(request: Request.all.sample, bank: Bank.all.sample)
 end
 
