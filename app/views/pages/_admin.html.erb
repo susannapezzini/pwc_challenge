@@ -18,15 +18,16 @@
       <% @pending.each do |p|%>
           <div class="card card-taller" id="request_<%= p.request.id%>">
             <p class="card_title">Request #<%= p.request.id %></p>
-            <p class="card_text card_text-small"><strong>Content:</strong> <%= p.request.content%></p>
-            <p class="card_text card_text-small"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link link-small' %></p>
-            <p class="card_text card_text-small"><strong>Products:</strong> </p>
+            <p class="card_text"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
+            <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
+            <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
+            <p class="card_text"><strong>Products:</strong> </p>
               <% p.prices.each do |p|%>
               <p class="card_text card_text-small">
                 <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link link-small'%>
               </p>
               <%end%>
-            
+            <br>
             <%# <p class="card_text card_text-small"><strong>Fees:</strong> %>
               <%#p.prices.each do |p|%>
                 <%#= p.fee.name %>
@@ -34,7 +35,6 @@
             <%# </p> %>
             <p class="card_text card_text-small"><strong>Files:</strong> <%= p.file_url%></p>
             <p class="card_text card_text-small"><strong>Date added:</strong> <%= p.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
-            <p class="card_text card_text-small"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
             <div class="card_action">
                 <%#= link_to subproduct_path(p.subproduct), class: 'link' do %> 
                   <%# <i class="fas fa-angle-right"></i>
@@ -58,9 +58,10 @@
       <% @completed.each do |p|%>
           <div class="card card-taller card-color" id="request_<%= p.request.id%>">
             <p class="card_title">Request #<%= p.request.id %></p>
-            <p class="card_text card_text-small"><strong>Content:</strong> <%= p.request.content%></p>
-            <p class="card_text card_text-small"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link link-small' %></p>
-            <p class="card_text card_text-small"><strong>Products:</strong> </p>
+            <p class="card_text"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
+            <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
+            <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
+            <p class="card_text"><strong>Products:</strong> </p>
               <% p.prices.each do |p|%>
               <p class="card_text card_text-small">
                 <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link link-small success'%>
@@ -72,9 +73,9 @@
                 <%#= p.fee.name %>
               <%#end%>
             <%# </p> %>
+            <br>
             <p class="card_text card_text-small"><strong>Files:</strong> <%= p.file_url%></p>
             <p class="card_text card_text-small"><strong>Date added:</strong> <%= p.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
-            <p class="card_text card_text-small"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
             <div class="card_action success">
                 <%#= link_to subproduct_path(p.subproduct), class: 'link' do %> 
                   <%# <i class="fas fa-angle-right"></i>
