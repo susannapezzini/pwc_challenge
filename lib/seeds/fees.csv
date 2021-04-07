@@ -1,4 +1,4 @@
-﻿id;product_id;name;search_name;category 
+﻿id;product_id;name;search_name;category
 ;Demand Deposits;Account management fees;3. Manutenção de conta ;3': 'Manutenção de conta',
 ;Demand Deposits;Monthly statement fee;1.1 Mensal (enviado ao domicílio) ;1. Emissão de extrato
 ;Demand Deposits;Other requests besides monthly statement;1.2 Outros, para além do indicado em 1.1 ;1. Emissão de extrato
@@ -34,3 +34,50 @@
 ;Demand Deposits;Owners changing;7. Alteração de titularidade / intervenientes;
 ;Demand Deposits;Cash deposit at the counter (>= 100 coins);8. Depósito de moeda metálica (? a 100 moedas);
 ;Demand Deposits;Documents replacement;9. Segundas vias (pedido na agência);
+;Housing Credit;1. Reanálise;1. Reanálise;Comissões iniciais
+;Housing Credit;2. Comissão de formalização;2. Comissão de formalização;Comissões iniciais
+;Housing Credit;3.1  Imóvel residencial;3.1  Imóvel residencial;Comissões iniciais
+;Housing Credit;3.2 Garagens e arrecadações não anexas ao imóvel residencial;3.2 Garagens e arrecadações não anexas ao imóvel residencial;Comissões durante a vigência do contrato
+;Housing Credit;4.1 Não realização da escritura;4.1 Não realização da escritura;Comissões durante a vigência do contrato
+;Housing Credit;4.2 Alteração do local da escritura;4.2 Alteração do local da escritura;Comissões durante a vigência do contrato
+;Housing Credit;5.1 Taxa fixa;5.1 Taxa fixa;Comissões durante a vigência do contrato
+;Housing Credit;5.2 Taxa variável;5.2 Taxa variável;Comissões durante a vigência do contrato
+;Housing Credit;6.1 Prestação até 50.000 €;6.1 Prestação até 50.000 €;Comissões durante a vigência do contrato
+;Housing Credit;6.2 Prestação > 50.000 €;6.2 Prestação > 50.000 €;Comissões durante a vigência do contrato
+;Housing Credit;7.1 Declarações de dívida;7.1 Declarações de dívida;Comissões durante a vigência do contrato
+;Housing Credit;7.2 Mudança de regime de crédito;7.2 Mudança de regime de crédito;Comissões durante a vigência do contrato
+;Housing Credit;8. Vistorias (andamento de obras);8. Vistorias (andamento de obras);Comissões durante a vigência do contrato
+;Housing Credit;9.1 Taxa fixa;9.1 Taxa fixa;Comissões no termo do contrato
+;Housing Credit;9.2 Taxa variável;9.2 Taxa variável;Comissões no termo do contrato
+;Housing Credit;10. Emissão de extratos de conta de empréstimos liquidados;10. Emissão de extratos de conta de empréstimos liquidados;Comissões no termo do contrato
+;Housing Credit;11.1 Declarações de dívida;11.1 Declarações de dívida;Comissões no termo do contrato
+;Housing Credit;12.1 Até 100 Kms;12.1 Até 100 Kms;Comissões no termo do contrato
+;Housing Credit;12.2 101 a 250 Kms;12.2 101 a 250 Kms;Comissões no termo do contrato
+;Housing Credit;12.3 > 250 Kms;12.3 > 250 Kms;Comissões no termo do contrato
+;Housing Credit;1. Avaliação do Imóvel;1. Avaliação do Imóvel;Comissões iniciais
+;Housing Credit;2. Abertura de Processo;2. Abertura de Processo;Comissões iniciais
+;Housing Credit;3. Formalização;3. Formalização;Comissões iniciais
+;Housing Credit;4. Solicitadoria;4. Solicitadoria;Comissões iniciais
+;Housing Credit;5. Vistorias;5. Vistorias;Comissões durante a vigência do contrato
+;Housing Credit;Declaração de Dívida para Fins Diversos;Declaração de Dívida para Fins Diversos;Comissões durante a vigência do contrato
+;Housing Credit;Declaração de Encargos com Prestações;Declaração de Encargos com Prestações;Comissões durante a vigência do contrato
+;Housing Credit;7. Comissão de Reembolso Antecipado Parcial;7. Comissão de Reembolso Antecipado Parcial;Comissões durante a vigência do contrato
+;Housing Credit;8. Comissão de Liquidação de Prestação;8. Comissão de Liquidação de Prestação;Comissões durante a vigência do contrato
+;Housing Credit;Prestação > 50.000,00€;Prestação > 50.000,00€;Comissões durante a vigência do contrato
+;Housing Credit;Prestação ≤ 50.000,00€;Prestação ≤ 50.000,00€;Comissões durante a vigência do contrato
+;Housing Credit;Comissão de reembolso antecipado total Taxa variável;Comissão de reembolso antecipado total Taxa variável;Comissões no termo do contrato
+;Housing Credit;Comissão de Estudo do Crédito Habitação;Comissão de Estudo do Crédito Habitação;Comissões Iniciais
+;Housing Credit;Comissão de Avaliação;Comissão de Avaliação;Comissões Iniciais
+;Housing Credit;Comissão de Formalização do Crédito Habitação;Comissão de Formalização do Crédito Habitação;Comissões Iniciais
+;Housing Credit;Comissão de Contrato do Crédito Habitação;Comissão de Contrato do Crédito Habitação;Comissões Iniciais
+;Housing Credit;Comissão de Tramitação;Comissão de Tramitação;Comissões Iniciais
+;Housing Credit;Comissão de Fiança;Comissão de Fiança;Comissões Iniciais
+;Housing Credit;Comissão de Solicitadoria;Comissão de Solicitadoria;Comissões Iniciais
+;Housing Credit;Comissão de Vistoria;Comissão de Vistoria;Comissões Iniciais
+;Housing Credit;Comissão de Processamento de Prestação;Comissão de Processamento de Prestação;Comissões Durante a Vigência do Contrato
+;Housing Credit;Comissão pela Recuperação de Valores em Dívida;Comissão pela Recuperação de Valores em Dívida;Comissões Durante a Vigência do Contrato
+;Housing Credit;Comissão de Penalização por Amortização Antecipada Parcial no Crédito Habitação: Taxa Variável;Comissão de Penalização por Amortização Antecipada Parcial no Crédito Habitação: Taxa Variável;Comissões Durante a Vigência do Contrato
+;Housing Credit;Comissão de Penalização por Amortização Antecipada Parcial no Crédito Habitação:  Taxa Fixa;Comissão de Penalização por Amortização Antecipada Parcial no Crédito Habitação:  Taxa Fixa;Comissões Durante a Vigência do Contrato
+;Housing Credit;Comissão de Penalização por Amortização Antecipada Total no Crédito Habitação: - Taxa Variável;Comissão de Penalização por Amortização Antecipada Total no Crédito Habitação: - Taxa Variável;Comissões no Termo do Contrato
+;Housing Credit;Comissão de Penalização por Amortização Antecipada Total no Crédito Habitação: - Taxa Fixa;Comissão de Penalização por Amortização Antecipada Total no Crédito Habitação: - Taxa Fixa;Comissões no Termo do Contrato
+;Housing Credit;Habitação Própria;Habitação Própria;Comissões Iniciais
