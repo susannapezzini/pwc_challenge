@@ -58,7 +58,7 @@
   <div class="cards">
     <% @subproduct.prices.reverse.each do |p|%>
       <div class="card card-noheight" id="request_<%= p.document.request.id%>">
-        <p class="card_title">Document #<%= p.document.id %></p>
+        <p class="card_title">document #<%= p.document.id %></p>
         <p class="card_text card_text-small"><strong>Content:</strong> <%= p.document.request.content%></p>
         <p class="card_text card_text-small"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'link link-small' %></p>
         <p class="card_text card_text-small"><strong>Cost:</strong> <%= p.amount %></p>

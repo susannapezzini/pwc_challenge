@@ -67,7 +67,7 @@ puts "websites created"
 abanca_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("abanca").id)
 banco_bai_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("banco bai").id)
 
-30.times do
+40.times do
   Document.create(request: Request.all.sample, bank: Bank.all.sample)
 end
 
