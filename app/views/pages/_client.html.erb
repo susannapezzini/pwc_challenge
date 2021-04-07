@@ -3,15 +3,80 @@
   <h1>Welcome to your dashboard</h1>
 </div>
 
-<div class="contain">
-  <h3 class="small_title mb-3">
-    Details
-  </h3>
-  <p>Name: <%=current_user.name%></p>
-  <p>Email: <%=current_user.email%></p>
-  <p>Bank: <%= link_to "#{current_user.bank.name.capitalize}", bank_path(current_user.bank), class: 'link'%></p>
+<div class="bottom_nav">
+    <span>Jump to: 
+      <span><%= link_to 'Products', '#subproducts', class: 'nav_link' %></span>
+      <span><%= link_to 'Views', '#views', class: 'nav_link' %></span>
+      <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+    </span>
 </div>
-<div class="contain-color">
+
+<div class="contain">
+  <div class="admin">
+    <div class="user">
+      <h3 class="small_title mb-3">
+        User Details
+      </h3>
+      <p>Name: <%=current_user.name%></p>
+      <p>Email: <%=current_user.email%></p>
+      <p>Bank: <%= link_to "#{current_user.bank.name.capitalize}", bank_path(current_user.bank), class: 'link'%></p>
+    </div>
+    <div class="bank">
+      <h3 class="small_title mb-3">
+        Bank Details
+      </h3>
+      <p>Name: <%=current_user.bank.name.capitalize%></p>
+      <p>Url: <%=current_user.bank.websites.first.url%></p>
+      <p>Address: <%=current_user.bank.address%></p>
+      <p>Country: <%=current_user.bank.country%></p>
+    </div>
+  </div>
+</div>
+<div class="contain-color" id="subproducts">
+  <h6 class="small_title"><%= current_user.bank.name.capitalize %>'s Products offer</h6>
+    <div class="cards">
+
+      <% current_user.bank.subproducts.reverse.each do |b|%>
+        <div class="bank-card">
+          <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
+          <p class="card_text"><strong>Product Family:</strong><br><%= b.product.name %></p>
+          <p class="card_text"><strong>Fees:</strong>
+            <span class="small_text">
+              <% b.product.fees[0..2].each do |f|%><br>
+                <%= f.name%>
+              <%end%>
+            </span>
+            <span>...</span>
+            </p>
+          <p class="card_text"><strong>Total Price:</strong> $ <%= b.prices.sum { |price| price.amount } %></p>
+
+          
+            <div class="card_action">
+            <%= link_to subproduct_path(b), class: 'link' do %> 
+              <i class="fas fa-angle-right"></i>
+              <span>See more</span>
+            <%end%>
+          <% if current_user.admin?%>
+              <%= link_to edit_bank_subproduct_path(@bank, b), class: 'link' do %>
+              <i class="far fa-edit"></i>
+              <span>Edit</span>
+              <%end%>
+              <%= link_to subproduct_path(b), method: :delete, class: 'link' , data: { confirm: 'This will permanently delete the product. Are you sure?' } do %>
+              <i class="far fa-trash-alt"></i>
+              <span>Delete</span>
+              <%end%>
+          <%end%>
+            </div>
+        </div>
+      <%end%>
+    </div>
+  <% if current_user.admin?%>
+    <div class="text-center">
+      <%= link_to 'Add New Subproduct', new_bank_subproduct_path(@bank), class: 'btn'%>
+    </div>
+  <%end%>
+</div>
+<div class="contain" id="views">
   <h6 class="small_title">
     Saved views
   </h6>
