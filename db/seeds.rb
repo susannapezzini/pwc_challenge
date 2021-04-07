@@ -99,11 +99,8 @@ CSV.foreach("lib/seeds/subproducts.csv", csv_options) do |row|
 end
 puts "subproducts created"
 
-i = 0
 #id;fee_id;subproduct_id;document_id;name;amount;category;tax;tax_amount;tax_category;status
 CSV.foreach("lib/seeds/prices.csv", csv_options) do |row|
-  i += 1
-  puts i
   price = Price.new(row)
   price.subproduct = get_subproduct(row[:subproduct_id])
   price.fee = get_fee(row[:fee_id])
@@ -401,7 +398,6 @@ puts "prices created"
 # #   #             product_family: product_family,
 # #   #             bank: bank)
 # # # end
-=======
 # # Abanca Demand Deposit Fees
 # Fee.create!(product_id: demand_deposit.id, name: "Account Management Fees", 
 #   search_name: "3. Manutenção de conta", category: "Fixed")
