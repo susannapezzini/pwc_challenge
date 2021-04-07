@@ -53,7 +53,7 @@ default_user = User.create(name:'João Viana', email: 'sad@mail.com', password: 
 puts "users created"
 puts 'creating requests'
 10.times do
-  Request.create(content: 'I am a rquest and I am supposed to provide useful content', status: status.sample)
+  Request.create(content: 'I am a request and I am supposed to provide useful content', status: status.sample)
 end
 
 #id;bank_id;url;description
@@ -66,8 +66,8 @@ puts "websites created"
 
 Request.create
 puts "request created"
-abanca_doc = Document.create!(request_id: Request.first.id, bank_id: get_bank("abanca").id)
-banco_bai_doc = Document.create!(request_id: Request.first.id, bank_id: get_bank("banco bai").id)
+abanca_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("abanca").id)
+banco_bai_doc = Document.create!(request: Request.all.sample  , bank_id: get_bank("banco bai").id)
 
 20.times do
   Document.create(request: Request.all.sample, bank: Bank.all.sample)
@@ -104,7 +104,7 @@ CSV.foreach("lib/seeds/prices.csv", csv_options) do |row|
   price = Price.new(row)
   price.subproduct = get_subproduct(row[:subproduct_id])
   price.fee = get_fee(row[:fee_id])
-  price.document = Document.first
+  price.document = Document.all.sample
   price.save!
 end
 puts "prices created"
