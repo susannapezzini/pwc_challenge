@@ -1,3 +1,24 @@
 <div class="contain">
-  <h1>Chart js</h1>
+  <h1 class="text-center">Comparison Chart</h1>
+  <br>
+  <br>
+  <label for="banks">Choose a Bank:</label>
+  <select class="select-bank" name="banks" id="form-1">
+    <% @banks.take(3).sort.each_with_index do |b, i| %>
+    <option value=<%= "#{b.name.split.join("-")}"%> data-bank-price="<%= b.subproducts.second.prices.last.amount %>"><%= b.name.capitalize %></option>
+    <% end %>
+  </select>
+    <label for="banks">Choose a Bank:</label>
+  <select class="select-bank" name="banks" id="form-2">
+    <% @banks.reverse_each do |bank| %>
+    <option value=<%= bank.name.capitalize %>><%= bank.name.capitalize %></option>
+    <% end %>
+  </select>
+  <br>
+  <button id="compare-btn" class="btn">Compare</button>
+  <br>
+  <br>
+  <br>
+
+  <canvas id="compare-chart" width="960" height="300"></canvas>
 </div>

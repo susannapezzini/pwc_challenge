@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import { showButton } from "plugins/showButton"
 import { scrollToTop } from "plugins/scrollToTop"
+import { compareChart } from "components/compare_chart"
 
 Rails.start()
 // Turbolinks.start()
@@ -29,4 +30,5 @@ import "bootstrap";
 document.addEventListener('DOMContentLoaded', () => {
   showButton();
   scrollToTop();
+  compareChart();
 });
