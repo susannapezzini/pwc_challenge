@@ -44,6 +44,12 @@ class PagesController < ApplicationController
     
     @my_subproducts = current_user.bank.subproducts
     @other_subproducts = @subproducts.reject { |s| s.bank == current_user.bank }
+
+    total_banks_with_demand_deposits = Subproduct.where(product_id: Product.find_by(name: "Demand Deposits")).uniq { |s| s.bank}.count
+    
+    @avg_dd_subproducts_bank = Subproduct.where(product_id: Product.find_by(name: "Demand Deposits")).count / total_banks_with_demand_deposits
+    @avg_dd_subproduct_fees_bank = Subproduct.where(product_id: Product.find_by(name: "Demand Deposits"))
+      .sum { |subproduct| subproduct.prices.sum {|p| p.amount}} / total_banks_with_demand_deposits
   end
 
 
