@@ -29,6 +29,19 @@
       </div>
     <%end%>
   </div>
+  <div class="chart_group hidden">
+      <select class="sub-count" name="subproducts" id="0">
+        <option 
+          value=<%=@avg_dd_subproducts_bank%> 
+          id="0"
+          data-tot-dd="<%=@avg_dd_subproducts_bank%>" 
+          data-bank="Average"
+        >
+            <%= @avg_dd_subproducts_bank %>
+        </option>
+      </select>
+    </div>
+  </div>
   <canvas id="demand-deposit-count-chart" width="960" height="300"></canvas>
 </div>
 
