@@ -1,13 +1,15 @@
-const createChart = (ctx, product1, price1, product2, price2) => {
+const createChart = (ctx, labels, data) => {
+      const colors = ['rgba(116,25,16,0.5)', 'rgba(170,36,23,0.5)', 'rgba(224,48,30,0.5)', 'rgba(232,97,83,0.5)', 'rgba(247,200,196,0.5)']
+      const borderColors = ['rgb(116,25,16)', 'rgb(170,36,23)', 'rgb(224,48,30)', 'rgb(232,97,83)', 'rgb(247,200,196)']
       let compareChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [product1, product2],
+        labels: labels,
         datasets: [{
-          // label: 'Products comparison',
-          data: [price1, price2],
-          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+          label: '',
+          data: data,
+          backgroundColor: colors,
+          borderColor: borderColors,
           borderWidth: 1
         }]
       },

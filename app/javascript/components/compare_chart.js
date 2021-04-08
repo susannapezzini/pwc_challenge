@@ -4,27 +4,47 @@ import updateChart from './update_chart.js'
 const compareChart = () => {
   const elements = [...document.getElementsByClassName("select-subproduct")];
   const compareBtn = document.getElementById("compare-btn")
-  const myProduct = elements[0];
-  const otherProduct = elements[1];
-  console.log({elements})
-  console.log({otherProduct})
-  console.log({myProduct})
+  // const myProduct = elements[0];
+  // const product1 = elements[1];
+  // const product2 = elements[2];
+  // console.log({product1})
+  // console.log({myProduct})
 
+  let data = []
+  let labels = []
+
+  const getLabels = (array) => {
+    labels = []
+    array.forEach(e => {
+      const option = e.options.selectedIndex;
+      e = e.attributes.id.ownerElement[option].dataset.bank;
+      labels.push(e);
+      return labels;
+    })
+  }
+  
+  const getData = (array) => {
+    data = []
+    array.forEach(e => {
+      const option = e.options.selectedIndex;
+      e = e.attributes.id.ownerElement[option].dataset.subPrice;
+      data.push(e);
+      return data;
+    })
+
+  }
+
+  
   const ctx = document.getElementById('product-chart');
-  const compareChart = createChart(ctx, myProduct, 0, otherProduct, 0)
+  const compareChart = createChart(ctx, labels, data)
   if (elements) {
+    console.log({elements})
     compareBtn.addEventListener('click', () => {
-      const option = myProduct.options.selectedIndex;
-      console.log({option});
-      const myPrice = myProduct.attributes.id.ownerElement[option+1].dataset.subPrice;
-      console.log({myPrice});
-      // const myBankName = myProduct.value.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') || 'bob';
-      // console.log(myBankName)
-      // const otherPrice = +otherProduct.dataset.productPrice || 0;
-      // const otherBankName = otherProduct.value.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') || 'bob';
-      // const labels = [myBankName, otherBankName]
-      // console.log(otherBankName)
-      // updateChart(compareChart, labels, [2.76, 4.26])
+      getLabels(elements);
+      console.log({labels});
+      getData(elements);
+      console.log({data});
+      updateChart(compareChart, labels, data)
     })
   }
 }
