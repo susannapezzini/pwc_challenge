@@ -1,24 +1,25 @@
-<div class="contain">
-  <h1 class="text-center">Comparison Chart</h1>
-  <br>
-  <br>
-  <label for="banks">Choose a Bank:</label>
-  <select class="select-bank" name="banks" id="form-1">
-    <% @banks.take(3).sort.each_with_index do |b, i| %>
-    <option value=<%= "#{b.name.split.join("-")}"%> data-bank-price="<%= b.subproducts.second.prices.last.amount %>"><%= b.name.capitalize %></option>
-    <% end %>
-  </select>
-    <label for="banks">Choose a Bank:</label>
-  <select class="select-bank" name="banks" id="form-2">
-    <% @banks.reverse_each do |bank| %>
-    <option value=<%= bank.name.capitalize %>><%= bank.name.capitalize %></option>
-    <% end %>
-  </select>
-  <br>
-  <button id="compare-btn" class="btn">Compare</button>
-  <br>
-  <br>
-  <br>
 
-  <canvas id="compare-chart" width="960" height="300"></canvas>
+
+<div class="contain-color">
+  <h2 class="small_title">Compare products</h2>
+  <div class="chart-form">
+  <label for="banks">Choose one of your products:</label>
+    <select class="select-subproduct" name="subproducts" id="form-1">
+    <% @my_subproducts.sort.each_with_index do |b, i| %>
+      <option value=<%= "#{b.name.split.join("-")}"%> id="<%= i%>"data-sub-price="<%= b.prices.sum { |price| price.amount } %>"><%= b.name.capitalize %></option>
+    <% end %>
+  </select>
+  <label for="banks">Choose comparison product:</label>
+    <select class="select-subproduct" name="subproducts" id="form-2">
+    <% @other_subproducts.sort.each_with_index do |b, i| %>
+      <option value=<%= "#{b.name.split.join("-")}"%> data-sub-price="<%= b.prices.sum { |price| price.amount } %>" data-bank="<%=b.bank.name%>"><%= b.name.capitalize%> - <%= b.bank.name.capitalize%></option>
+    <% end %>
+  </select>
+  <button id="compare-btn" class="btn">Compare</button>
+  <canvas id="product-chart" width="960" height="300"></canvas>
+
+  </div>
+
+</div>
+<div class="contain">
 </div>

@@ -1,10 +1,10 @@
-const createChart = (ctx, bankName1, price1, bankName2, price2) => {
+const createChart = (ctx, product1, price1, product2, price2) => {
       let compareChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [bankName1, bankName2],
+        labels: [product1, product2],
         datasets: [{
-          label: 'Bank Product 1 | Bank Product 2',
+          // label: 'Products comparison',
           data: [price1, price2],
           backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
           borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
