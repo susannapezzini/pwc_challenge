@@ -70,10 +70,11 @@
 
 
 <div class="contain-color mb-5 py-6">
-  <h2 class="small_title">Compare products</h2>
+  <h1>Compare Subproducts</h1>
+  <h2 class="small_title mb-5">by Total Fees</h2>
   <div class="chart_form">
     <div class="chart_group">    
-        <label for="banks">Your products:</label>
+        <label for="banks"><%= "#{current_user.bank.name} Subproducts:"%></label>
           <select class="select-subproduct" name="subproducts" id="form-1">
           <% @my_subproducts.each_with_index do |b, i| %>
             <option 
@@ -88,7 +89,7 @@
         </select>
     </div>
     <div class="chart_group">
-        <label for="banks">Comparison product:</label>
+        <label for="banks">Comparison Subproduct:</label>
           <select class="select-subproduct" name="subproducts" id="form-2">
           <% @other_subproducts.sort.each_with_index do |b, i| %>
             <option 
@@ -102,7 +103,7 @@
         </select>
     </div>
     <div class="chart_group">
-        <label for="banks">Comparison product:</label>
+        <label for="banks">Comparison Subproduct:</label>
           <select class="select-subproduct" name="subproducts" id="form-3">
           <% @other_subproducts.sort.each_with_index do |b, i| %>
             <option 
