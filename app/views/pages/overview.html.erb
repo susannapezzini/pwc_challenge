@@ -76,6 +76,19 @@
       </div>
     <%end%>
   </div>
+  <div class="chart_group hidden">
+      <select class="subproduct-price-sum-dd" name="subproducts" id="0">
+        <option 
+          value=<%= @avg_dd_subproduct_fees_bank%> 
+          id="0"
+          data-tot-dd="<%= @avg_dd_subproduct_fees_bank%>" 
+          data-bank="Average"
+        >
+            <%=  @avg_dd_subproduct_fees_bank %>
+        </option>
+      </select>
+    </div>
+  </div>
   <canvas id="demand-deposit-sum-chart" width="960" height="300"></canvas>
 </div>
 
@@ -87,7 +100,7 @@
   <h2 class="small_title mb-5">by Total Fees</h2>
   <div class="chart_form">
     <div class="chart_group">    
-        <label for="banks"><%= "#{current_user.bank.name} Subproducts:"%></label>
+        <label for="banks"><%= "#{current_user.bank.name} Subproduct:"%></label>
           <select class="select-subproduct" name="subproducts" id="form-1">
           <% @my_subproducts.each_with_index do |b, i| %>
             <option 
