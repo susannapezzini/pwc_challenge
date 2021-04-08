@@ -36,8 +36,10 @@ const compareChart = () => {
 
   
   const ctx = document.getElementById('product-chart');
-  const compareChart = createChart(ctx, labels, data)
   if (elements) {
+    getLabels(elements);
+    getData(elements);
+    const compareChart = createChart(ctx, labels, data)
     console.log({elements})
     compareBtn.addEventListener('click', () => {
       getLabels(elements);

@@ -6,7 +6,7 @@ const createChart = (ctx, labels, data) => {
       data: {
         labels: labels,
         datasets: [{
-          label: '',
+          label: 'Total price',
           data: data,
           backgroundColor: colors,
           borderColor: borderColors,

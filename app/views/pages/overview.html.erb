@@ -2,16 +2,12 @@
 
 <div class="contain">
   <h2 class="small_title">Compare products</h2>
-    <%#= form_tag overview_path, class: "search", method: :get do %> 
-    <%#= select_tag "Product Family", options_for_select(@products, params[:product]), prompt: "Filter by product family", class:"form-control"%>
-    <%#= submit_tag "Search", class: 'btn' %>
-  <%# end %>
   <div class="chart_form">
     <div class="chart_group">    
         <label for="banks">Your products:</label>
           <select class="select-subproduct" name="subproducts" id="form-1">
-          <% @my_subproducts.sort.each_with_index do |b, i| %>
-            <option value=<%= "#{b.name.split.join("-")}"%> id="<%= i%>" data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" data-bank="<%=b.bank.name%>"><%= b.product.name%> - <%= b.name.capitalize %></option>
+          <% @my_subproducts.each_with_index do |b, i| %>
+            <option value=<%= "#{b.name.split.join("-")}"%> id="<%= i%>" data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" data-bank="<%=b.bank.name%> - <%=b.name%>"><%= b.product.name%> - <%= b.name.capitalize %></option>
           <% end %>
         </select>
     </div>
@@ -19,7 +15,7 @@
         <label for="banks">Comparison product:</label>
           <select class="select-subproduct" name="subproducts" id="form-2">
           <% @other_subproducts.sort.each_with_index do |b, i| %>
-            <option value=<%= "#{b.name.split.join("-")}"%> data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" data-bank="<%=b.bank.name%>"><%= b.product.name%> - <%= b.bank.name.capitalize%> - <%= b.name.capitalize%></option>
+            <option value=<%= "#{b.name.split.join("-")}"%> data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" data-bank="<%=b.bank.name%> - <%=b.name%>"><%= b.product.name%> - <%= b.bank.name.capitalize%> - <%= b.name.capitalize%></option>
           <% end %>
         </select>
     </div>
@@ -27,7 +23,7 @@
         <label for="banks">Comparison product:</label>
           <select class="select-subproduct" name="subproducts" id="form-3">
           <% @other_subproducts.sort.each_with_index do |b, i| %>
-            <option value=<%= "#{b.name.split.join("-")}"%> data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" data-bank="<%=b.bank.name%>"><%= b.product.name%> - <%= b.bank.name.capitalize%> - <%= b.name.capitalize%></option>
+            <option value=<%= "#{b.name.split.join("-")}"%> data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" data-bank="<%=b.bank.name%> - <%=b.name%>"><%= b.product.name%> - <%= b.bank.name.capitalize%> - <%= b.name.capitalize%></option>
           <% end %>
         </select>
     </div>
