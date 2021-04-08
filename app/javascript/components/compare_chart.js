@@ -3,7 +3,8 @@ import updateChart from './update_chart.js'
 
 const compareChart = () => {
   const elements = [...document.getElementsByClassName("select-subproduct")];
-  const subs = [...document.getElementsByClassName("sub-count")];
+	const subs = [...document.getElementsByClassName("sub-count")];
+	const sums = [...document.getElementsByClassName("subproduct-price-sum-dd")];
 	const compareBtn = document.getElementById("compare-btn");
   console.log({subs});
 	// const myProduct = elements[0];
@@ -34,8 +35,12 @@ const compareChart = () => {
     });
     return data;
 	};
-  const ctx2 = document.getElementById("dd-chart");
-  const ctx = document.getElementById("product-chart");
+	
+  
+  const ctx = document.getElementById("compare-subproduct-chart");
+	const ctx2 = document.getElementById("demand-deposit-count-chart");
+	const ctx3 = document.getElementById("demand-deposit-sum-chart");
+
 	if (elements) {
 		let labels = getLabels(elements);
     let data = getPrice(elements);
@@ -56,6 +61,13 @@ const compareChart = () => {
   let data = getCount(subs);
   createChart(ctx2, labels, data);
   }
+
+	if (sums) {
+		let labels = getLabels(sums);
+		console.log({ labels })
+		let data = getCount(sums);
+		createChart(ctx3, labels, data);
+	}
 };
 export { compareChart };
 

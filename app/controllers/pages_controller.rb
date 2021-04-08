@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
   # Needs Auth and needs to be admin
   def dashboard
+
     @banks = Bank.all
     @documents = Document.all
     @requests = Request.all
@@ -31,6 +32,7 @@ class PagesController < ApplicationController
 
   # Needs Auth
   def overview
+    
     @banks = Bank.all
     @subproducts = Subproduct.all
     @products = Product.all.map { |p| p.name }
@@ -40,11 +42,8 @@ class PagesController < ApplicationController
 
     @my_dd = @my_bank.subproducts.where(product_id: Product.find_by(name: "Demand Deposits"))
     
-
     @my_subproducts = current_user.bank.subproducts
     @other_subproducts = @subproducts.reject { |s| s.bank == current_user.bank }
-
-
   end
 
 
@@ -53,6 +52,7 @@ class PagesController < ApplicationController
   # end
 
   private
+
 
   def check_if_admin?
     current_user.admin?
