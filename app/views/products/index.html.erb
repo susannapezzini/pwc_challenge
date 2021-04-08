@@ -32,7 +32,7 @@
     <%else%>
     <div class="contain" id="sub_<%= p.id%>">
     <%end%>
-    <h5 class="small_text"><%= p.name%></h5>
+    <h5 class="small_title"><%= p.name%></h5>
       <% if current_user && current_user.admin? %>
         <%= link_to 'add subproduct', new_product_subproduct_path(p), class: 'btn'%>
         <%end%>

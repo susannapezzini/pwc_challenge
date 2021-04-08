@@ -97,8 +97,11 @@ CSV.foreach("lib/seeds/subproducts.csv", csv_options) do |row|
 end
 puts "subproducts created"
 
+# i = 0
 #id;fee_id;subproduct_id;document_id;name;amount;category;tax;tax_amount;tax_category;status
 CSV.foreach("lib/seeds/prices.csv", csv_options) do |row|
+  # puts i to find error in seeds
+  # i += 1
   price = Price.new(row)
   price.subproduct = get_subproduct(row[:subproduct_id])
   price.fee = get_fee(row[:fee_id])
