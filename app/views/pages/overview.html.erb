@@ -1,6 +1,28 @@
+<div class="contain mb-5 mt-5">
+  <h1>Analysis</h1>
+  <h2 class="small_title">Total Subproducts per Bank(Demand Deposits only)</h2>
+  <div class="chart_form">
+    <div class="chart_group hidden">
+      <select class="sub-count" name="subproducts" id="0">
+        <option value=<%= "#{@my_dd.count}"%> id="0" data-tot-dd="<%= @my_dd.count%>" data-bank="<%=@my_bank.name%>"><%= @my_dd.count %></option>
+      </select>
+    </div>
+    <% @other_banks.each_with_index do |b, i|%>
+      <div class="chart_group hidden">
+        <select class="sub-count" name="subproducts" id="<%= i+1 %>">
+          <option value=<%= "#{b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).count}"%>
+          id="<%= i+1 %>"
+          data-tot-dd="<%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).count%>" data-bank="<%=b.name%>">
+          <%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).count%>
+          </option>
+        </select>
+      </div>
+    <%end%>
+  </div>
+  <canvas id="dd-chart" width="960" height="300"></canvas>
+</div>
 
-
-<div class="contain">
+<div class="contain-color mb-5 py-6">
   <h2 class="small_title">Compare products</h2>
   <div class="chart_form">
     <div class="chart_group">    

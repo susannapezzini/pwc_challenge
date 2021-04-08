@@ -6,7 +6,7 @@ const createChart = (ctx, labels, data) => {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Total price',
+          label: 'Total',
           data: data,
           backgroundColor: colors,
           borderColor: borderColors,
@@ -16,7 +16,6 @@ const createChart = (ctx, labels, data) => {
       options: {
         title: {
             display: true,
-            text: 'Product Comparison',
             font: {
               size: 50
             }

@@ -34,15 +34,16 @@ class PagesController < ApplicationController
     @banks = Bank.all
     @subproducts = Subproduct.all
     @products = Product.all.map { |p| p.name }
+
+    @my_bank = current_user.bank
+    @other_banks = @banks.reject { |s| s == current_user.bank }
+
+    @my_dd = @my_bank.subproducts.where(product_id: Product.find_by(name: "Demand Deposits"))
     
-    # if params[:product].blank?
-      @my_subproducts = current_user.bank.subproducts
-      @other_subproducts = @subproducts.reject { |s| s.bank == current_user.bank }
-    # else
-    #   @my_subproducts = current_user.bank.subproducts.where(product_id: Product.find_by(name: params["Product Family"]))
-    #   @other_subproducts = @subproducts.reject { |s| s.bank == current_user.bank }
-    #   @other_subproducts = @other_subproducts.where(product_id: Product.find_by(name: params["Product Family"]))
-    # end
+
+    @my_subproducts = current_user.bank.subproducts
+    @other_subproducts = @subproducts.reject { |s| s.bank == current_user.bank }
+
 
   end
 
