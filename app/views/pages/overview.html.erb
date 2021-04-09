@@ -1,9 +1,9 @@
 <div class="bottom_nav">
   <span>Jump to: 
-    <span><%= link_to 'Offer', '#offer', class: 'nav_link' %></span>
-    <span><%= link_to 'Fees', '#fees', class: 'nav_link' %></span>
-    <span><%= link_to 'Subproducts', '#subproducts', class: 'nav_link' %></span>
-    <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+    <%= link_to 'Offer', '#offer', class: 'nav_link' %>
+    <%= link_to 'Fees', '#fees', class: 'nav_link' %>
+    <%= link_to 'Subproducts', '#subproducts', class: 'nav_link' %>
+    <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
   </span>
 </div>
 
@@ -52,7 +52,7 @@
       </select>
     </div>
 
-  <canvas id="demand-deposit-count-chart" width="960" height="300"></canvas>
+  <canvas id="demand-deposit-count-chart" height="400" width="960"></canvas>
 </div>
 
 <div class="contain-color mb-5 mt-5" id="fees">
@@ -99,7 +99,7 @@
       </select>
 
   </div>
-  <canvas id="demand-deposit-sum-chart" width="960" height="300"></canvas>
+  <canvas id="demand-deposit-sum-chart" height="450" width="960"></canvas>
 </div>
 
 
@@ -155,7 +155,7 @@
   </div>
 
   <button id="compare-btn" class="btn mt-3 mb-3">Compare</button>
-  <canvas id="compare-subproduct-chart" width="960" height="300"></canvas>
+  <canvas id="compare-subproduct-chart" height="300" width="960"></canvas>
 
 
 </div>

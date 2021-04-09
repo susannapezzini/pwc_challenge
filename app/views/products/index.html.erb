@@ -21,9 +21,9 @@
 <div class="bottom_nav">
   <span>Jump to: 
     <% @products.each do |p|%>
-      <span><%= link_to p.name, "#sub_#{p.id}", class: 'nav_link' %></span>
+      <%= link_to p.name, "#sub_#{p.id}", class: 'nav_link' %>
     <%end%>
-    <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+    <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
 </div>
 
 <% @products.each_with_index do |p, index|%>

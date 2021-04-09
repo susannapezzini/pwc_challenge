@@ -4,9 +4,9 @@
   <h6>Admin: <%=current_user.name%></h6>
     <div class="bottom_nav">
       <span>Jump to: 
-        <span><%= link_to 'Pending', '#pending', class: 'nav_link' %></span>
-        <span><%= link_to 'Completed', '#completed', class: 'nav_link' %></span>
-        <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+        <%= link_to 'Pending', '#pending', class: 'nav_link' %>
+        <%= link_to 'Completed', '#completed', class: 'nav_link' %>
+        <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
       </span>
     </div>
 

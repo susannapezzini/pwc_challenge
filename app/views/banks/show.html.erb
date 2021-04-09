@@ -1,11 +1,11 @@
 
 <div class="bottom_nav">
   <span>Jump to: 
-    <span><%= link_to 'Products', '#subproducts', class: 'nav_link' %></span>
+    <%= link_to 'Products', '#subproducts', class: 'nav_link' %>
     <% if current_user.admin?%>
-    <span><%= link_to 'Users', '#users', class: 'nav_link' %></span>
+    <%= link_to 'Users', '#users', class: 'nav_link' %>
     <%end%>
-    <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+    <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
   </span>
 </div>
 
