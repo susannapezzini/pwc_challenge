@@ -5,9 +5,9 @@
 
 <div class="bottom_nav">
     <span>Jump to: 
-      <span><%= link_to 'Products', '#subproducts', class: 'nav_link' %></span>
-      <span><%#= link_to 'Views', '#views', class: 'nav_link' %></span>
-      <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+      <%= link_to 'Products', '#subproducts', class: 'nav_link' %>
+      <%#= link_to 'Views', '#views', class: 'nav_link' %>
+      <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
     </span>
 </div>
 
@@ -19,21 +19,21 @@
       </h3>
       <p>Name: <%=current_user.name%></p>
       <p>Email: <%=current_user.email%></p>
-      <p>Bank: <%= link_to "#{current_user.bank.name.capitalize}", bank_path(current_user.bank), class: 'link'%></p>
+      <p>Bank: <%= link_to "#{current_user.bank.name}", bank_path(current_user.bank), class: 'link'%></p>
     </div>
     <div class="bank">
       <h3 class="small_title mb-3">
         Bank Details
       </h3>
-      <p>Name: <%=current_user.bank.name.capitalize%></p>
-      <p>Url: <%=current_user.bank.websites.first.url%></p>
+      <p>Name: <%=current_user.bank.name%></p>
+      <p>URL: <%=current_user.bank.websites.first.url%></p>
       <p>Address: <%=current_user.bank.address%></p>
       <p>Country: <%=current_user.bank.country%></p>
     </div>
   </div>
 </div>
 <div class="contain-color" id="subproducts">
-  <h6 class="small_title"><%= current_user.bank.name.capitalize %>'s Products offer</h6>
+  <h6 class="small_title"><%= current_user.bank.name %>'s Subproducts</h6>
     <div class="cards">
 
       <% current_user.bank.subproducts.reverse.each do |b|%>
@@ -76,7 +76,7 @@
     </div>
   <%end%>
 </div>
-<div class="contain" id="views">
+<div class="contain" id="views">  
 </div>
 
 <div class="contain"></div>

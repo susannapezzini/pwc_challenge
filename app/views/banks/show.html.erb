@@ -1,11 +1,11 @@
 
 <div class="bottom_nav">
   <span>Jump to: 
-    <span><%= link_to 'Products', '#subproducts', class: 'nav_link' %></span>
+    <%= link_to 'Products', '#subproducts', class: 'nav_link' %>
     <% if current_user.admin?%>
-    <span><%= link_to 'Users', '#users', class: 'nav_link' %></span>
+    <%= link_to 'Users', '#users', class: 'nav_link' %>
     <%end%>
-    <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+    <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
   </span>
 </div>
 
@@ -52,7 +52,7 @@
 </div>
 
 <div class="contain-color" id="subproducts">
-  <h6 class="small_title"><%= @bank.name.capitalize%>'s Subproducts offer</h6>
+  <h6 class="small_title"><%= @bank.name%>'s Subproducts</h6>
     <div class="cards">
 
       <% @subproducts.reverse.each do |b|%>
@@ -98,7 +98,7 @@
 
 <%if current_user && current_user.admin? %>
 <div class="contain" id="users">
-  <h6 class="small_title"><%= @bank.name.capitalize%>'s Users</h6>
+  <h6 class="small_title"><%= @bank.name%>'s Users</h6>
     <% if @users.any?%>
     <div class="cards">
 

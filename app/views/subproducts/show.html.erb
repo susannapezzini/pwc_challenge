@@ -7,9 +7,9 @@
 <%if current_user && current_user.admin?%>
   <div class="bottom_nav">
     <span>Jump to: 
-      <span><%= link_to 'Table', '#table', class: 'nav_link' %></span>
-      <span><%= link_to 'Requests', '#requests', class: 'nav_link' %></span>
-      <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+      <%= link_to 'Table', '#table', class: 'nav_link' %>
+      <%= link_to 'Requests', '#requests', class: 'nav_link' %>
+      <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
     </span>
   </div>
 <%end%>

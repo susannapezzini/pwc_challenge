@@ -4,9 +4,9 @@
   <h6>Admin: <%=current_user.name%></h6>
     <div class="bottom_nav">
       <span>Jump to: 
-        <span><%= link_to 'Pending', '#pending', class: 'nav_link' %></span>
-        <span><%= link_to 'Completed', '#completed', class: 'nav_link' %></span>
-        <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+        <%= link_to 'Pending', '#pending', class: 'nav_link' %>
+        <%= link_to 'Completed', '#completed', class: 'nav_link' %>
+        <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
       </span>
     </div>
 
@@ -20,11 +20,11 @@
             <p class="card_title">Request #<%= p.request.id %></p>
             <p class="card_text"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
             <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
-            <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
+            <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name, bank_path(p.bank), class: 'link' %></p>
             <p class="card_text"><strong>Products:</strong> </p>
-              <% p.prices.each do |p|%>
-              <p class="card_text card_text-small">
-                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link link-small'%>
+              <% p.prices[1..4].each do |p|%>
+              <p class="card_text">
+                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link'%>
               </p>
               <%end%>
             <br>
@@ -60,11 +60,11 @@
             <p class="card_title">Request #<%= p.request.id %></p>
             <p class="card_text"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
             <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
-            <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
+            <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name, bank_path(p.bank), class: 'link' %></p>
             <p class="card_text"><strong>Products:</strong> </p>
-              <% p.prices.each do |p|%>
-              <p class="card_text card_text-small">
-                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link link-small success'%>
+              <% p.prices[1..4].each do |p|%>
+              <p class="card_text">
+                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link success'%>
               </p>
               <%end%>
             

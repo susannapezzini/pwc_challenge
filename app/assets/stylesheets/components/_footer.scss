@@ -35,13 +35,14 @@
 
 .footer_bottom {
   width: 100vw;
-  // height: 600px;
+  height: 275px;
   background-color: $orange;
   display: flex;
   justify-content: center;
   // flex-direction: column;
   align-items: baseline;
   padding: 4rem 10vw;
+  margin-bottom: 0;
 }
 
 .footer_icon {
@@ -74,3 +75,5 @@
     color: $white;
   }
 }
+
+  

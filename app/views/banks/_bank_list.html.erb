@@ -13,10 +13,10 @@
     <% web = b.websites.any? ? b.websites.first.url : 'N/A' %>
       <div class="bank-card">
         <%= cl_image_tag get_photo_key(b), class: "bank-logo" %>
-        <p class="card_title"><strong><%= link_to "#{b.name.capitalize}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
+        <p class="card_title"><strong><%= link_to "#{b.name}", bank_path(b.id), class: 'card_title', style: "text-decoration: none;" %></strong></p>
         <p class="card_text"><strong>Primary Website:</strong><br><%= web %></p>
         <p class="card_text"><strong>Address:</strong><br><%= b.address.titleize%></p>
-        <p class="card_text"><strong>Country:</strong><br><%= b.country.capitalize%></p>
+        <p class="card_text"><strong>Country:</strong><br><%= b.country %></p>
         <div class="card_action">
           <div class="actions">
               <%# Available to all users %>

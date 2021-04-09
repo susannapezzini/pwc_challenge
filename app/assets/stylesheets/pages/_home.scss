@@ -2,7 +2,7 @@
 
 .hero {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
@@ -10,7 +10,7 @@
 
 .hero_shadow {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   background-color: rgba(150, 150, 150, 0.5);
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@
 .proposition {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
 }
 

@@ -21,6 +21,9 @@
   -ms-transform: translate(-50%, -2rem);
   -o-transform: translate(-50%, -2rem);
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  & a:last-child {
+    border-right: 1px solid $dark;
+  }
 }
 
 .nav_link {
