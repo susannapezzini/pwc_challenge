@@ -12,7 +12,7 @@
 
   <div class="contain">
     <%= link_to 'Back', :back , class: 'btn-outline float-right mb-4'%>
-    <h1 class="mb-4"><%= @bank.name.capitalize %></h1>
+    <h1 class="mb-4"><%= @bank.name %></h1>
     <div class="admin">
     <div class="details">
     <h3 class="mb-3">Details:</h3>
@@ -50,7 +50,7 @@
 </div>
 
 <div class="contain-color" id="subproducts">
-  <h6 class="small_title"><%= @bank.name.capitalize%>'s Subproducts offer</h6>
+  <h6 class="small_title"><%= @bank.name%>'s Subproducts</h6>
     <div class="cards">
 
       <% @subproducts.reverse.each do |b|%>
@@ -96,7 +96,7 @@
 
 <%if current_user && current_user.admin? %>
 <div class="contain" id="users">
-  <h6 class="small_title"><%= @bank.name.capitalize%>'s Users</h6>
+  <h6 class="small_title"><%= @bank.name%>'s Users</h6>
     <% if @users.any?%>
     <div class="cards">
 
