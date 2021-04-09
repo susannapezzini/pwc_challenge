@@ -6,7 +6,7 @@
       <%= p.name%>, tot. <%=p.subproducts.count%>
       <%end%>
         <% if current_user && current_user.admin? %>
-          <%= link_to product_path(p), method: :delete, data: { confirm: 'This action will also delete all teh subproducts. Are you sure?'} do %>
+          <%= link_to product_path(p), method: :delete, data: { confirm: 'This action will also delete all the subproducts. Are you sure?'} do %>
             <i class="far fa-trash-alt"></i>
             <%# <span>Delete</span> %>
           <%end%>
