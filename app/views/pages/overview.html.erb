@@ -1,4 +1,14 @@
-<div class="contain mb-5 mt-5">
+<div class="bottom_nav">
+  <span>Jump to: 
+    <span><%= link_to 'Offer', '#offer', class: 'nav_link' %></span>
+    <span><%= link_to 'Fees', '#fees', class: 'nav_link' %></span>
+    <span><%= link_to 'Subproducts', '#subproducts', class: 'nav_link' %></span>
+    <span><%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %></span>
+  </span>
+</div>
+
+
+<div class="contain mb-5 mt-5" id="offer">
   <h1>Total Amount of Subproducts Offered </h1>
   <h2 class="small_title">Product: Demand Deposits</h2>
   <div class="chart_form">
@@ -41,11 +51,11 @@
         </option>
       </select>
     </div>
-  </div>
+
   <canvas id="demand-deposit-count-chart" width="960" height="300"></canvas>
 </div>
 
-<div class="contain mb-5 mt-5">
+<div class="contain-color mb-5 mt-5" id="fees">
   <h1>Sum of All Subproduct Fees</h1>
   <h2 class="small_title">Product: Demand Deposits</h2>
   <div class="chart_form">
@@ -87,7 +97,7 @@
             <%=  @avg_dd_subproduct_fees_bank %>
         </option>
       </select>
-    </div>
+
   </div>
   <canvas id="demand-deposit-sum-chart" width="960" height="300"></canvas>
 </div>
@@ -95,7 +105,7 @@
 
 
 
-<div class="contain-color mb-5 py-6">
+<div class="contain mb-5 py-6" id="subproducts">
   <h1>Compare Subproducts</h1>
   <h2 class="small_title mb-5">by Total Fees</h2>
   <div class="chart_form">
