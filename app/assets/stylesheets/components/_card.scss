@@ -36,6 +36,27 @@
   height: 275px;
 }
 
+.bank-logo {
+  height: 2rem;
+  width: 20%;
+  object-fit: cover;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+
+.bank-show {
+  height: 8rem;
+  display: block;
+}
+
+.logo_title {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .cards {
   display: flex;
   flex-flow: row wrap;

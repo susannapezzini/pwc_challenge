@@ -12,10 +12,12 @@
 
   <div class="contain">
     <%= link_to 'Back', :back , class: 'btn-outline float-right mb-4'%>
-    <h1 class="mb-4"><%= @bank.name.capitalize %></h1>
+    <div class="logo_title">
+      <h1>Bank:</h1>
+      <%= cl_image_tag get_photo_key(@bank), class: 'bank-show' %>
+    </div>  
     <div class="admin">
     <div class="details">
-    <h3 class="mb-3">Details:</h3>
     <p><strong>Websites: </strong></p>
     <% @bank.websites.each do |w|%>
       <p><%= w.url%></p>

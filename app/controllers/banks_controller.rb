@@ -84,7 +84,7 @@ class BanksController < ApplicationController
   end
 
   def bank_params
-    params.require(:bank).permit(:name, :website, :address, :country, :website, files: [])
+    params.require(:bank).permit(:name, :website, :address, :country, :website, :photo, files: [])
   end
 
   def web_params
