@@ -22,9 +22,9 @@
             <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
             <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
             <p class="card_text"><strong>Products:</strong> </p>
-              <% p.prices.each do |p|%>
-              <p class="card_text card_text-small">
-                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link link-small'%>
+              <% p.prices[1..4].each do |p|%>
+              <p class="card_text">
+                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link'%>
               </p>
               <%end%>
             <br>
@@ -62,9 +62,9 @@
             <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
             <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
             <p class="card_text"><strong>Products:</strong> </p>
-              <% p.prices.each do |p|%>
-              <p class="card_text card_text-small">
-                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link link-small success'%>
+              <% p.prices[1..4].each do |p|%>
+              <p class="card_text">
+                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link success'%>
               </p>
               <%end%>
             
