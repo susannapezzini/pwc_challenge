@@ -28,7 +28,7 @@
       <% @subproduct.prices.each do |price| %>
         <div class="cell">
           <span class="cell_content"><%= price.fee.name %></span>
-          <span class="cell_content">$ <%= price.amount %>
+          <span class="cell_content">€ <%= price.amount %>
           <%if current_user && current_user.admin?%>
             <%= link_to edit_price_path(price), class: 'link' do %>
               <i class="far fa-edit"></i>
@@ -42,7 +42,7 @@
       </svg>
         <div class="cell mt-4">
           <p class="cell_content bold">Total</p>
-          <p class="cell_content bold">$ <%= @subproduct.prices.sum { |price| price.amount } %></p>
+          <p class="cell_content bold">€ <%= @subproduct.prices.sum { |price| price.amount } %></p>
         </div>
     </div>
     <% if current_user && current_user.admin?%>
