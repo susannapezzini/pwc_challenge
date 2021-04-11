@@ -1,3 +1,5 @@
+require 'net/http'
+
 class BanksController < ApplicationController
   before_action :fetch_bank, only: %i[show edit update destroy]
   def index
@@ -67,9 +69,58 @@ class BanksController < ApplicationController
     @new_website = Website.new
   end
 
+  def check_updates
+    fetch_bank    
+
+    payload1 = {
+      "#{@bank.id}": {
+        "url": @bank.websites.first.url,
+        #bp_bank_id: @bank.bp_bank_id,
+        "bp_bank_id": 44, #test value
+        "last_updated": @bank.updated_at
+      }  
+    }
+
+    result = HTTParty.post('https://bank-price-api.herokuapp.com/merge_pdfs', 
+      :body => payload1.to_json,
+      :headers => { 'Content-Type' => 'application/json' } )
+
+    # if result['status'] == 'ok'
+    #   payload2 = { 
+    #     "#{@bank.id}": {
+    #       "url": @bank.websites.first.url,
+    #       #bp_bank_id: @bank.bp_bank_id,
+    #       "bp_bank_id": 44, #test value
+    #       "num_pdfs": 2
+    #       "last_updated": @bank.updated_at
+    #       "cloud_merged_url": 'https://www.cloudinary.ao/mega_mega_file_merged_bp0038.pdf'
+    #       'products': [
+    #                 {
+    #                   'demand_deposit': comm_hash_1,
+    #                   'pages': [3,4] (from merged pdf)
+    #                 },
+    #                 {
+    #                   'housing_credit': comm_hash_2,
+    #                   'pages': [9] (from merged pdf)
+    #                 }
+    #             ]
+    #     }
+    #   }
+
+    #   result = HTTParty.post('https://bank-price-api.herokuapp.com/get_stats', 
+    #       :body => payload2.to_json,
+    #       :headers => { 'Content-Type' => 'application/json' } )
+    # else
+    
+    # end
+    
+    raise
+    # redirect_to bank_path(bank)
+  end
+
   # def users
   #   if current_user.admin?
-  #     @bank.users
+  #     @bank.users 
   #   else
   #     flash.now[:alert] = "Sorry, you dont have that permission."
   #     # redirect_to dashboard_path

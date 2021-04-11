@@ -36,4 +36,8 @@ Rails.application.routes.draw do
   resources :fees, only: %i[edit update]
   resources :prices
   resources :requests, only: %i[update]
+
+  post 'banks/:id/check_updates', to:  'banks#check_updates', as: :check_updates
+  post 'banks/:id/merged_pdfs', to: 'banks#merged_pdfs'
+  post 'banks/:id/bank_stats', to:  'banks#bank_stats'
 end
