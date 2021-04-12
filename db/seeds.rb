@@ -20,6 +20,7 @@ Subproduct.destroy_all
 Request.destroy_all
 Bank.destroy_all
 User.destroy_all
+Group.destroy_all
 
 #helper methods
 def get_bank(bank_name)
@@ -38,6 +39,9 @@ def get_fee(fee_name)
   Fee.find_by(name: fee_name)
 end
 
+def get_group(name)
+  Group.find_by(name: name)
+end
 # puts 'Creating seeds'
 
 csv_options = { headers:true, col_sep: ';', header_converters: :symbol, encoding:'utf-8'}
@@ -94,11 +98,20 @@ CSV.foreach("lib/seeds/fees.csv", csv_options) do |row|
 end
 puts "fees created"
 
+
+CSV.foreach("lib/seeds/groups.csv", csv_options) do |row|
+  Group.create!(row)
+end
+puts "groups created"
+
 #id;product_id;bank_id;name;search_name
 CSV.foreach("lib/seeds/subproducts.csv", csv_options) do |row|
   subproduct = Subproduct.new(row)
   subproduct.product = get_product(row[:product_id])
   subproduct.bank = get_bank(row[:bank_id])
+  if row[:group_id].present?
+    subproduct.group = get_group(row[:group_id])
+  end
   subproduct.save!
 
 end
