@@ -19,22 +19,27 @@
     <div class="table" id="table">
       <div class="cell">
         <p class="headers_title">Fee</p>
-        <p class="headers_title">Cost
+        <span class="headers_title cell_content-admin">
           <%if current_user && current_user.admin?%>
-            /Edit
+            <span>Edit </span>
+            <span> / Status / </span> 
           <%end%>
-        </p>
+          Cost 
+        </span>
       </div>
       <% @subproduct.prices.each do |price| %>
         <div class="cell">
-          <span class="cell_content"><%= price.fee.name %></span>
-          <span class="cell_content">€ <%= price.amount %>
+          <div class="cell_content"><%= price.fee.name %></div>
+          <div class="cell_content cell_content-admin">
           <%if current_user && current_user.admin?%>
             <%= link_to edit_price_path(price), class: 'link' do %>
               <i class="far fa-edit"></i>
             <%end%>
+          <% status = price.fee.active ? 'Active' : 'Inactive' %>
+          <span><%= link_to status, fee_path(price.fee), method: :patch, class: 'link' %></span>
           <%end%>
-          </span>
+          € <%= price.amount %>  
+          </div>
         </div>
       <%end%>
       <svg height="3" width="100%" class="mt-4">

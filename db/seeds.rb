@@ -77,7 +77,7 @@ CSV.foreach("lib/seeds/websites.csv", csv_options) do |row|
   website = Website.new(row)
   website.bank = get_bank(row[:bank_id])
   website.save!
-end
+  end
 puts "websites created"
 
 abanca_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("abanca").id)

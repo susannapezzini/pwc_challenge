@@ -32,16 +32,14 @@ class FeesController < ApplicationController
   end
 
   def update
-    if @fee.update(fee_params)
-      # redirect_to product_path(@fee.product), notice: 'Fee was successfully updated'
-    else
-      render :edit
-    end
+    @fee.active = !@fee.active
+    @fee.save
+    redirect_back(fallback_location: root_path)
   end
 
   private
     def fee_params
-      params.require(:fee).permit(:subproduct_id, :product_id, :name, :search_name, :price)
+      params.require(:fee).permit(:subproduct_id, :product_id, :name, :search_name, :price, :active)
     end
     def price_params
       params.require(:fee).permit[:price]
