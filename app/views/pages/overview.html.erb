@@ -1,15 +1,15 @@
-<div id="tabs-container" >
-      <ul class="nav nav-tabs">
-        <% @products.each do |p|%>
-          <li class="<%= 'active' if params[:tab] == p.name %>" id="<%=p.name%>" title="<%=p.name%>"><a href="/overview/tab=<%=p.name%>"><%=p.name%></a></li>
-        <%end%>
-      </ul>
+<div class="contain pb-0">
+    <div class="tabs_nav">
+      <% @products.each do |p|%>
+        <a class="<%= 'selected' if params[:id] == p.name %> item" id="<%=p.name%>" title="<%=p.name%>" href="/overview/tab=<%=p.name%>"><%=p.name%></a>
+      <%end%>
     </div>
-    <div class="tab">
-      <div class="tab-content">
-        <p><%= render 'tab', locals: { tab: params[:tab] } %></p>
-      </div>
-    </div>
+</div>
+<div class="tab">
+  <div class="tab-content">
+    <%= render 'tab', locals: { tab: params[:id] } %>
+  </div>
+</div>
 
 
 

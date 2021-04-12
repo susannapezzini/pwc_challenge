@@ -39,7 +39,7 @@ class PagesController < ApplicationController
 
     @my_bank = current_user.bank
     @other_banks = @banks.reject { |s| s == current_user.bank }
-    @collection = []
+
 
 
 

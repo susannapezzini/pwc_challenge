@@ -1,4 +1,4 @@
-<div class="contain">
+<div class="contain-color mt-0">
   <% p = @products.find_by(name: params[:id])%>
   <% subs = @subproducts.where(product: p)%>
   <%= subs.count%>
