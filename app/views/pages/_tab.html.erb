@@ -1,9 +1,40 @@
 <div class="contain-color mt-0">
   <% p = @products.find_by(name: params[:id])%>
   <% subs = @subproducts.where(product: p)%>
-  <%= subs.count%>
+  
   <% my_subs = subs.where(bank: @my_bank)%>
-  <%= my_subs.count%>
+  <% my_subs.count%>
   <% other_subs = subs.reject { |s| s.bank == @my_bank }%>
-  <%= other_subs.count%>
+  <% other_subs.count%>
+  <h2 class="small_title"><%=@my_bank.name%>'s subproducts tot: <%= my_subs.count%></h2>
+
+
+  <div class="chart_form ">
+    <div class="chart_group hidden">
+        <% @groups.each_with_index do | g, i |%>
+            <% my_stuff = my_subs.where(group: g).count%>
+            <% tot = subs.where(group: g).count%>
+            <% avg = tot/@banks.count.to_f%>
+            <select class="sub-count" name="subproducts" id="<%=i%>">
+              <option value="<%= my_stuff%>"
+              id="<%= i %>"
+              data-tot="<%= my_stuff%>"
+              data-bank="<%= g.name %>"
+              >
+              <%= my_stuff%>
+              </option>
+            </select>
+            <select class="sub-count" name="subproducts" id="<%=i%>">
+              <option value="<%= avg%>"
+              id="<%= i %>"
+              data-tot="<%= avg %>"
+              data-bank="AVG"
+              >
+              <%= avg%>
+              </option>
+            </select>
+        <%end%>
+    </div>
+  </div>
+  <canvas id="subproduct-chart" height="300" width="960"></canvas>
 </div>

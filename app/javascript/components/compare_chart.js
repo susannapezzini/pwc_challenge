@@ -7,15 +7,12 @@ const compareChart = () => {
 	const sums = [...document.getElementsByClassName("subproduct-price-sum-dd")];
 	const compareBtn = document.getElementById("compare-btn");
   console.log({subs});
-	// const myProduct = elements[0];
-	// const product1 = elements[1];
-	// const product2 = elements[2];
-	// console.log({product1})
-	// console.log({myProduct})
+
   const getLabels = (array) => {
     const labels = array.map((e) => {
       const option = e.options.selectedIndex;
       console.log({option});
+      console.log({e})
       console.log('e', e.attributes);
       return e.attributes.id.ownerElement[option].dataset.bank;
     });
@@ -31,7 +28,7 @@ const compareChart = () => {
 	const getCount = (array) => {
 		const data = array.map((e) => {
 			const option = e.options.selectedIndex;
-			return e.attributes.id.ownerElement[option].dataset.totDd;		
+			return e.attributes.id.ownerElement[option].dataset.tot;		
     });
     return data;
 	};
@@ -40,27 +37,31 @@ const compareChart = () => {
   const ctx = document.getElementById("compare-subproduct-chart");
 	const ctx2 = document.getElementById("demand-deposit-count-chart");
 	const ctx3 = document.getElementById("demand-deposit-sum-chart");
+	const ctx4 = document.getElementById("subproduct-chart");
 
-	if (elements) {
-		let labels = getLabels(elements);
-    let data = getPrice(elements);
-    const compareChart = createChart(ctx, labels, data);
-		console.log({ elements });
-		compareBtn.addEventListener("click", () => {
-			let labels = getLabels(elements);
-			console.log({ labels });
-			let data = getPrice(elements);
-			console.log({ data });
-			updateChart(compareChart, labels, data);
-		});
-	}
-
-  if (subs) {
+  if (!subs) {
+    return;
+  } else {
+    console.log(subs);
   let labels = getLabels(subs);
   console.log({labels})
   let data = getCount(subs);
-  createChart(ctx2, labels, data);
+  createChart(ctx4, labels, data);
   }
+	// if (elements) {
+	// 	let labels = getLabels(elements);
+  //   let data = getPrice(elements);
+  //   const compareChart = createChart(ctx, labels, data);
+	// 	console.log({ elements });
+	// 	compareBtn.addEventListener("click", () => {
+	// 		let labels = getLabels(elements);
+	// 		console.log({ labels });
+	// 		let data = getPrice(elements);
+	// 		console.log({ data });
+	// 		updateChart(compareChart, labels, data);
+	// 	});
+	// }
+
 
 	if (sums) {
 		let labels = getLabels(sums);

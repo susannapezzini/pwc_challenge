@@ -36,6 +36,8 @@ class PagesController < ApplicationController
     @banks = Bank.all
     @subproducts = Subproduct.all
     @products = Product.all
+    @groups = Group.all
+    
 
     @my_bank = current_user.bank
     @other_banks = @banks.reject { |s| s == current_user.bank }
