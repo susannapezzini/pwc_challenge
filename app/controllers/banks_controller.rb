@@ -3,7 +3,7 @@ require 'json'
 require 'open-uri'
 
 class BanksController < ApplicationController
-  before_action :fetch_bank, only: %i[show edit update destroy]
+  before_action :fetch_bank, only: %i[show edit update destroy check_updates]
   def index
     @banks = Bank.all
 
@@ -72,8 +72,6 @@ class BanksController < ApplicationController
   end
 
   def check_updates
-    fetch_bank
-
     payload1 = {
       "#{@bank.id}": {
         "url": @bank.websites.first.url,
@@ -86,12 +84,30 @@ class BanksController < ApplicationController
     result = HTTParty.post('https://bank-price-api.herokuapp.com/merge_pdfs', 
       :body => payload1.to_json,
       :headers => { 'Content-Type' => 'application/json' } )
+    # result = {
+    #   'status' => 'ok'
+    # }
 
     if result['status'] == 'ok'
-      @data = merged_pdfs
-      redirect_to bank_path(@bank), notice: "#{@data}"
+      merged_pdfs
+
+      sleep 200
+      @pdfs = @data[@bank.id.to_s]["list_pdfs"]["urls"]
+      @error = @data[@bank.id.to_s]["price_page"]["error"]
+      if @pdfs.empty?
+        redirect_to bank_path(@bank), notice: "#{@error}"
+      elsif @pdfs.count == @bank.documents.count
+        redirect_to bank_path(@bank), info: "No updates!"
+      else
+        @pdfs.each do |pdf|
+          req_test = Request.create(status: 'pending')
+          Document.create(bank: @bank, request: req_test, data_added: Time.now, file_url: pdf)
+        end
+        redirect_to bank_path(@bank), info: "checking for updates ....#{@pdfs}"
+      end
+
     else
-    redirect_to bank_path(@bank), notice: "something went wrong!"
+      redirect_to bank_path(@bank), notice: "Ups! Something went wrong!"
     end
   end
 
@@ -99,7 +115,7 @@ class BanksController < ApplicationController
     fetch_bank
 
     url = 'https://bank-price-api.herokuapp.com/retrievepdfs'
-    data = JSON.parse(open(url).read)
+    @data = JSON.parse(open(url).read)
 
     # if result['status'] == 'ok'
     # else

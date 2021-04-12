@@ -64,7 +64,7 @@ User.create(name:'Afonso Dias Coelho', email: 'alfonso@pwc.com', password: '1234
 
 puts "users created"
 puts 'creating requests'
-30.times do
+10.times do
   Request.create(content: 'I am a request and I am supposed to provide useful content', status: status.sample)
 end
 
@@ -79,9 +79,7 @@ puts "websites created"
 abanca_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("abanca").id)
 banco_bai_doc = Document.create!(request: Request.all.sample, bank_id: get_bank("banco bai").id)
 
-40.times do
-  Document.create(request: Request.all.sample, bank: Bank.all.sample)
-end
+
 
 demand_deposit = Product.create!(name: "Demand Deposits")
 term_deposit = Product.create!(name: "Term Deposits")

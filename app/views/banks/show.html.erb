@@ -10,7 +10,7 @@
 </div>
 
 
-  <%= link_to "UPDATE", check_updates_path, method: "POST" %>
+  <%= render 'shared/flashes' %>
 
   <div class="contain">
     <%= link_to 'Back', :back , class: 'btn-outline float-right mb-4'%>
@@ -32,6 +32,11 @@
 <% if current_user.admin?%>
 <div class="actions">
   <h3 class="mb-3">Actions:</h3>
+  <%= link_to check_updates_path, method: "POST", class: 'link mb-2' do %>
+  <i class="fas fa-sync-alt"></i>
+  <span>Look for new price list</span>
+  <%end%>
+
   <%= link_to bank_websites_path(@bank), class: 'link mb-2' do %>
     <i class="fas fa-link"></i>
     <span>Manage Websites</span>
