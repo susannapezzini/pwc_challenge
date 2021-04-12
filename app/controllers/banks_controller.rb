@@ -72,13 +72,13 @@ class BanksController < ApplicationController
   end
 
   def check_updates
-    fetch_bank    
+    fetch_bank
 
     payload1 = {
       "#{@bank.id}": {
         "url": @bank.websites.first.url,
         #bp_bank_id: @bank.bp_bank_id,
-        "bp_bank_id": 44, #test value
+        "bp_bank_id": '', #test value
         "last_updated": @bank.updated_at
       }  
     }
@@ -87,9 +87,12 @@ class BanksController < ApplicationController
       :body => payload1.to_json,
       :headers => { 'Content-Type' => 'application/json' } )
 
-    merged_pdfs
-    raise
-    # redirect_to bank_path(bank)
+    if result['status'] == 'ok'
+      @data = merged_pdfs
+      redirect_to bank_path(@bank), notice: "#{@data}"
+    else
+    redirect_to bank_path(@bank), notice: "something went wrong!"
+    end
   end
 
   def merged_pdfs
@@ -127,10 +130,6 @@ class BanksController < ApplicationController
     # result = HTTParty.post('https://bank-price-api.herokuapp.com/get_stats', 
     #     :body => payload2.to_json,
     #     :headers => { 'Content-Type' => 'application/json' } )
-        
-    raise
-    redirect_to bank_path(bank)
-
   end
 
   # def users

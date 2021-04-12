@@ -15,6 +15,8 @@ module PwcChallenge
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.session_store :active_record_store,
+      :key => '_redmine_session'
 
     # Configuration for the application, engines, and railties goes here.
     #
