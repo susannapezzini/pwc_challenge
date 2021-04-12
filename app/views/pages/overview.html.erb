@@ -1,3 +1,20 @@
+<div id="tabs-container" >
+      <ul class="nav nav-tabs">
+        <% @products.each do |p|%>
+          <li class="<%= 'active' if params[:tab] == p.name %>" id="<%=p.name%>" title="<%=p.name%>"><a href="/overview/tab=<%=p.name%>"><%=p.name%></a></li>
+        <%end%>
+      </ul>
+    </div>
+    <div class="tab">
+      <div class="tab-content">
+        <p><%= render 'tab', locals: { tab: params[:tab] } %></p>
+      </div>
+    </div>
+
+
+
+
+
 <div class="bottom_nav">
   <span>Jump to: 
     <%= link_to 'Offer', '#offer', class: 'nav_link' %>

@@ -1,0 +1,9 @@
+<div class="contain">
+  <% p = @products.find_by(name: params[:id])%>
+  <% subs = @subproducts.where(product: p)%>
+  <%= subs.count%>
+  <% my_subs = subs.where(bank: @my_bank)%>
+  <%= my_subs.count%>
+  <% other_subs = subs.reject { |s| s.bank == @my_bank }%>
+  <%= other_subs.count%>
+</div>

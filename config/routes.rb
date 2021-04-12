@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'pages#dashboard'
   get 'overview', to: 'pages#overview'
+  get 'overview/tab=:id', to: 'pages#overview'
   #get 'settings', to: 'pages#settings'
 
 

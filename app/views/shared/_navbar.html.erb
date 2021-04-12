@@ -9,7 +9,7 @@
   <div class="menu_section">
     <% if user_signed_in? %>
       <% if !current_user.admin?%>
-        <%= link_to overview_path, class: "menu_link #{current_class?(overview_path)}" do%>
+        <%= link_to '/overview/tab=Demand%20Deposits', class: "menu_link #{current_class?(overview_path)}" do%>
             <p>Compare</p>
         <%end%>
       <%end%>

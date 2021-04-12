@@ -35,10 +35,13 @@ class PagesController < ApplicationController
     
     @banks = Bank.all
     @subproducts = Subproduct.all
-    @products = Product.all.map { |p| p.name }
+    @products = Product.all
 
     @my_bank = current_user.bank
     @other_banks = @banks.reject { |s| s == current_user.bank }
+    @collection = []
+
+
 
     @my_dd = @my_bank.subproducts.where(product_id: Product.find_by(name: "Demand Deposits"))
     
