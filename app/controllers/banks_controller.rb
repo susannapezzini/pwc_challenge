@@ -1,4 +1,6 @@
 require 'net/http'
+require 'json'
+require 'open-uri'
 
 class BanksController < ApplicationController
   before_action :fetch_bank, only: %i[show edit update destroy]
@@ -85,37 +87,50 @@ class BanksController < ApplicationController
       :body => payload1.to_json,
       :headers => { 'Content-Type' => 'application/json' } )
 
-    # if result['status'] == 'ok'
-    #   payload2 = { 
-    #     "#{@bank.id}": {
-    #       "url": @bank.websites.first.url,
-    #       #bp_bank_id: @bank.bp_bank_id,
-    #       "bp_bank_id": 44, #test value
-    #       "num_pdfs": 2
-    #       "last_updated": @bank.updated_at
-    #       "cloud_merged_url": 'https://www.cloudinary.ao/mega_mega_file_merged_bp0038.pdf'
-    #       'products': [
-    #                 {
-    #                   'demand_deposit': comm_hash_1,
-    #                   'pages': [3,4] (from merged pdf)
-    #                 },
-    #                 {
-    #                   'housing_credit': comm_hash_2,
-    #                   'pages': [9] (from merged pdf)
-    #                 }
-    #             ]
-    #     }
-    #   }
-
-    #   result = HTTParty.post('https://bank-price-api.herokuapp.com/get_stats', 
-    #       :body => payload2.to_json,
-    #       :headers => { 'Content-Type' => 'application/json' } )
-    # else
-    
-    # end
-    
+    merged_pdfs
     raise
     # redirect_to bank_path(bank)
+  end
+
+  def merged_pdfs
+    fetch_bank
+
+    url = 'https://bank-price-api.herokuapp.com/retrievepdfs'
+    data = JSON.parse(open(url).read)
+
+    # if result['status'] == 'ok'
+    # else
+    # end
+
+    
+    payload2 = { 
+      "#{@bank.id}": {
+        "url": @bank.websites.first.url,
+        #bp_bank_id: @bank.bp_bank_id,
+        "bp_bank_id": 44, #test value
+        "num_pdfs": 2
+        "last_updated": @bank.updated_at
+        "cloud_merged_url": 'https://www.cloudinary.ao/mega_mega_file_merged_bp0038.pdf'
+        'products': [
+                  {
+                    'demand_deposit': comm_hash_1,
+                    'pages': [3,4] (from merged pdf)
+                  },
+                  {
+                    'housing_credit': comm_hash_2,
+                    'pages': [9] (from merged pdf)
+                  }
+              ]
+      }
+    }
+
+    result = HTTParty.post('https://bank-price-api.herokuapp.com/get_stats', 
+        :body => payload2.to_json,
+        :headers => { 'Content-Type' => 'application/json' } )
+        
+    raise
+    redirect_to bank_path(bank)
+
   end
 
   # def users
@@ -127,6 +142,7 @@ class BanksController < ApplicationController
   #     redirect_back(fallback_location: root_path)
   #   end
   # end
+
 
   private
 
