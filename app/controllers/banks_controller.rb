@@ -91,7 +91,7 @@ class BanksController < ApplicationController
     if result['status'] == 'ok'
       merged_pdfs
 
-      sleep 200
+      sleep 119
       @pdfs = @data[@bank.id.to_s]["list_pdfs"]["urls"]
       @error = @data[@bank.id.to_s]["price_page"]["error"]
       if @pdfs.empty?
