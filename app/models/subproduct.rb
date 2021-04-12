@@ -13,6 +13,7 @@
 class Subproduct < ApplicationRecord
   belongs_to :product
   belongs_to :bank
+  belongs_to :group, optional: true
 
   has_many :prices
   has_many :fees, through: :prices

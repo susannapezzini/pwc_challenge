@@ -5,6 +5,7 @@ class CreateFees < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :search_name, null: true
       t.string :category
+      t.boolean :active, default: true
 
       t.timestamps
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_115940) do
+ActiveRecord::Schema.define(version: 2021_04_12_202654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,9 +73,16 @@ ActiveRecord::Schema.define(version: 2021_04_12_115940) do
     t.string "name"
     t.string "search_name"
     t.string "category"
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_fees_on_product_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "prices", force: :cascade do |t|
@@ -126,7 +133,9 @@ ActiveRecord::Schema.define(version: 2021_04_12_115940) do
     t.string "search_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id"
     t.index ["bank_id"], name: "index_subproducts_on_bank_id"
+    t.index ["group_id"], name: "index_subproducts_on_group_id"
     t.index ["product_id"], name: "index_subproducts_on_product_id"
   end
 
@@ -169,6 +178,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_115940) do
   add_foreign_key "prices", "fees"
   add_foreign_key "prices", "subproducts"
   add_foreign_key "subproducts", "banks"
+  add_foreign_key "subproducts", "groups"
   add_foreign_key "subproducts", "products"
   add_foreign_key "users", "banks"
   add_foreign_key "websites", "banks"
