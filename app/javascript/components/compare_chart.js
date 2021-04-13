@@ -2,73 +2,131 @@ import createChart from './create_chart.js'
 import updateChart from './update_chart.js'
 
 const compareChart = () => {
-  const elements = [...document.getElementsByClassName("select-subproduct")];
+  const elements = [...document.getElementsByClassName("select-group")];
 	const subs = [...document.getElementsByClassName("sub-count")];
 	const sums = [...document.getElementsByClassName("subproduct-price-sum-dd")];
 	const compareBtn = document.getElementById("compare-btn");
-  console.log({subs});
+  const userGroup = document.getElementById('update_other_bank_groups');
+  let userGroupValue = document.getElementById('update_other_bank_groups').value;
+
+  // const option = userGroup.options.selectedIndex;
+  // console.log({options})
+  // const selectedGroup = userGroup.options.selectedIndex;
+  // const valueGroup = userGroup.attributes.id.ownerElement[selectedGroup].value;
+  // console.log('select', selectedGroup);
+  // console.log('value', userGroup.attributes.id.ownerElement[selectedGroup].value)
 
   const getLabels = (array) => {
     const labels = array.map((e) => {
       const option = e.options.selectedIndex;
-      console.log({option});
-      console.log({e})
-      console.log('e', e.attributes);
-      return e.attributes.id.ownerElement[option].dataset.bank;
+      // console.log({option});
+      // console.log({e})
+      if (e.attributes.id.ownerElement[option].dataset.bank) {
+        return e.attributes.id.ownerElement[option].dataset.bank;
+      };
     });
     return labels;
 	};
-	const getPrice = (array) => {
-		const data = array.map((e) => {
-			const option = e.options.selectedIndex;
-			return e.attributes.id.ownerElement[option].dataset.subPrice;		
-    });
-    return data;
-	};
+	// const getPrice = (array) => {
+	// 	const data = array.map((e) => {
+	// 		const option = e.options.selectedIndex;
+	// 		return e.attributes.id.ownerElement[option].dataset.subPrice;		
+  //   });
+  //   return data;
+	// };
 	const getCount = (array) => {
 		const data = array.map((e) => {
 			const option = e.options.selectedIndex;
-			return e.attributes.id.ownerElement[option].dataset.tot;		
+			
+      return e.attributes.id.ownerElement[option].dataset.tot;
+
     });
     return data;
 	};
 	
   
-  const ctx = document.getElementById("compare-subproduct-chart");
+  const ctx = document.getElementById("one-subproduct-all-bank-chart");
 	const ctx2 = document.getElementById("demand-deposit-count-chart");
 	const ctx3 = document.getElementById("demand-deposit-sum-chart");
 	const ctx4 = document.getElementById("subproduct-chart");
 
+  // Avg costs
   if (!subs) {
     return;
   } else {
-    console.log(subs);
+    // console.log(subs);
   let labels = getLabels(subs);
-  console.log({labels})
+  // console.log({labels})
   let data = getCount(subs);
-  createChart(ctx4, labels, data);
+  const avgChart = createChart(ctx4, labels, data);
   }
-	// if (elements) {
-	// 	let labels = getLabels(elements);
-  //   let data = getPrice(elements);
-  //   const compareChart = createChart(ctx, labels, data);
-	// 	console.log({ elements });
-	// 	compareBtn.addEventListener("click", () => {
-	// 		let labels = getLabels(elements);
-	// 		console.log({ labels });
-	// 		let data = getPrice(elements);
-	// 		console.log({ data });
-	// 		updateChart(compareChart, labels, data);
-	// 	});
-	// }
+
+  // one-subproduct-all-bank-chart
+
+  const setValue = (array, value) => {
+    array.map(e => {
+      e.value = value;
+    })
+    return array;
+  }
 
 
-	if (sums) {
-		let labels = getLabels(sums);
-		console.log({ labels })
-		let data = getCount(sums);
-		createChart(ctx3, labels, data);
-	}
+
+  if (!elements) {
+    return;
+  } else {
+    console.log(userGroupValue);
+    let newEl = setValue(elements, userGroupValue);
+    // discard null 
+    let availabeData = newEl.filter(e => {
+      if (e.value) {
+        console.log(e.value);
+        return e;
+      }
+    });
+    let data = getCount(availabeData);
+    let labels = getLabels(availabeData);
+    // console.log(data, labels);
+    let chart = createChart(ctx, labels, data);
+    userGroup.addEventListener('change', (event) => {
+      userGroupValue = document.getElementById('update_other_bank_groups').value;
+      console.log({userGroupValue});
+      let hello = setValue(elements, userGroupValue);
+      let shit = hello.filter(e => {
+        if (e.value) {
+          console.log(e.value);
+          return e;
+        }
+      });
+      console.log({shit});
+      let data = getCount(shit);
+      let labels = getLabels(shit);
+      updateChart(chart, labels, data);
+
+      
+    })
+    
+    // let availableData = userGroup.addEventListener('change', (event) =>{
+    //   elements.map(e => {
+    //     e.value = userGroupValue;
+    //   })
+    //   elements.map(e => {
+    //     if (e.value){
+    //       return e;
+    //     }
+    //   })
+    //   return availableData;
+    // })
+    // console.log({availableData});
+    // // let labels = getLabels(availableData);
+    // // let data = getCount(availableData);
+    // // let chart = createChart(ctx, labels, data);
+    // compareBtn.addEventListener('click', () => {
+    //   let labels = getLabels(availableData);
+    //   let data = getCount(availableData);
+    //   updateChart(chart, labels, data)
+    // });
+  }
 };
 export { compareChart };
 
