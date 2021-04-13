@@ -16,6 +16,8 @@ const createChart = (ctx, labels, data) => {
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: true,
         title: {
             display: true,
             font: {

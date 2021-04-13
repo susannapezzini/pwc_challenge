@@ -16,12 +16,43 @@
   margin: 0 auto;
 }
 
-
-// #demand-deposit-count-chart,
-// #demand-deposit-sum-chart {
-//   height: 300px;
-//   width: 960px;
-// }
 .hidden {
   display: none;
+}
+
+.chart_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+// canvas.another_chart {
+//   width: 50% !important;
+//   height: 50% !important;
+// }
+canvas#subproduct-chart {
+  width: 100% !important;
+  height: 25% !important;
+}
+
+select#update_other_bank_groups {
+  margin: 0;  
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  border: 1px solid $orange;
+  margin: 0;
+  padding: 1rem;
+  font-family: $body-font;
+  &:focus {
+    outline: none;
+  }
+}
+
+svg {
+  margin: 2rem 1rem;
+  stroke: $red;
+  stroke-width: 2px;
 }

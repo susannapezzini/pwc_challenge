@@ -98,7 +98,7 @@ const compareChart = () => {
           return e;
         }
       });
-      console.log({shit});
+      // console.log({shit});
       let data = getCount(shit);
       let labels = getLabels(shit);
       updateChart(chart, labels, data);

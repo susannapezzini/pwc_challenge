@@ -14,7 +14,7 @@
   <% my_subs.count%>
   <% other_subs = subs.reject { |s| s.bank == @my_bank }%>
   <% other_subs.count%>
-  <h2 class="small_title"><%=@my_bank.name%>'s subproducts tot: <%= my_subs.count%></h2>
+  <h2 class="small_title m-0"><%=@my_bank.name%>'s subproducts tot: <%= my_subs.count%></h2>
 
 
   <div class="chart_form ">
@@ -64,28 +64,33 @@
     </div>
   </div>
   <canvas id="subproduct-chart" height="300" width="960"></canvas>
+  <svg height="3" width="100%">
+    <line x1="0" y1="0" x2="100%" y2="0" />
+  </svg>
   <div class="chart_form">
     <div class="chart_group">
-       <select class="select-group" name="subproducts" id="update_other_bank_groups">
-          <% my_groups = groups.select do |g|%>
-            <% g.banks.where(name: @my_bank.name)%>
-          <%end%>
-          <% my_groups.each_with_index do |g, i|%>
-            <% user_bank_subs_for_current_group = my_subs.where(group: g) %>
-           <% my_price = user_bank_subs_for_current_group.sum do |subproduct|%>
-              <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
+      <div class="fancy_select">
+        <select class="select-group" name="subproducts" id="update_other_bank_groups">
+            <% my_groups = groups.select do |g|%>
+              <% g.banks.where(name: @my_bank.name)%>
             <%end%>
-            <% my_sub_count = user_bank_subs_for_current_group.count == 0 ? 1 : user_bank_subs_for_current_group.count %>
-            <% my_avg = my_price.to_i/my_sub_count.to_i%>
-            <option value="<%= g.name%>"
-            id="<%= i %>"
-            data-tot="<%= my_avg %>"
-            data-bank="<%= g.name%>"
-            >
-            <%= g.name%>
-            </option>
-          <%end%>       
-      </select>
+            <% my_groups.each_with_index do |g, i|%>
+              <% user_bank_subs_for_current_group = my_subs.where(group: g) %>
+            <% my_price = user_bank_subs_for_current_group.sum do |subproduct|%>
+                <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
+              <%end%>
+              <% my_sub_count = user_bank_subs_for_current_group.count == 0 ? 1 : user_bank_subs_for_current_group.count %>
+              <% my_avg = my_price.to_i/my_sub_count.to_i%>
+              <option value="<%= g.name%>"
+              id="<%= i %>"
+              data-tot="<%= my_avg %>"
+              data-bank="<%= g.name%>"
+              >
+              <%= g.name%>
+              </option>
+            <%end%>       
+        </select>
+      </div>
     </div>
     <div class="chart_group hidden">
       <% @other_banks.each_with_index do |b, i|%>
@@ -114,5 +119,10 @@
 
   </div>
   <%# <button id="compare-btn" class="btn mt-3 mb-3">Compare</button> %>
-  <canvas id="one-subproduct-all-bank-chart" height="300" width="960"></canvas>
+  <div class="chart_container">
+  <canvas class="another_chart" id="one-subproduct-all-bank-chart" height="150" width="480"></canvas>
+    <div class="another_chart">
+    <%# <h1>One chart missing</h1> %>
+    </div>
+  </div>
 </div>
