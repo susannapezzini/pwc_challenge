@@ -17,7 +17,7 @@ module PwcChallenge
     config.load_defaults 6.1
     config.session_store :active_record_store,
       :key => '_redmine_session'
-
+    config.active_job.queue_adapter = :sidekiq
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
