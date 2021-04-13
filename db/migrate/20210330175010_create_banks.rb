@@ -4,7 +4,7 @@ class CreateBanks < ActiveRecord::Migration[6.1]
       t.string :name, null: false, unique: true
       t.string :address
       t.string :country
-      t.integer :bp_bank_id
+      t.string :bp_bank_id
 
       t.timestamps
     end

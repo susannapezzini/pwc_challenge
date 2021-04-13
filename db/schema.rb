@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_04_13_083449) do
     t.string "name", null: false
     t.string "address"
     t.string "country"
-    t.integer "bp_bank_id"
+    t.string "bp_bank_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "img_key"
