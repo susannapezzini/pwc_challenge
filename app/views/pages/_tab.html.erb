@@ -1,6 +1,14 @@
 <div class="contain-color mt-0">
   <% p = @products.find_by(name: params[:id])%>
   <% subs = @subproducts.where(product: p)%>
+  <% groups = []%>
+  <% subs.each do |s|%>
+    <% unless s.group.nil? %>
+    <% groups << s.group %>
+    <%end%>
+  <%end%>
+  <% groups = groups.uniq %>
+  <% groups.count %>
   
   <% my_subs = subs.where(bank: @my_bank)%>
   <% my_subs.count%>
@@ -11,7 +19,8 @@
 
   <div class="chart_form ">
     <div class="chart_group hidden">
-        <% @groups.each_with_index do | g, i |%>
+        
+        <% groups.each_with_index do | g, i |%>
             <% my_stuff = my_subs.where(group: g).count%>
             <% tot = subs.where(group: g).count%>
             <% avg = tot/@banks.count.to_f%>
