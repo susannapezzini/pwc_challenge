@@ -21,23 +21,41 @@
     <div class="chart_group hidden">
         
         <% groups.each_with_index do | g, i |%>
-            <% my_stuff = my_subs.where(group: g).count%>
-            <% tot = subs.where(group: g).count%>
-            <% avg = tot/@banks.count.to_f%>
+            <% user_bank_subs_for_current_group = my_subs.where(group: g) %>
+            <% my_price = user_bank_subs_for_current_group.sum do |subproduct|%>
+              <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
+            <%end%>
+            <% my_sub_count = user_bank_subs_for_current_group.count == 0 ? 1 : user_bank_subs_for_current_group.count %>
+            <% my_avg = my_price.to_i/my_sub_count.to_i%>
+      
+            <% tot_subproducts_for_current_group = subs.where(group: g) %>
+            <%= tot_subproducts_for_current_group.count %>
+            <% banks_that_have_this_subproducts = []%>
+            <% g.banks.each do |b|%>
+              <% banks_that_have_this_subproducts << b.name%>
+            <%end%>
+            <%= banks_that_have_this_subproducts = banks_that_have_this_subproducts.uniq %>
+            <%= banks_that_have_this_subproducts.count %>
+            <% prices = tot_subproducts_for_current_group.sum do |subproduct|%>
+              <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
+            <%end%>
+            <% avg = prices.to_i/tot_subproducts_for_current_group.count.to_i%>
+            <%= avg_subproducts_offer_per_bank = (tot_subproducts_for_current_group.count.to_i/banks_that_have_this_subproducts.count.to_f).round(1)%>
+
             <select class="sub-count" name="subproducts" id="<%=i%>">
-              <option value="<%= my_stuff%>"
+              <option value="<%= user_bank_subs_for_current_group%>"
               id="<%= i %>"
-              data-tot="<%= my_stuff%>"
-              data-bank="<%= g.name %>"
+              data-tot="<%= my_avg %>"
+              data-bank="<%= g.name %> - <%= user_bank_subs_for_current_group.count%> accounts"
               >
-              <%= my_stuff%>
+              <%= user_bank_subs_for_current_group%>
               </option>
             </select>
             <select class="sub-count" name="subproducts" id="<%=i%>">
               <option value="<%= avg%>"
               id="<%= i %>"
               data-tot="<%= avg %>"
-              data-bank="AVG"
+              data-bank="<%= g.name%> AVG - <%= avg_subproducts_offer_per_bank%> accounts"
               >
               <%= avg%>
               </option>

@@ -7,7 +7,7 @@ const createChart = (ctx, labels, data) => {
       data: {
         labels: labels,
         datasets: [{
-          label: 'Total',
+          label: 'Average(mean) Cost Euros',
           data: data,
           backgroundColor: function(context) {
             let index = context.dataIndex;
