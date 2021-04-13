@@ -1,6 +1,6 @@
 ﻿id;bp_bank_id;name;address;country
-;;banco ctt;Av. Dom João II 13, 1999-001 Lisboa;Portugal
-;;abanca;Rua Castilho n.º 20, 1250-069, Lisboa;Portugal
-;;banco bai;Rua Tierno Galvan Torre 3, 12º Piso, 1070-274 Lisboa;Portugal
-;;banco bic;Avenida Antonio Augusto De Aguiar, N.º 132;Portugal
-;;bankinter;Praça Marquês de Pombal, n.º 13, 2.º Andar, 1250-162 Lisboa;Portugal
+;0193;banco ctt;Av. Dom João II 13, 1999-001 Lisboa;Portugal
+;0170;abanca;Rua Castilho n.º 20, 1250-069, Lisboa;Portugal
+;0008;banco bai;Rua Tierno Galvan Torre 3, 12º Piso, 1070-274 Lisboa;Portugal
+;0079;banco bic;Avenida Antonio Augusto De Aguiar, N.º 132;Portugal
+;0269;bankinter;Praça Marquês de Pombal, n.º 13, 2.º Andar, 1250-162 Lisboa;Portugal
