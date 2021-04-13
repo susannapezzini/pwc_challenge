@@ -95,3 +95,14 @@
   left: 2rem;
   width: calc(100% - 48px);
 }
+
+.product_list {
+  @include reset-list; 
+}
+.product_container {
+  display: flex;
+  // margin: 0 auto;
+  width: 80%;
+  justify-content: space-between;
+  align-items: baseline;
+}

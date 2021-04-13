@@ -1,22 +1,39 @@
 <div class="contain">
   <h1 class="mb-4">Products</h1>
+  <div class="product_container">
     <% @products.each do |p|%>
-    <ul class="product_list">
-      <li> <%=link_to "#sub_#{p.id}", class: 'link'   do%>
-      <%= p.name%>, tot. <%=p.subproducts.count%>
-      <%end%>
-        <% if current_user && current_user.admin? %>
-          <%= link_to product_path(p), method: :delete, data: { confirm: 'This action will also delete all the subproducts. Are you sure?'} do %>
-            <i class="far fa-trash-alt"></i>
-            <%# <span>Delete</span> %>
-          <%end%>
+      <ul class="product_list">
+        <li> <%=link_to "#sub_#{p.id}", class: 'link-big link' do%>
+        <%= p.name%>, tot. <%=p.subproducts.count%>
         <%end%>
-      </li>
-    </ul>
+          <% if current_user && current_user.admin? %>
+            <%= link_to product_path(p), method: :delete, class: 'link-big ml-3 ', data: { confirm: 'This action will also delete all the subproducts. Are you sure?'} do %>
+              <i class="far fa-trash-alt"></i>
+              <%# <span>Delete</span> %>
+            <%end%>
+          <%end%>
+          <% groups = p.groups.uniq %>
+            <ul class="group_list ml-4">
+              <% groups.each do |g|%>
+                <li><%=link_to g.name, "#group_#{g.id}", class: 'link' %>
+                </li>
+              <%end%>
+              <%# if current_user && current_user.admin? %>
+                <%#= <li> link_to '#', class: 'link' do%>
+                 <%# < <span>Add New Group</span>
+                  <i class="fas fa-plus"></i>> %>
+                <%#end%>
+                <%# </li> %>
+              <%#end%>
+            </ul>
+        </li>
+      </ul>
     <%end%>
+    </div>
   <% if current_user.admin?%>
-  <%= link_to "Add new product family", new_product_path, class: "btn" %>
-<%end%>
+    <%= link_to "Add new product family", new_product_path, class: "btn mt-5" %>
+  <%end%>
+
 </div>
 <div class="bottom_nav">
   <span>Jump to: 
@@ -43,7 +60,7 @@
           <svg height="3" width="30%">
             <line x1="0" y1="0" x2="100%" y2="0" />
           </svg>
-          <h5 class="small_title ml-4">Group: <%=g.name%></h5>
+          <h5 class="small_title ml-4" id="group_<%=g.id%>">Group: <%=g.name%></h5>
           <div class="cards">
             <% g.subproducts.each do |b|%>
               <div class="bank-card">
