@@ -22,6 +22,15 @@ Bank.destroy_all
 User.destroy_all
 Group.destroy_all
 
+# Constants
+IMG_KEYS = [
+  "o2z199ogfbvtt5xd5ey4uzzq2ddp", # CTT
+  "1hn1roymvj5qoo36unyl2bl2la33", # ABANCA
+  "h62dy907dqe17yz4mvti1zcmefiy", # BAI
+  "ccups263mvopxdax1h230vookupl", # BIC
+  "fro4031g4t2zvz3dsdyv0q1tuv8c", # BANKINTER
+]
+
 #helper methods
 def get_bank(bank_name)
   Bank.find_by(name: bank_name)
@@ -50,6 +59,11 @@ csv_text = File.read(Rails.root.join('lib', 'seeds', 'banks.csv'))
 #id;bp_bank_id;name;address;country
 CSV.foreach("lib/seeds/banks.csv", csv_options) do |row|
   Bank.create!(row)
+end
+
+Bank.all.each_with_index do |bank, i| 
+  bank.img_key = IMG_KEYS[i]
+  bank.save
 end
 
 admin_user = User.create(name:'Pedro Santos', email: 'hello@mail.com', password: '123456', admin: true)

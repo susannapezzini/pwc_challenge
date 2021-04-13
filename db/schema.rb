@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_202654) do
+ActiveRecord::Schema.define(version: 2021_04_13_083449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_202654) do
     t.integer "bp_bank_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "img_key"
     t.index ["bp_bank_id"], name: "index_banks_on_bp_bank_id", unique: true
     t.index ["name"], name: "index_banks_on_name", unique: true
   end
@@ -73,7 +74,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_202654) do
     t.string "name"
     t.string "search_name"
     t.string "category"
-    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_fees_on_product_id"
