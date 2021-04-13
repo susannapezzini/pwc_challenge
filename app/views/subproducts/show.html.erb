@@ -2,6 +2,7 @@
   <%= link_to 'Back', :back, class: 'btn-outline float-right'%>
   <h1><%= @subproduct.name%></h1>
   <h2 class="small_title"><%= @subproduct.bank.name.capitalize%></h2>
+  <%= link_to 'Edit subproduct', edit_subproduct_path(@subproduct), class: 'btn'%>
 </div>
 
 <%if current_user && current_user.admin?%>
@@ -47,7 +48,7 @@
       </svg>
         <div class="cell mt-4">
           <p class="cell_content bold">Total</p>
-          <p class="cell_content bold">€ <%= @subproduct.prices.sum { |price| price.amount } %></p>
+          <p class="cell_content bold">€ <%= @subproduct.prices.sum { |price| price.fee.active ? price.amount : 0} %></p>
         </div>
     </div>
     <% if current_user && current_user.admin?%>

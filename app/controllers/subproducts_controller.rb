@@ -69,7 +69,7 @@ class SubproductsController < ApplicationController
 
     private
       def subproduct_params
-        params.require(:subproduct).permit(:name, :product_id, :bank_id)
+        params.require(:subproduct).permit(:name, :product_id, :bank_id, :group_id)
       end
 
       def fetch_subproduct

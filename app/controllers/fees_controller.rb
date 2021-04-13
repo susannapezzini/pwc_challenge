@@ -1,6 +1,6 @@
 class FeesController < ApplicationController
   before_action :fetch_fee, only: [:edit, :update]
-  before_action :fetch_subproduct, only: %i[new create]
+  before_action :fetch_subproduct, only: %i[new create edit]
 
   def new
     @fee = Fee.new
@@ -32,9 +32,18 @@ class FeesController < ApplicationController
   end
 
   def update
-    @fee.active = !@fee.active
-    @fee.save
-    redirect_back(fallback_location: root_path)
+    if params[:subproduct_id]
+      fetch_subproduct
+      if @fee.update(fee_params)
+        redirect_to subproduct_path(@subproduct), notice: 'Fee was successfully updated'
+      else
+        render :edit
+      end
+    else
+      @fee.active = !@fee.active
+      @fee.save
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
