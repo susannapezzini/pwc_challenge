@@ -86,7 +86,7 @@ const compareChart = () => {
     });
     let data = getCount(availabeData);
     let labels = getLabels(availabeData);
-    // console.log(data, labels);
+    // console.log(data, labels); 
     let chart = createChart(ctx, labels, data);
     userGroup.addEventListener('change', (event) => {
       userGroupValue = document.getElementById('update_other_bank_groups').value;
