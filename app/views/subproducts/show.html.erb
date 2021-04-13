@@ -1,7 +1,9 @@
 <div class="contain">
   <%= link_to 'Back', :back, class: 'btn-outline float-right'%>
   <h1><%= @subproduct.name%></h1>
-  <h2 class="small_title"><%= @subproduct.bank.name.capitalize%></h2>
+  <% hello = @subproduct.group ? @subproduct.group.name : '' %>
+  <h6><%= "Bank: #{@subproduct.bank.name}"%></h6>
+  <h6><%= "Group: #{hello}"%></h6>
   <%= link_to 'Edit subproduct', edit_subproduct_path(@subproduct), class: 'btn'%>
 </div>
 
