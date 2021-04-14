@@ -65,9 +65,10 @@
       <% @subproducts.reverse.each do |b|%>
         <div class="bank-card">
           <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
-          <p class="card_text"><strong>Product Family:</strong><%= b.product.name %></p>
-          <p class="card_text"><strong>Group:</strong> <%= b.group ? b.group.name : 'N/A' %></p>
-          <p class="card_text"><strong>Total Price:</strong> € <%= b.prices.sum { |price| price.amount } %></p>
+          <p class="card_text"><strong>Status: </strong><span class=<%= b.active ? "text-success" : "text-danger"%>><%= b.active ? "Active" : "Inactive"%></span></p>
+          <p class="card_text"><strong>Product Family: </strong><%= b.product.name %></p>
+          <p class="card_text"><strong>Group: </strong> <%= b.group ? b.group.name : 'N/A' %></p>
+          <p class="card_text"><strong>Total Price: </strong> € <%= b.prices.sum { |price| price.amount } %></p>
 
           
             <div class="card_action">
