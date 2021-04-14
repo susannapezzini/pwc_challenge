@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   
   resources :subproducts do
     resources :fees, only: [:new, :create, :edit, :update]
+    resources :groups, only: %i[new create]
   end
 
   resources :prices

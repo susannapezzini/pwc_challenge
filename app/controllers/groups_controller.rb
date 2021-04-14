@@ -1,9 +1,20 @@
 class GroupsController < ApplicationController
   before_action :fetch_group, only: %i[edit update]
+  before_action :fetch_subproduct, only: %i[new create]
+
   def new
+    @group = Group.new
   end
 
   def create
+    @group = Group.create(group_params)
+    @subproduct.group = @group
+    if @subproduct.save
+      redirect_to edit_subproduct_path(@subproduct)
+    else
+      render "subproducts/edit"
+    end
+
   end
 
   def edit
@@ -27,5 +38,9 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name)
+  end
+
+  def fetch_subproduct
+    @subproduct = Subproduct.find(params[:subproduct_id])
   end
 end

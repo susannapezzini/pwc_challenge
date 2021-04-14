@@ -4,7 +4,7 @@
   <% hello = @subproduct.group ? @subproduct.group.name : '' %>
   <h6><%= "Bank: #{@subproduct.bank.name}"%></h6>
   <h6><%= "Group: #{hello}"%></h6>
-  <%= link_to 'Edit subproduct', edit_subproduct_path(@subproduct), class: 'btn'%>
+  <%= link_to 'Manage subproduct', edit_subproduct_path(@subproduct), class: 'btn'%>
 </div>
 
 <%if current_user && current_user.admin?%>
