@@ -158,7 +158,119 @@ class BanksController < ApplicationController
   #   end
   # end
 
+  def parse
+    # t[:"1"][:products][:demand_deposit].each do |category_name, fees|
+    #   fees.each do |fee|
+    #     #puts "Category #{category_name} #{fee}"
+    #     Fee.create!(name: fee, category: category_name)
+    #   end
+    # end
 
+    Price.destroy_all
+    Fee.destroy_all
+    Document.destroy_all
+    Subproduct.destroy_all
+    Request.destroy_all
+    Group.destroy_all
+
+    abanca_hash = {
+      "1": {
+        "products": {
+          "demand_deposit": {
+            "subproducts": {
+              "Conta D.O.": {
+                "acc_manteinance": "15,00"
+              },
+              "Conta Ordenado": {
+                "acc_manteinance": "0,00"
+              },
+              "Conta Standard": {
+                "acc_manteinance": "0,00"
+              },
+              "Conta Future": {
+                "acc_manteinance": "0,00"
+              },
+              "Conta Kids": {
+                "acc_manteinance": "0,00"
+              },
+              "Conta Base": {
+                "acc_manteinance": "10,00"
+              },
+              "Conta Private": {
+                "acc_manteinance": "8,00"
+              },
+              "Conta Value": {
+                "acc_manteinance": "5,00"
+              },
+              "Conta Smart": {
+                "acc_manteinance": "5,00"
+              },
+              "Conta Futuro": {
+                "acc_manteinance": "0,00"
+              },
+              "Conta Moeda Estrangeira e": {
+                "acc_manteinance": "15,00"
+              },
+              "Conta ABANCA Internacional.": {
+                "acc_manteinance": "15,00"
+              },
+              "Conta para clientes dos 18 aos 28 anos.": {
+                "acc_manteinance": "0,23"
+              },
+              "Conta para clientes dos 0 aos 17 anos.": {
+                "acc_manteinance": "0,23"
+              },
+              "General": {
+                "statement": "0,00",
+                "documents_copy": "5,00",
+                "acc_manteinance": "10,00",
+                "withdraw": "0,00",
+                "online_service": "0,00",
+                "cash_deposit": "3,50",
+                "change_holder": "5,00"
+              }
+            },
+            "n_subproducts": 14
+          }
+        },
+        "housing_credit": {
+          "commissions": {
+            "subproduct1": {
+              "commission1": "123",
+              "commission2": "345"
+            },
+            "subproduct2": {
+              "commission1": "123",
+              "commission2": "345"
+            }
+          }
+        }
+      }
+    }
+
+    abanca = Bank.find_by(name: "ABANCA")
+    current_request = Request.create(content: "Manual Request", status: "Pending")
+    current_doc = Document.create(bank_id: abanca.id, request_id: current_request.id)
+
+    abanca_hash[:"1"][:products][:demand_deposit][:subproducts].each do |subproduct, fee_price|
+      dd = Product.find_by(name: "Demand Deposits")
+      unless current_sub = Subproduct.find_by(name: subproduct)
+        p current_sub = Subproduct.create!(bank_id: abanca.id, product_id: dd.id, name: subproduct)
+      end
+
+      fee_price.each do |fee, price|
+        unless current_fee = Fee.find_by(name: fee)
+          current_fee = Fee.create!(product_id: dd.id, name: fee)
+        end
+
+        p Price.create!(amount: price, fee_id: current_fee.id, subproduct_id: current_sub.id, document_id: current_doc.id)
+      end
+    end
+
+
+    raise
+
+  end
   private
 
   def fetch_bank
