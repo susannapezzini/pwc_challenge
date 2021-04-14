@@ -16,6 +16,11 @@
             <ul class="group_list ml-4">
               <% groups.each do |g|%>
                 <li><%=link_to g.name, "#group_#{g.id}", class: 'link' %>
+                <% if current_user && current_user.admin? %>
+                  <%= link_to edit_group_path(g), class: 'link' do%>
+                    <i class="far fa-edit"></i>
+                  <%end%>
+                <%end%>
                 </li>
               <%end%>
               <%# if current_user && current_user.admin? %>

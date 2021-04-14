@@ -58,7 +58,8 @@ const compareChart = () => {
   let labels = getLabels(subs);
   // console.log({labels})
   let data = getCount(subs);
-  const avgChart = createChart(ctx4, labels, data);
+  let type = 'bar';
+  const avgChart = createChart(ctx4, labels, data, type);
   }
 
   // one-subproduct-all-bank-chart
@@ -86,8 +87,8 @@ const compareChart = () => {
     });
     let data = getCount(availabeData);
     let labels = getLabels(availabeData);
-    // console.log(data, labels); 
-    let chart = createChart(ctx, labels, data);
+    let type = 'bar'; 
+    let chart = createChart(ctx, labels, data, type);
     userGroup.addEventListener('change', (event) => {
       userGroupValue = document.getElementById('update_other_bank_groups').value;
       console.log({userGroupValue});
