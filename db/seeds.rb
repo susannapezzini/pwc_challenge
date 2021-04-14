@@ -93,7 +93,6 @@ puts "fees created"
 
 CSV.foreach("lib/seeds/groups.csv", csv_options) do |row|
   Group.create!(row)
-  puts row
 end
 puts "groups created"
 #id;product_id;bank_id;name;search_name
