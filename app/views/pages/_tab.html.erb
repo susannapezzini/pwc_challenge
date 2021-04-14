@@ -1,6 +1,6 @@
 <div class="contain-color mt-0">
   <% p = @products.find_by(name: params[:id])%>
-  <% subs = @subproducts.where(product: p)%>
+  <% subs = @subproducts.where(product: p).where(active: true)%>
   <% groups = []%>
   <% subs.each do |s|%>
     <% unless s.group.nil? %>
@@ -10,7 +10,7 @@
   <% groups = groups.uniq %>
   <% groups.count %>
   
-  <% my_subs = subs.where(bank: @my_bank)%>
+  <% my_subs = subs.where(bank: @my_bank).where(active: true)%>
   <% my_subs.count%>
   <% other_subs = subs.reject { |s| s.bank == @my_bank }%>
   <% other_subs.count%>
@@ -21,14 +21,14 @@
     <div class="chart_group hidden">
         
         <% groups.each_with_index do | g, i |%>
-            <% user_bank_subs_for_current_group = my_subs.where(group: g) %>
+            <% user_bank_subs_for_current_group = my_subs.where(group: g).where(active: true) %>
             <% my_price = user_bank_subs_for_current_group.sum do |subproduct|%>
               <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
             <%end%>
             <% my_sub_count = user_bank_subs_for_current_group.count == 0 ? 1 : user_bank_subs_for_current_group.count %>
             <% my_avg = my_price.to_i/my_sub_count.to_i%>
       
-            <% tot_subproducts_for_current_group = subs.where(group: g) %>
+            <% tot_subproducts_for_current_group = subs.where(group: g).where(active: true) %>
             <%= tot_subproducts_for_current_group.count %>
             <% banks_that_have_this_subproducts = []%>
             <% g.banks.each do |b|%>
@@ -72,10 +72,10 @@
       <div class="fancy_select">
         <select class="select-group" name="subproducts" id="update_other_bank_groups">
             <% my_groups = groups.select do |g|%>
-              <% g.banks.where(name: @my_bank.name)%>
+              <% g.banks.where(name: @my_bank.name).where(active: true)%>
             <%end%>
             <% my_groups.each_with_index do |g, i|%>
-              <% user_bank_subs_for_current_group = my_subs.where(group: g) %>
+              <% user_bank_subs_for_current_group = my_subs.where(group: g).where(active: true) %>
             <% my_price = user_bank_subs_for_current_group.sum do |subproduct|%>
                 <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
               <%end%>
@@ -98,10 +98,10 @@
             <% uniq_groups_current_bank = b.groups.uniq{ |g| g.id }%>
           <% uniq_groups_current_bank.each do |g|%>
 
-            <% prices = g.subproducts.where(bank: b).sum do |subproduct| %>
+            <% prices = g.subproducts.where(bank: b).where(active: true).sum do |subproduct| %>
               <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%>
             <%end%>
-            <% tot_subproducts_per_bank = g.subproducts.where(bank: b).count%>
+            <% tot_subproducts_per_bank = g.subproducts.where(bank: b).where(active: true).count%>
             <% avg = prices.to_i/tot_subproducts_per_bank.to_i%>
             
             <option value="<%= g.name%>"
