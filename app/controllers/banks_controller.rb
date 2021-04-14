@@ -159,13 +159,6 @@ class BanksController < ApplicationController
   # end
 
   def parse
-    Price.destroy_all
-    Fee.destroy_all
-    Document.destroy_all
-    Subproduct.destroy_all
-    Request.destroy_all
-    Group.destroy_all
-
     abanca_hash = {
       "1": {
         "products": {
@@ -240,102 +233,109 @@ class BanksController < ApplicationController
         }
       }
     }
-  banco_bai_hash = {
-      "3": {
-        "products": {
-          "demand_deposit": {
-            "subproducts": {
-              "Conta \u00e0 Ordem (5),": {},
-              "Conta \u00e0 Ordem Emigrantes (5),": {},
-              "Conta Ordenado XL (12),": {},
-              "Conta \u00e0 Ordem Sucursal Financeira Exterior Madeira (5)(6),": {},
-              "Conta Privil\u00e9gio 55 (5)(7),": {},
-              "Conta \u00e0 Ordem com Futuro 0,00 nan Nota 4": {
-                "acc_manteinance": "0,00"
-              },
-              "Conta Cool (contrata\u00e7\u00f5es a partir de 13 de novembro 2014) 0,00 nan Notas 4,": {
-                "acc_manteinance": "0,00"
-              },
-              "Conta \u00e0 Ordem Massa Insolvente 0,00 nan Nota 14": {
-                "acc_manteinance": "0,00"
-              },
-              "Conta BIC Sal\u00e1rio Internacional (Fora de comercializa\u00e7\u00e3o) 5,00 / m\u00eas 60,00 IS 4,00% Notas": {},
-              "Conta Base 5,00 / m\u00eas 60,00 IS 4,00% Notas 5, 8 3.": {},
-              "Conta EuroBic Prime com domicilia\u00e7\u00e3o de vencimento Nota 15 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 5,50": {},
-              "Conta EuroBic Prime sem domicilia\u00e7\u00e3o de vencimento Nota 15 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 7,50": {},
-              "Conta EuroBic 365 com domicilia\u00e7\u00e3o de vencimento Nota 16 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 4,25": {},
-              "Conta EuroBic 365 sem domicilia\u00e7\u00e3o de vencimento Nota 16 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 6,00": {},
-              "Conta EuroBic S\u00e9nior Sem cr\u00e9dito de vencimento e recursos \u2264 35.000 \u20ac 4,00 /": {},
-              "Conta EuroBic Mais (Fora de comercializa\u00e7\u00e3o) Sem cr\u00e9dito de vencimento 7,00 / m\u00eas 84,00": {},
-              "Conta \u00e0 Ordem.": {},
-              "Conta BIC Sal\u00e1rio Internacional.": {},
-              "Conta de Servi\u00e7os M\u00ednimos Banc\u00e1rios.": {},
-              "Conta Base t\u00eam acesso gratu\u00edto a 3 levantamentos de numer\u00e1rio por m\u00eas.": {},
-              "Conta de Servi\u00e7os M\u00ednimos Banc\u00e1rios,": {},
-              "Conta Base.": {},
-              "General": {
-                "acc_manteinance": "9,30",
-                "withdraw": "5,00",
-                "change_holder": "7,00",
-                "balance_inquiry": "1,00"
-              }
+  banco_bic_hash = {
+    "3": {
+      "products": {
+        "demand_deposit": {
+          "subproducts": {
+            "Conta \u00e0 Ordem (5),": {},
+            "Conta \u00e0 Ordem Emigrantes (5),": {},
+            "Conta Ordenado XL (12),": {},
+            "Conta \u00e0 Ordem Sucursal Financeira Exterior Madeira (5)(6),": {},
+            "Conta Privil\u00e9gio 55 (5)(7),": {},
+            "Conta \u00e0 Ordem com Futuro 0,00 nan Nota 4": {
+              "acc_manteinance": "0,00"
             },
-            "n_subproducts": 22
-          }
+            "Conta Cool (contrata\u00e7\u00f5es a partir de 13 de novembro 2014) 0,00 nan Notas 4,": {
+              "acc_manteinance": "0,00"
+            },
+            "Conta \u00e0 Ordem Massa Insolvente 0,00 nan Nota 14": {
+              "acc_manteinance": "0,00"
+            },
+            "Conta BIC Sal\u00e1rio Internacional (Fora de comercializa\u00e7\u00e3o) 5,00 / m\u00eas 60,00 IS 4,00% Notas": {},
+            "Conta Base 5,00 / m\u00eas 60,00 IS 4,00% Notas 5, 8 3.": {},
+            "Conta EuroBic Prime com domicilia\u00e7\u00e3o de vencimento Nota 15 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 5,50": {},
+            "Conta EuroBic Prime sem domicilia\u00e7\u00e3o de vencimento Nota 15 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 7,50": {},
+            "Conta EuroBic 365 com domicilia\u00e7\u00e3o de vencimento Nota 16 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 4,25": {},
+            "Conta EuroBic 365 sem domicilia\u00e7\u00e3o de vencimento Nota 16 Sem condi\u00e7\u00f5es de bonifica\u00e7\u00e3o 6,00": {},
+            "Conta EuroBic S\u00e9nior Sem cr\u00e9dito de vencimento e recursos \u2264 35.000 \u20ac 4,00 /": {},
+            "Conta EuroBic Mais (Fora de comercializa\u00e7\u00e3o) Sem cr\u00e9dito de vencimento 7,00 / m\u00eas 84,00": {},
+            "Conta \u00e0 Ordem.": {},
+            "Conta BIC Sal\u00e1rio Internacional.": {},
+            "Conta de Servi\u00e7os M\u00ednimos Banc\u00e1rios.": {},
+            "Conta Base t\u00eam acesso gratu\u00edto a 3 levantamentos de numer\u00e1rio por m\u00eas.": {},
+            "Conta de Servi\u00e7os M\u00ednimos Banc\u00e1rios,": {},
+            "Conta Base.": {},
+            "General": {
+              "acc_manteinance": "9,30",
+              "withdraw": "5,00",
+              "change_holder": "7,00",
+              "balance_inquiry": "1,00"
+            }
+          },
+          "n_subproducts": 22
         }
       }
     }
-    # abanca = Bank.find_by(name: "ABANCA")
-    # current_request = Request.create(content: "Manual Request", status: "Pending")
-    # current_doc = Document.create(bank_id: abanca.id, request_id: current_request.id)
+  }
 
-    # abanca_hash[:"1"][:products][:demand_deposit][:subproducts].each do |subproduct, fee_price|
-    #   current_product = Product.find_by(name: "Demand Deposits")
-    #   if subproduct != :General
-    #     current_sub = Subproduct.find_by(name: subproduct)
+  banco_ctt_hash = {
+    "5": {
+      "products": {
+        "demand_deposit": {
+          "subproducts": {
+            "Conta J\u00fanior (Montante M\u00ednimo de Abertura 25,00\u20ac) Comiss\u00f5es durante a vig\u00eancia do contrato 1.Levantamento": {},
+            "Conta Base (Montante M\u00ednimo de Abertura 100,00\u20ac) Comiss\u00f5es durante a vig\u00eancia do contrato 1.Levantamento": {},
+            "General": {
+              "statement": "0,00",
+              "documents_copy": "0,00",
+              "acc_manteinance": "5,00",
+              "withdraw": "5,00",
+              "cash_deposit": "5,00",
+              "change_holder": "5,00",
+              "bank_overdraft": "0,00",
+              "movement_consultation": "0,00",
+              "balance_inquiry": "0,00"
+            }
+          },
+          "n_subproducts": 2
+        }
+      }
+    }
+  }
 
-    #     if current_sub.nil? #not found
-    #       current_sub = Subproduct.create!(bank_id: abanca.id, product_id: current_product.id, name: subproduct)
-    #     end
+  banco_bai_hash = {
+    "4": {
+      "products": {
+        "demand_deposit": {
+          "subproducts": {
+            "Conta de Servi\u00e7os M\u00ednimos Banc\u00e1rios Comiss\u00f5es vig\u00eancia contrato 1.": {},
+            "General": {
+              "withdraw": "20,00",
+              "statement": "0,00"
+            },
+            "Conta de Servi\u00e7os M\u00ednimos Banc\u00e1rios Comiss\u00f5es vig\u00eancia contrato ": {
+              "acc_manteinance": "5,00"
+            }
+          },
+          "n_subproducts": 2
+        }
+      }
+    }
+  }
 
-    #     fee_price.each do |fee, price|
-    #       create_price_and_fee(fee, price, current_product, current_sub, current_doc)
-    #     end
-        
-    #     abanca_hash[:"1"][:products][:demand_deposit][:subproducts][:General].each do |fee, price|
-    #       create_price_and_fee(fee, price, current_product, current_sub, current_doc)
-    #     end
-    #   end
-    # end
+    # Price.destroy_all
+    # Fee.destroy_all
+    # Document.destroy_all
+    # Subproduct.destroy_all
+    # Request.destroy_all
+    # Group.destroy_all
 
-    # banco_bai = Bank.find_by(name: "Banco BAI")
-    # current_request = Request.create(content: "Manual Request", status: "Pending")
-    # current_doc = Document.create(bank_id: banco_bai.id, request_id: current_request.id)
+    # create_seeds_dd("Banco BAI", banco_bai_hash, 4)
+    # create_seeds_dd("Banco CTT", banco_ctt_hash, 5)
+    # create_seeds_dd("Banco BIC", banco_bic_hash, 3)
+    # create_seeds_dd("ABANCA", abanca_hash, 1)
 
-    # banco_bai_hash[:"3"][:products][:demand_deposit][:subproducts].each do |subproduct, fee_price|
-    #   current_product = Product.find_by(name: "Demand Deposits")
-    #   if subproduct != :General
-    #     current_sub = Subproduct.find_by(name: subproduct)
-
-    #     if current_sub.nil? #not found
-    #       current_sub = Subproduct.create!(bank_id: banco_bai.id, product_id: current_product.id, name: subproduct)
-    #     end
-
-    #     fee_price.each do |fee, price|
-    #       create_price_and_fee(fee, price, current_product, current_sub, current_doc)
-    #     end
-        
-    #     banco_bai_hash[:"3"][:products][:demand_deposit][:subproducts][:General].each do |fee, price|
-    #       create_price_and_fee(fee, price, current_product, current_sub, current_doc)
-    #     end
-    #   end
-    #end
-
-    create_seeds_dd("Banco BAI", banco_bai_hash, 3)
-    create_seeds_dd("ABANCA", abanca_hash, 1)
-    raise
-
-    
   end
 
 
