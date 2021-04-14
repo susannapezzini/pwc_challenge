@@ -1,11 +1,7 @@
-<%= simple_form_for [@product, @subproduct] do |f| %>
+<%= simple_form_for @group do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.association :product %>
-      <%= f.association :bank %>
-      <%= f.association :group %>
-      <%= f.input :active %>
       <%= f.input :name %>
     </div>
 

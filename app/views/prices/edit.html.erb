@@ -1,5 +1,5 @@
 <div class="contain">
-<h1>Edit <%= @price.name.capitalize%></h1>
+<h1>Edit <%= @price.fee.name.titleize%></h1>
   <%= simple_form_for @price do |f| %>
     <%= f.error_notification %>
 
@@ -14,6 +14,11 @@
       <%= f.input :tax %>
       <%= f.input :tax_amount %>
       <%= f.input :status %>
+
+      <%= simple_fields_for @price.fee do |w| %>
+        <%= w.input :active %>
+        <%= w.input :name %>
+      <% end %>
     </div>
 
     <div class="form-actions mb-5">

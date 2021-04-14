@@ -1,22 +1,47 @@
 <div class="contain">
   <h1 class="mb-4">Products</h1>
+  <div class="product_container">
     <% @products.each do |p|%>
-    <ul class="product_list">
-      <li> <%=link_to "#sub_#{p.id}", class: 'link'   do%>
-      <%= p.name%>, tot. <%=p.subproducts.count%>
-      <%end%>
-        <% if current_user && current_user.admin? %>
-          <%= link_to product_path(p), method: :delete, data: { confirm: 'This action will also delete all the subproducts. Are you sure?'} do %>
-            <i class="far fa-trash-alt"></i>
-            <%# <span>Delete</span> %>
-          <%end%>
+      <ul class="product_list">
+        <li> <%=link_to "#sub_#{p.id}", class: 'link-big link' do%>
+        <%= p.name%><span style="font-size: 15px"> (<%=p.subproducts.count%> Total)</span>
         <%end%>
-      </li>
-    </ul>
+          <% if current_user && current_user.admin? %>
+            <%= link_to product_path(p), method: :delete, class: 'link-big ml-3 ', data: { confirm: 'This action will also delete all the subproducts. Are you sure?'} do %>
+              <i class="far fa-trash-alt"></i>
+              <%# <span>Delete</span> %>
+            <%end%>
+          <%end%>
+          <% groups = p.groups.uniq %>
+            <ul class="group_list ml-4">
+              <% groups.each do |g|%>
+                <li><%=link_to g.name.titleize, "#group_#{g.id}", class: 'link' %>
+                <% if current_user && current_user.admin? %>
+                  <%= link_to edit_group_path(g), class: 'link ml-3' do%>
+                    <i class="far fa-edit"></i>
+                  <%end%>
+                  <%= link_to group_path(g), method: :delete, class: 'link ml-1', data: { confirm: "Are you sure? this will make a mess!" } do%>
+                      <i class="far fa-trash-alt"></i>
+                  <%end%>
+                <%end%>
+                </li>
+              <%end%>
+              <%# if current_user && current_user.admin? %>
+                <%#= <li> link_to '#', class: 'link' do%>
+                 <%# < <span>Add New Group</span>
+                  <i class="fas fa-plus"></i>> %>
+                <%#end%>
+                <%# </li> %>
+              <%#end%>
+            </ul>
+        </li>
+      </ul>
     <%end%>
+    </div>
   <% if current_user.admin?%>
-  <%= link_to "Add new product family", new_product_path, class: "btn" %>
-<%end%>
+    <%= link_to "Add new product family", new_product_path, class: "btn mt-5" %>
+  <%end%>
+
 </div>
 <div class="bottom_nav">
   <span>Jump to: 
@@ -28,49 +53,88 @@
 
 <% @products.each_with_index do |p, index|%>
     <% if index.even?%>
-    <div class="contain-color" id="sub_<%= p.id%>">
+      <div class="contain-color" id="sub_<%= p.id%>">
     <%else%>
-    <div class="contain" id="sub_<%= p.id%>">
+      <div class="contain" id="sub_<%= p.id%>">
     <%end%>
-    <h5 class="small_title"><%= p.name%></h5>
+    <h2><%= p.name%></h2>
       <% if current_user && current_user.admin? %>
         <%= link_to 'add subproduct', new_product_subproduct_path(p), class: 'btn'%>
-        <%end%>
-      <div class="cards">
-        <% p.subproducts.each do |b|%>
-          <div class="bank-card">
-            <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
-            <p class="card_text"><strong>Bank:</strong> <%= link_to b.bank.name.capitalize, bank_path(b.bank), class: 'link'   %></p>
-            <p class="card_text"><strong>Total Price:</strong> $ <%= b.prices.sum { |price| price.amount ? price.amount : 0 } %></p>
-            <p class="card_text"><strong>Fees:</strong>
-            <span class="small_text">
-              <% b.product.fees[0..2].each do |f| %><br>
-                <%= f.name%>
-              <%end%>
-            </span>
-            <span>...</span>
-            </p>
-                <div class="card_action">
-                      <%= link_to subproduct_path(b), class: 'link' do %> 
-                      <i class="fas fa-angle-right"></i>
-                      <span>See more</span>
-                      <%end%>
-              <% if current_user && current_user.admin? %>
-                      <%= link_to edit_subproduct_path(b) do %>
-                      <i class="far fa-edit"></i>
-                      <span>Edit</span>
-                      <% end %>
-                      <%= link_to subproduct_path(b), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                      <i class="far fa-trash-alt"></i>
-                      <span>Delete</span>
-                      <% end %>
-              <%end%>
-                </div>
-          </div>
+      <%end%>
+      
+      <% groups = p.groups.uniq %>
+      <% groups.each do |g|%>
+        <br>
+          <svg height="3" width="30%">
+            <line x1="0" y1="0" x2="100%" y2="0" />
+          </svg>
+          <h5 class="small_title ml-4" id="group_<%=g.id%>">Group: <%=g.name%></h5>
+          <div class="cards">
+            <% g.subproducts.each do |b|%>
+              <div class="bank-card">
+                <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
+                <p class="card_text"><strong>Status: </strong><span class=<%= b.active ? "text-success" : "text-danger"%>><%= b.active ? "Active" : "Inactive"%></span></p>
+                <p class="card_text"><strong>Bank:</strong> <%= link_to b.bank.name, bank_path(b.bank), class: 'link'   %></p>
+                <p class="card_text"><strong>Total Price:</strong> € <%= b.prices.sum { |price| price.amount ? price.amount : 0 } %></p>
+                <p class="card_text"><strong>Group: </strong><%= b.group ? b.group.name : 'N/A' %></p>
+                    <div class="card_action">
+                          <%= link_to subproduct_path(b), class: 'link' do %> 
+                          <i class="fas fa-angle-right"></i>
+                          <span>See more</span>
+                          <%end%>
+                  <% if current_user && current_user.admin? %>
+                          <%= link_to edit_subproduct_path(b) do %>
+                          <i class="far fa-edit"></i>
+                          <span>Edit</span>
+                          <% end %>
+                          <%= link_to subproduct_path(b), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                          <i class="far fa-trash-alt"></i>
+                          <span>Delete</span>
+                          <% end %>
+                  <%end%>
+                    </div>
+              </div>
 
-        <%end%>
-      </div>
-  </div>
+            <%end%>
+          </div>
+      <%end%>
+      <% no_group = p.subproducts.where(group: nil)%>
+      <% if no_group.any?%>
+        <br>
+        <svg height="3" width="30%">
+        <line x1="0" y1="0" x2="100%" y2="0" />
+        </svg>
+        <h5 class="small_title ml-4">Group: Unassigned</h5>
+        <div class="cards">
+          <% no_group.each do |b|%>
+            <div class="bank-card">
+              <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
+
+              <p class="card_text"><strong>Bank:</strong> <%= link_to b.bank.name, bank_path(b.bank), class: 'link'   %></p>
+              <p class="card_text"><strong>Total Price:</strong> € <%= b.prices.sum { |price| price.amount } %></p>
+              <div class="card_action">
+                <%= link_to subproduct_path(b), class: 'link' do %> 
+                  <i class="fas fa-angle-right"></i>
+                  <span>See more</span>
+                <%end%>
+                <% if current_user && current_user.admin? %>
+                  <%= link_to edit_subproduct_path(b) do %>
+                    <i class="far fa-edit"></i>
+                    <span>Edit</span>
+                  <% end %>
+                  <%= link_to subproduct_path(b), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <i class="far fa-trash-alt"></i>
+                    <span>Delete</span>
+                  <% end %>
+                <%end%>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      <%end%>
+
+    </div>
+
 <%end%>
 
 <div class="contain">

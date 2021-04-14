@@ -1,163 +1,22 @@
-<div class="bottom_nav">
-  <span>Jump to: 
-    <%= link_to 'Offer', '#offer', class: 'nav_link' %>
-    <%= link_to 'Fees', '#fees', class: 'nav_link' %>
-    <%= link_to 'Subproducts', '#subproducts', class: 'nav_link' %>
-    <%= link_to 'Top', '#', class: 'nav_link' , id: 'scrollTop' %>
-  </span>
-</div>
-
-
-<div class="contain mb-5 mt-5" id="offer">
-  <h1>Total Amount of Subproducts Offered </h1>
-  <h2 class="small_title">Product: Demand Deposits</h2>
-  <div class="chart_form">
-    <div class="chart_group hidden">
-      <select class="sub-count" name="subproducts" id="0">
-        <option 
-          value=<%=@my_dd.count%> 
-          id="0"
-          data-tot-dd="<%= @my_dd.count%>" 
-          data-bank="<%=@my_bank.name%>"
-        >
-            <%= @my_dd.count %>
-        </option>
-      </select>
+<div class="contain pb-0">
+    <div class="tabs_nav">
+      <% @products.each do |p|%>
+        <a class="<%= 'selected' if params[:id] == p.name %> item" id="<%=p.name%>" title="<%=p.name%>" href="/overview/tab=<%=p.name%>"><%=p.name%></a>
+      <%end%>
     </div>
-    <% @other_banks.each_with_index do |b, i|%>
-      <div class="chart_group hidden">
-        <select class="sub-count" name="subproducts" id="<%= i+1 %>">
-          <option
-            value=<%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).count%>
-            id="<%= i+1 %>"
-            data-tot-dd="<%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).count%>" 
-            data-bank="<%=b.name%>"
-          >
-              <%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).count%>
-          </option>
-        </select>
-      </div>
-    <%end%>
+</div>
+<div class="tab">
+  <div class="tab-content">
+    <%= render 'tab', locals: { tab: params[:id] } %>
   </div>
-  <div class="chart_group hidden">
-      <select class="sub-count" name="subproducts" id="0">
-        <option 
-          value=<%=@avg_dd_subproducts_bank%> 
-          id="0"
-          data-tot-dd="<%=@avg_dd_subproducts_bank%>" 
-          data-bank="Average"
-        >
-            <%= @avg_dd_subproducts_bank %>
-        </option>
-      </select>
-    </div>
-
-  <canvas id="demand-deposit-count-chart" height="400" width="960"></canvas>
 </div>
-
-<div class="contain-color mb-5 mt-5" id="fees">
-  <h1>Sum of All Subproduct Fees</h1>
-  <h2 class="small_title">Product: Demand Deposits</h2>
-  <div class="chart_form">
-    <div class="chart_group hidden">
-      <select class="subproduct-price-sum-dd" name="subproducts" id="0">
-        <option 
-          value=<%=@my_dd.sum { |subproduct| subproduct.prices.sum {|p| p.amount}} %> 
-          id="0"
-          data-tot-dd="<%= @my_dd.sum { |subproduct| subproduct.prices.sum {|p| p.amount}}%>" 
-          data-bank="<%=@my_bank.name%>"
-        >
-            <%= @my_dd.count %>
-        </option>
-      </select>
-    </div>
-    <% @other_banks.each_with_index do |b, i|%>
-      <div class="chart_group hidden">
-        <select class="subproduct-price-sum-dd" name="subproducts" id="<%= i+1 %>">
-          <option
-            value=<%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).sum { |subproduct| subproduct.prices.sum {|p| p.amount}}%>
-            id="<%= i+1 %>"
-            data-tot-dd="<%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).sum { |subproduct| subproduct.prices.sum {|p| p.amount}}%>" 
-            data-bank="<%=b.name%>"
-          >
-              <%= b.subproducts.where(product_id: Product.find_by(name: "Demand Deposits")).sum { |subproduct| subproduct.prices.sum {|p| p.amount}}%>
-          </option>
-        </select>
-      </div>
-    <%end%>
-  </div>
-  <div class="chart_group hidden">
-      <select class="subproduct-price-sum-dd" name="subproducts" id="0">
-        <option 
-          value=<%= @avg_dd_subproduct_fees_bank%> 
-          id="0"
-          data-tot-dd="<%= @avg_dd_subproduct_fees_bank%>" 
-          data-bank="Average"
-        >
-            <%=  @avg_dd_subproduct_fees_bank %>
-        </option>
-      </select>
-
-  </div>
-  <canvas id="demand-deposit-sum-chart" height="450" width="960"></canvas>
-</div>
+<div class="contain"></div>
 
 
 
 
-<div class="contain mb-5 py-6" id="subproducts">
-  <h1>Compare Subproducts</h1>
-  <h2 class="small_title mb-5">by Total Fees</h2>
-  <div class="chart_form">
-    <div class="chart_group">    
-        <label for="banks"><%= "#{current_user.bank.name} Subproduct:"%></label>
-          <select class="select-subproduct" name="subproducts" id="form-1">
-          <% @my_subproducts.each_with_index do |b, i| %>
-            <option 
-              value=<%= "#{b.name.split.join("-")}"%> 
-              id="<%= i%>" 
-              data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>"
-              data-bank="<%=b.bank.name%> - <%=b.name%>"
-            >
-              <%= b.product.name%> - <%= b.name.capitalize %>
-            </option>
-          <% end %>
-        </select>
-    </div>
-    <div class="chart_group">
-        <label for="banks">Comparison Subproduct:</label>
-          <select class="select-subproduct" name="subproducts" id="form-2">
-          <% @other_subproducts.sort.each_with_index do |b, i| %>
-            <option 
-              value=<%= b.name.split.join("-")%>
-              data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" 
-              data-bank="<%=b.bank.name%> - <%=b.name%>"
-            >
-              <%= b.product.name%> - <%= b.bank.name.capitalize%> - <%= b.name.capitalize%>
-            </option>
-          <% end %>
-        </select>
-    </div>
-    <div class="chart_group">
-        <label for="banks">Comparison Subproduct:</label>
-          <select class="select-subproduct" name="subproducts" id="form-3">
-          <% @other_subproducts.sort.each_with_index do |b, i| %>
-            <option 
-              value=<%= "#{b.name.split.join("-")}"%> 
-              data-sub-price="<%= b.prices.sum { |price| price.amount ? price.amount : 0 } %>" 
-              data-bank="<%=b.bank.name%> - <%=b.name%>"
-            >
-              <%= b.product.name%> - <%= b.bank.name.capitalize%> - <%= b.name.capitalize%>
-            </option>
-          <% end %>
-        </select>
-    </div>
-  </div>
-
-  <button id="compare-btn" class="btn mt-3 mb-3">Compare</button>
-  <canvas id="compare-subproduct-chart" height="300" width="960"></canvas>
 
 
-</div>
-<div class="contain">
-</div>
+
+
+

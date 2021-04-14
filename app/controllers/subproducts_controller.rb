@@ -40,6 +40,7 @@ class SubproductsController < ApplicationController
   end
 
   def edit
+    @group = Group.new
   end
 
   def update
@@ -47,7 +48,7 @@ class SubproductsController < ApplicationController
     @subproduct.bank = Bank.find(subproduct_params[:bank_id])
 
     if @subproduct.update(subproduct_params)
-      redirect_to bank_path(@subproduct.bank, anchor: 'subproducts'), notice: 'Subproduct was successfully updated'
+      redirect_to products_path, notice: 'Subproduct was successfully updated'
     else
       render :edit
     end
@@ -67,22 +68,26 @@ class SubproductsController < ApplicationController
   end
 
 
-    private
-      def subproduct_params
-        params.require(:subproduct).permit(:name, :product_id, :bank_id)
-      end
+  private
+    def subproduct_params
+      params.require(:subproduct).permit(:name, :product_id, :bank_id, :group_id, :active)
+    end
 
-      def fetch_subproduct
-        @subproduct = Subproduct.find(params[:id])
-      end
+    def fetch_subproduct
+      @subproduct = Subproduct.find(params[:id])
+    end
 
-      def fetch_product
-        @product = Product.find(params[:product_id])
-      end
+    def fetch_product
+      @product = Product.find(params[:product_id])
+    end
 
-      def authorize_admin
-        return unless !current_user.admin?
-        redirect_to root_path, alert: "Sorry, you dont have that permission."
-      end
+    def group_params
+      params.require(:subproduct).permit[:group]
+    end
+
+    def authorize_admin
+      return unless !current_user.admin?
+      redirect_to root_path, alert: "Sorry, you dont have that permission."
+    end
 
 end

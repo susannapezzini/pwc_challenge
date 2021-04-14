@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'pages#dashboard'
   get 'overview', to: 'pages#overview'
+  get 'overview/tab=:id', to: 'pages#overview'
   #get 'settings', to: 'pages#settings'
 
 
@@ -30,12 +31,14 @@ Rails.application.routes.draw do
   resources :websites, only: [:destroy]  # no edit, or update functionality in app
   
   resources :subproducts do
-    resources :fees, only: [:new, :create]
+    resources :fees, only: [:new, :create, :edit, :update]
+    resources :groups, only: %i[new create]
   end
 
-  resources :fees, only: %i[edit update]
   resources :prices
+  resources :fees, only: %i[update]
   resources :requests, only: %i[update]
+  resources :groups, only: %i[edit update destroy]
 
   post 'banks/:id/check_updates', to:  'banks#check_updates', as: :check_updates
   post 'banks/:id/merged_pdfs', to: 'banks#merged_pdfs'

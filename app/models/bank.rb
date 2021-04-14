@@ -17,6 +17,7 @@ class Bank < ApplicationRecord
   has_many :pricings, through: :products
   has_many :users, dependent: :destroy
   has_many :documents
+  has_many :groups, through: :subproducts
   has_many_attached :files
   has_one_attached :photo
   

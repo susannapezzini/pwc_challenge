@@ -80,7 +80,15 @@
   &-small {
   font-size: 0.75rem;
   }
+
+  &-big {
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: $headers-font;
+  }
 }
+
+
 
 .success {
   color: $green;
