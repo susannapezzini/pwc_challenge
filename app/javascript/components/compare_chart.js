@@ -9,12 +9,25 @@ const compareChart = () => {
   const userGroup = document.getElementById('update_other_bank_groups');
   let userGroupValue = document.getElementById('update_other_bank_groups').value;
 
-  // const option = userGroup.options.selectedIndex;
-  // console.log({options})
-  // const selectedGroup = userGroup.options.selectedIndex;
-  // const valueGroup = userGroup.attributes.id.ownerElement[selectedGroup].value;
-  // console.log('select', selectedGroup);
-  // console.log('value', userGroup.attributes.id.ownerElement[selectedGroup].value)
+  
+  
+  
+  // function(context) {
+    //   let index = context.dataIndex;
+    //   return index % 2 ? colors : colors[12];
+    // }
+    
+    const pairingColors = () => {
+      const colors = ['rgba(116,25,16,0.7)', 'rgba(170,36,23,0.7)', 'rgba(224,48,30,0.7)', 'rgba(232,97,83,0.7)', 'rgba(247,200,196,0.7)', 'rgba(110, 42, 53, 0.7)', 'rgba(164,62,80,0.7)','rgba(219,83,106,0.7)', 'rgba(226,117,136,0.7)', 'rgba(241,186,195,0.7)', 'rgba(255,220,169,0.7)', 'rgba(255,169,41,0.7)', 'rgba(235,140,0,0.7)']
+      const borderColors = ['rgb(116,25,16)', 'rgb(170,36,23)', 'rgb(224,48,30)', 'rgb(232,97,83)', 'rgb(247,200,196)','rgba(110, 42, 53)', 'rgba(164,62,80)','rgba(219,83,106)', 'rgba(226,117,136)', 'rgba(241,186,195)','rgba(255,220,169)', 'rgba(255,169,41)', 'rgba(235,140,0)']
+      return [colors[0], colors[0], colors[2],colors[2], colors[3], colors[3], colors[4], colors[4], colors[5], colors[5]];
+    }
+    
+    const randomColor = () => {
+      const colors = ['rgba(116,25,16,0.7)', 'rgba(170,36,23,0.7)', 'rgba(224,48,30,0.7)', 'rgba(232,97,83,0.7)', 'rgba(247,200,196,0.7)', 'rgba(110, 42, 53, 0.7)', 'rgba(164,62,80,0.7)','rgba(219,83,106,0.7)', 'rgba(226,117,136,0.7)', 'rgba(241,186,195,0.7)', 'rgba(255,220,169,0.7)', 'rgba(255,169,41,0.7)', 'rgba(235,140,0,0.7)']
+      const borderColors = ['rgb(116,25,16)', 'rgb(170,36,23)', 'rgb(224,48,30)', 'rgb(232,97,83)', 'rgb(247,200,196)','rgba(110, 42, 53)', 'rgba(164,62,80)','rgba(219,83,106)', 'rgba(226,117,136)', 'rgba(241,186,195)','rgba(255,220,169)', 'rgba(255,169,41)', 'rgba(235,140,0)']
+      return colors.reverse();
+    }
 
   const getLabels = (array) => {
     const labels = array.map((e) => {
@@ -59,7 +72,7 @@ const compareChart = () => {
   // console.log({labels})
   let data = getCount(subs);
   let type = 'bar';
-  const avgChart = createChart(ctx4, labels, data, type);
+  const avgChart = createChart(ctx4, labels, data, type, pairingColors);
   }
 
   // one-subproduct-all-bank-chart
@@ -88,7 +101,7 @@ const compareChart = () => {
     let data = getCount(availabeData);
     let labels = getLabels(availabeData);
     let type = 'bar'; 
-    let chart = createChart(ctx, labels, data, type);
+    let chart = createChart(ctx, labels, data, type, randomColor);
     userGroup.addEventListener('change', (event) => {
       userGroupValue = document.getElementById('update_other_bank_groups').value;
       console.log({userGroupValue});

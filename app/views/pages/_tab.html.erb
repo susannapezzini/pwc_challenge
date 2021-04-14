@@ -84,7 +84,7 @@
               <option value="<%= g.name%>"
               id="<%= i %>"
               data-tot="<%= my_avg %>"
-              data-bank="<%= @my_bank.name%>"
+              data-bank="<%= @my_bank.name%> - <%= user_bank_subs_for_current_group.count%> accounts"
               >
               <%= g.name%>
               </option>
@@ -107,7 +107,7 @@
             <option value="<%= g.name%>"
             id="<%= i %>"
             data-tot="<%= avg %>"
-            data-bank="<%= b.name%>"
+            data-bank="<%= b.name%> - <%= tot_subproducts_per_bank%> accounts"
             >
             <%= g.name%><%= avg%>
             </option>
