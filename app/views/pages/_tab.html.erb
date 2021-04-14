@@ -63,7 +63,9 @@
         <%end%>
     </div>
   </div>
-  <canvas id="subproduct-chart" height="300" width="960"></canvas>
+  <div class="chart_wide">
+    <canvas id="subproduct-chart"></canvas>
+  </div>
   <svg height="3" width="100%">
     <line x1="0" y1="0" x2="100%" y2="0" />
   </svg>
@@ -81,10 +83,27 @@
               <%end%>
               <% my_sub_count = user_bank_subs_for_current_group.count == 0 ? 1 : user_bank_subs_for_current_group.count %>
               <% my_avg = my_price.to_i/my_sub_count.to_i%>
+              <% my_filtered_subs = @my_bank.subproducts.where(group: g)%>
+              <% my_filtered_prices = [] %>
+              <% my_filtered_fees = [] %>
+              <% my_filtered_subs.each do |s|%>
+                <% s.prices.each do |p|%>
+                <% my_filtered_prices << p.amount.as_json %>
+                <%end%>
+              <%end%>
+              <% my_filtered_subs.each do |s|%>
+                <% s.fees.each do |f|%>
+                <% my_filtered_fees << f.name.as_json %>
+                <%end%>
+              <%end%>
+              <% my_filtered_fees = my_filtered_fees.uniq %>
               <option value="<%= g.name%>"
               id="<%= i %>"
               data-tot="<%= my_avg %>"
               data-bank="<%= @my_bank.name%> - <%= user_bank_subs_for_current_group.count%> accounts"
+              data-fee="<%= my_filtered_fees%>"
+              data-price="<%= my_filtered_prices%>"
+              data-subproducts-count="<%= user_bank_subs_for_current_group.count%>"
               >
               <%= g.name%>
               </option>
@@ -120,11 +139,11 @@
   </div>
   <%# <button id="compare-btn" class="btn mt-3 mb-3">Compare</button> %>
   <div class="chart_container">
-
-      <canvas id="one-subproduct-all-bank-chart" height="75" width="240"></canvas>
-
+    <div>
+      <canvas id="pie-chart-subproduct"></canvas>
+    </div>
     <div class="another_chart">
-    <%# <h1>One chart missing</h1> %>
+        <canvas id="one-subproduct-all-bank-chart"></canvas>
     </div>
   </div>
 </div>

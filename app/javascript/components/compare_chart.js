@@ -7,27 +7,25 @@ const compareChart = () => {
 	const sums = [...document.getElementsByClassName("subproduct-price-sum-dd")];
 	const compareBtn = document.getElementById("compare-btn");
   const userGroup = document.getElementById('update_other_bank_groups');
-  let userGroupValue = document.getElementById('update_other_bank_groups').value;
+  const userGroupValue = document.getElementById('update_other_bank_groups').value;
+  const ctx = document.getElementById("one-subproduct-all-bank-chart");
+	const ctx2 = document.getElementById("pie-chart-subproduct");
+	const ctx3 = document.getElementById("demand-deposit-sum-chart");
+	const ctx4 = document.getElementById("subproduct-chart");
 
   
   
-  
-  // function(context) {
-    //   let index = context.dataIndex;
-    //   return index % 2 ? colors : colors[12];
-    // }
+  const pairingColors = () => {
+    const colors = ['rgba(116,25,16,0.7)', 'rgba(170,36,23,0.7)', 'rgba(224,48,30,0.7)', 'rgba(232,97,83,0.7)', 'rgba(247,200,196,0.7)', 'rgba(110, 42, 53, 0.7)', 'rgba(164,62,80,0.7)','rgba(219,83,106,0.7)', 'rgba(226,117,136,0.7)', 'rgba(241,186,195,0.7)', 'rgba(255,220,169,0.7)', 'rgba(255,169,41,0.7)', 'rgba(235,140,0,0.7)']
+    const borderColors = ['rgb(116,25,16)', 'rgb(170,36,23)', 'rgb(224,48,30)', 'rgb(232,97,83)', 'rgb(247,200,196)','rgba(110, 42, 53)', 'rgba(164,62,80)','rgba(219,83,106)', 'rgba(226,117,136)', 'rgba(241,186,195)','rgba(255,220,169)', 'rgba(255,169,41)', 'rgba(235,140,0)']
+    return [colors[0], colors[0], colors[2],colors[2], colors[3], colors[3], colors[4], colors[4], colors[5], colors[5]];
+  }
     
-    const pairingColors = () => {
-      const colors = ['rgba(116,25,16,0.7)', 'rgba(170,36,23,0.7)', 'rgba(224,48,30,0.7)', 'rgba(232,97,83,0.7)', 'rgba(247,200,196,0.7)', 'rgba(110, 42, 53, 0.7)', 'rgba(164,62,80,0.7)','rgba(219,83,106,0.7)', 'rgba(226,117,136,0.7)', 'rgba(241,186,195,0.7)', 'rgba(255,220,169,0.7)', 'rgba(255,169,41,0.7)', 'rgba(235,140,0,0.7)']
-      const borderColors = ['rgb(116,25,16)', 'rgb(170,36,23)', 'rgb(224,48,30)', 'rgb(232,97,83)', 'rgb(247,200,196)','rgba(110, 42, 53)', 'rgba(164,62,80)','rgba(219,83,106)', 'rgba(226,117,136)', 'rgba(241,186,195)','rgba(255,220,169)', 'rgba(255,169,41)', 'rgba(235,140,0)']
-      return [colors[0], colors[0], colors[2],colors[2], colors[3], colors[3], colors[4], colors[4], colors[5], colors[5]];
-    }
-    
-    const randomColor = () => {
-      const colors = ['rgba(116,25,16,0.7)', 'rgba(170,36,23,0.7)', 'rgba(224,48,30,0.7)', 'rgba(232,97,83,0.7)', 'rgba(247,200,196,0.7)', 'rgba(110, 42, 53, 0.7)', 'rgba(164,62,80,0.7)','rgba(219,83,106,0.7)', 'rgba(226,117,136,0.7)', 'rgba(241,186,195,0.7)', 'rgba(255,220,169,0.7)', 'rgba(255,169,41,0.7)', 'rgba(235,140,0,0.7)']
-      const borderColors = ['rgb(116,25,16)', 'rgb(170,36,23)', 'rgb(224,48,30)', 'rgb(232,97,83)', 'rgb(247,200,196)','rgba(110, 42, 53)', 'rgba(164,62,80)','rgba(219,83,106)', 'rgba(226,117,136)', 'rgba(241,186,195)','rgba(255,220,169)', 'rgba(255,169,41)', 'rgba(235,140,0)']
-      return colors.reverse();
-    }
+  const randomColor = () => {
+    const colors = ['rgba(116,25,16,0.7)', 'rgba(170,36,23,0.7)', 'rgba(224,48,30,0.7)', 'rgba(232,97,83,0.7)', 'rgba(247,200,196,0.7)', 'rgba(110, 42, 53, 0.7)', 'rgba(164,62,80,0.7)','rgba(219,83,106,0.7)', 'rgba(226,117,136,0.7)', 'rgba(241,186,195,0.7)', 'rgba(255,220,169,0.7)', 'rgba(255,169,41,0.7)', 'rgba(235,140,0,0.7)']
+    const borderColors = ['rgb(116,25,16)', 'rgb(170,36,23)', 'rgb(224,48,30)', 'rgb(232,97,83)', 'rgb(247,200,196)','rgba(110, 42, 53)', 'rgba(164,62,80)','rgba(219,83,106)', 'rgba(226,117,136)', 'rgba(241,186,195)','rgba(255,220,169)', 'rgba(255,169,41)', 'rgba(235,140,0)']
+    return colors.reverse();
+  }
 
   const getLabels = (array) => {
     const labels = array.map((e) => {
@@ -40,13 +38,7 @@ const compareChart = () => {
     });
     return labels;
 	};
-	// const getPrice = (array) => {
-	// 	const data = array.map((e) => {
-	// 		const option = e.options.selectedIndex;
-	// 		return e.attributes.id.ownerElement[option].dataset.subPrice;		
-  //   });
-  //   return data;
-	// };
+
 	const getCount = (array) => {
 		const data = array.map((e) => {
 			const option = e.options.selectedIndex;
@@ -56,12 +48,26 @@ const compareChart = () => {
     });
     return data;
 	};
-	
-  
-  const ctx = document.getElementById("one-subproduct-all-bank-chart");
-	const ctx2 = document.getElementById("demand-deposit-count-chart");
-	const ctx3 = document.getElementById("demand-deposit-sum-chart");
-	const ctx4 = document.getElementById("subproduct-chart");
+
+  const getPricePieChart = (element) => {
+		const option = element.options.selectedIndex;
+    return element.attributes.id.ownerElement[option].dataset.price;
+  }
+  const getFeePieChart = (element) => {
+    const option = element.options.selectedIndex;
+    return element.attributes.id.ownerElement[option].dataset.fee;
+  }
+  const getCountPieChart = (element) => {
+		const option = element.options.selectedIndex;
+    return element.attributes.id.ownerElement[option].dataset.subproductsCount;
+  }
+
+  const setValue = (array, value) => {
+    array.map(e => {
+      e.value = value;
+    })
+    return array;
+  }
 
   // Avg costs
   if (!subs) {
@@ -76,25 +82,15 @@ const compareChart = () => {
   }
 
   // one-subproduct-all-bank-chart
-
-  const setValue = (array, value) => {
-    array.map(e => {
-      e.value = value;
-    })
-    return array;
-  }
-
-
-
   if (!elements) {
     return;
   } else {
-    console.log(userGroupValue);
+    // console.log(userGroupValue);
     let newEl = setValue(elements, userGroupValue);
     // discard null 
     let availabeData = newEl.filter(e => {
       if (e.value) {
-        console.log(e.value);
+        // console.log(e.value);
         return e;
       }
     });
@@ -102,13 +98,37 @@ const compareChart = () => {
     let labels = getLabels(availabeData);
     let type = 'bar'; 
     let chart = createChart(ctx, labels, data, type, randomColor);
+    
+    // pie chart 
+    let pieFees = getFeePieChart(userGroup).replace('[', '').replace(']', "").replace(/"/g,"").split(',');
+    let piePrices = getPricePieChart(userGroup).replace('[', "").replace(']', "").split(',').slice(0, pieFees.length).map(p => {
+      return parseFloat(p) || 0;
+    });
+    console.log({pieFees}, {piePrices});
+    
+
+    let pie = 'pie';
+    let pieChart = createChart(ctx2, pieFees, piePrices, pie, randomColor);
+    
+    
     userGroup.addEventListener('change', (event) => {
-      userGroupValue = document.getElementById('update_other_bank_groups').value;
-      console.log({userGroupValue});
+      let pieFees = getFeePieChart(userGroup).replace('[', "").replace(']', "").replace('"', '').replace(/"/g,"").split(',');
+      let piePrices = getPricePieChart(userGroup).replace('[', "").replace(']', "").split(',').slice(0, pieFees.length).map(p => {
+        return parseFloat(p) || 0;
+      });
+      console.log({pieFees}, {piePrices});
+      updateChart(pieChart, pieFees, piePrices);
+      
+      
+
+
+
+
+      let userGroupValue = document.getElementById('update_other_bank_groups').value;
       let hello = setValue(elements, userGroupValue);
       let shit = hello.filter(e => {
         if (e.value) {
-          console.log(e.value);
+          // console.log(e.value);
           return e;
         }
       });
