@@ -13,4 +13,6 @@ class Product < ApplicationRecord
   has_many :fees
 
   has_many :prices, through: :fees
+  
+  accepts_nested_attributes_for :fees
 end
