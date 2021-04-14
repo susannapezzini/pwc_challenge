@@ -1,0 +1,46 @@
+=> {[33m:[1;33m"[0m[33m1[1;33m"[0m[33m[0m=>
+  {[33m:url[0m=>[31m[1;31m"[0m[31mwww.abanca.pt[1;31m"[0m[31m[0m,
+   [33m:bp_pdf_url[0m=>[31m[1;31m"[0m[31mhttps://clientebancario.bportugal.pt/sites/default/files/precario/0170_/0170_PRE.pdf[1;31m"[0m[31m[0m,
+   [33m:bp_bank_id[0m=>[31m[1;31m"[0m[31m0170[1;31m"[0m[31m[0m,
+   [33m:cloud_merged_url[0m=>[31m[1;31m"[0m[31mhttps://storage.googleapis.com/bank_price_pdfs/1_all_products_210412130040.pdf[1;31m"[0m[31m[0m,
+   [33m:products[0m=>
+    {[33m:demand_deposit[0m=>
+      {[33m:statement[0m=>
+        [[31m[1;31m"[0m[31mEmissão de extrato[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mExtrato Integrado[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mExtrato Mensal[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mExtrato integrado[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mExtrato avulso[1;31m"[0m[31m[0m],
+       [33m:documents_copy[0m=>
+        [[31m[1;31m"[0m[31mFotocópias de segundas vias de talões de depósito[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mEmissão 2ªs Vias de Avisos e Outros Documentos[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mExtracto avulso[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mSegundas vias (pedido na agência)[1;31m"[0m[31m[0m],
+       [33m:acc_manteinance[0m=>
+        [[31m[1;31m"[0m[31mManutenção de conta[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mComissão de manutenção de conta[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mComissão de Manutenção de Conta[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mManutenção de Conta Pacote[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mManutenção de Conta Base[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mManutenção de Conta Serviços Mínimos Bancários[1;31m"[0m[31m[0m],
+       [33m:withdraw[0m=>
+        [[31m[1;31m"[0m[31mLevantamento de numerário[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mLevantamento de numerário ao balcão[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mComissão de Levantamento[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mLevantamento de Numerário ao Balcão[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mLevantamento de Numerário ao Balcão[1;31m"[0m[31m[0m],
+       [33m:online_service[0m=>[[31m[1;31m"[0m[31mAdesão ao serviço de banca à distância[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mAdesão ao serviço online[1;31m"[0m[31m[0m],
+       [33m:cash_deposit[0m=>
+        [[31m[1;31m"[0m[31mDepósito de moedas metálicas[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mDepósito de moedas[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31m Depósito em moeda metálica (>= 100 moedas)[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mDepósito de moedas ao balcão[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mDepósito de dinheiro ao balcão[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mDepósito em moeda metálica (>= 100 moedas)[1;31m"[0m[31m[0m],
+       [33m:change_holder[0m=>
+        [[31m[1;31m"[0m[31mAlteração de titulares[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mAlteração de titularidade[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mComissão de Alteração de Titularidade[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mAlteração de titularidade / intervenientes[1;31m"[0m[31m[0m,
+         [31m[1;31m"[0m[31mAlteração de titularidade (titular/ representante)[1;31m"[0m[31m[0m],
+       [33m:bank_overdraft[0m=>
+        [[31m[1;31m"[0m[31mComissões por descoberto bancário[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mDescoberto bancário[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mComissões por Descoberto Bancário[1;31m"[0m[31m[0m],
+       [33m:movement_consultation[0m=>[[31m[1;31m"[0m[31mConsulta de Movimentos de conta DO com[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mConsulta de movimentos ao balcão[1;31m"[0m[31m[0m],
+       [33m:balance_inquiry[0m=>[[31m[1;31m"[0m[31mPedido de saldo ao balcão[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mConsulta de Saldo de conta DO com comprovativo[1;31m"[0m[31m[0m],
+       [33m:portuguese[0m=>[31m[1;31m"[0m[31mContas de Depósito[1;31m"[0m[31m[0m}}}}
