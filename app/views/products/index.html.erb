@@ -1,47 +1,42 @@
 <div class="contain">
-  <h1 class="mb-4">Products</h1>
-  <div class="product_container">
+  <% if current_user.admin?%>
+    <%= link_to "Add new product family", new_product_path, class: 'btn-outline special' %>
+  <%end%>
+  <h1 class="mb-2">Products</h1>
+  <div class="cards mt-3 mb-3">
     <% @products.each do |p|%>
-      <ul class="product_list">
-        <li> <%=link_to "#sub_#{p.id}", class: 'link-big link' do%>
-        <%= p.name%><span style="font-size: 15px"> (<%=p.subproducts.count%> Total)</span>
-        <%end%>
+      <div class="card card-noheight">
+        <p class="card_title">
+          <%=link_to "#sub_#{p.id}", class: 'card_title', style: "text-decoration: none;" do%>
+            <%= p.name%><span> (<%=p.subproducts.count%> Total)</span>
+          <%end%>
           <% if current_user && current_user.admin? %>
-            <%= link_to product_path(p), method: :delete, class: 'link-big ml-3 ', data: { confirm: 'This action will also delete all the subproducts. Are you sure?'} do %>
+            <%= link_to product_path(p), method: :delete, class: 'card_title float-right', data: { confirm: 'This action will also delete all the subproducts. Are you sure?'} do %>
               <i class="far fa-trash-alt"></i>
-              <%# <span>Delete</span> %>
             <%end%>
           <%end%>
-          <% groups = p.groups.uniq %>
-            <ul class="group_list ml-4">
-              <% groups.each do |g|%>
-                <li><%=link_to g.name.titleize, "#group_#{g.id}", class: 'link' %>
+        </p>
+        <% groups = p.groups.uniq %>
+          <% groups.each do |g|%>
+            <div class="admin">
+            <p class="card_text"><%=link_to g.name.titleize, "#group_#{g.id}", class: 'link link-dark' %></p>
+              <div>
                 <% if current_user && current_user.admin? %>
                   <%= link_to edit_group_path(g), class: 'link ml-3' do%>
                     <i class="far fa-edit"></i>
                   <%end%>
-                  <%= link_to group_path(g), method: :delete, class: 'link ml-1', data: { confirm: "Are you sure? this will make a mess!" } do%>
-                      <i class="far fa-trash-alt"></i>
+                  <%= link_to group_path(g), method: :delete, class: 'link ml-3', data: { confirm: "Are you sure? this will make a mess!" } do%>
+                    <i class="far fa-trash-alt"></i>
                   <%end%>
                 <%end%>
-                </li>
-              <%end%>
-              <%# if current_user && current_user.admin? %>
-                <%#= <li> link_to '#', class: 'link' do%>
-                 <%# < <span>Add New Group</span>
-                  <i class="fas fa-plus"></i>> %>
-                <%#end%>
-                <%# </li> %>
-              <%#end%>
-            </ul>
-        </li>
-      </ul>
-    <%end%>
-    </div>
-  <% if current_user.admin?%>
-    <%= link_to "Add new product family", new_product_path, class: "btn mt-5" %>
-  <%end%>
+              </div>
+            </div>
+          <%end%>
 
+      </div>
+    <%end%>
+  </div>
+ 
 </div>
 <div class="bottom_nav">
   <span>Jump to: 
@@ -57,7 +52,7 @@
     <%else%>
       <div class="contain" id="sub_<%= p.id%>">
     <%end%>
-    <h2><%= p.name%></h2>
+    <h2 class="small_title"><%= p.name%></h2>
       <% if current_user && current_user.admin? %>
         <%= link_to 'add subproduct', new_product_subproduct_path(p), class: 'btn'%>
       <%end%>

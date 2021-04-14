@@ -86,8 +86,16 @@
     font-weight: 500;
     font-family: $headers-font;
   }
+  &-dark {
+    color: $dark;
+  }
 }
 
+.special {
+  position: absolute;
+  right: 14vw;
+  top: 1rem;
+}
 
 
 .success {

@@ -20,6 +20,9 @@
   &-taller {
     height: 55vh;
   }
+  &-border {
+    border: 1px solid $dark;
+  }
 }
 
 .bank-card {
@@ -96,8 +99,9 @@
   width: calc(100% - 48px);
 }
 
-.product_list {
+.group_list {
   @include reset-list; 
+  margin: 0;
 }
 .product_container {
   display: flex;
