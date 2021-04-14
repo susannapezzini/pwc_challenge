@@ -73,6 +73,7 @@ class BanksController < ApplicationController
 
   def check_updates
     CheckUpdatesJob.perform_later(@bank.id)
+    redirect_to bank_path(@bank), info: "Done"
   end
 
   def merged_pdfs
@@ -81,7 +82,7 @@ class BanksController < ApplicationController
     url = 'https://bank-price-api.herokuapp.com/retrievepdfs'
     @data = JSON.parse(open(url).read)
 
-    # if result['status'] == 'ok'
+    # if result['status'] == 'ok'data
     # else
     # end
 
