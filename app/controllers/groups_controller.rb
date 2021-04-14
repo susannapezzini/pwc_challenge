@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :fetch_group, only: %i[edit update]
+  before_action :fetch_group, only: %i[edit update destroy]
   before_action :fetch_subproduct, only: %i[new create]
 
   def new
@@ -27,6 +27,16 @@ class GroupsController < ApplicationController
     else
       flash.now[:alert] = "Sorry, you dont have that permission."
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def destroy
+    if current_user.admin?
+      @group.destroy
+      redirect_to products_path
+    else
+      flash.now[:alert] = "Sorry, you dont have that permission."
+      redirect_to products_path
     end
   end
 
