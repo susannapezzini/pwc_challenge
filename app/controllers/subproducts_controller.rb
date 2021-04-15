@@ -45,12 +45,19 @@ class SubproductsController < ApplicationController
 
   def update
     #@subproduct.product = Bank.find(subproduct_params[:bank_id])
-    @subproduct.bank = Bank.find(subproduct_params[:bank_id])
-
-    if @subproduct.update(subproduct_params)
-      redirect_to products_path, notice: 'Subproduct was successfully updated'
-    else
-      render :edit
+    # @subproduct.bank = Bank.find(subproduct_params[:bank_id])
+    
+    if params[:bank_id].present?
+      fetch_bank
+      if @subproduct.update(subproduct_params)
+        redirect_to bank_path(@bank), notice: 'Subproduct was successfully updated'
+      else
+        render :edit
+      end
+    else 
+      if @subproduct.update(subproduct_params)
+        redirect_to subproduct_path(@subproduct), notice: 'Subproduct was successfully updated'
+      end
     end
   end
 
@@ -83,6 +90,10 @@ class SubproductsController < ApplicationController
 
     def group_params
       params.require(:subproduct).permit[:group]
+    end
+
+    def fetch_bank
+      @bank = Bank.find(params[:bank_id])
     end
 
     def authorize_admin

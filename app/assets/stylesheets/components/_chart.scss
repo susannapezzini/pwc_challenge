@@ -1,7 +1,7 @@
 .chart_form {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .chart_group {
@@ -21,28 +21,31 @@
 }
 
 .chart_container {
-  width: 100%;
+  width: 110%;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
+  // align-items: center;
 }
 
 
 .another_chart {
   // flex-basis: calc(100% -24px);
   flex-grow: 1;
-  height: 37vh;
-  // width: 80%;
-  margin-left: 5rem;
+  // height: 37vh;
+  // // width: 80%;
+  // margin-left: 5rem;
 }
 
-// canvas#one-subproduct-all-bank-chart {
-//   height: 40vh !important;
-//   width: 100% !important;
+// .fancy_select {
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
 // }
 
 canvas#pie-chart-subproduct {
-  width: 100% !important;
-  height: 67vh !important;
+  width: 40vw !important;
+  height: 35vh !important;
 }
 canvas#subproduct-chart {
   width: 100% !important;
@@ -50,7 +53,7 @@ canvas#subproduct-chart {
 }
 
 select#update_other_bank_groups {
-  margin: 0;  
+  margin: 0 auto; 
   border-radius: 50px;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
@@ -66,7 +69,7 @@ select#update_other_bank_groups {
 }
 
 svg {
-  margin: 1.5rem;
+  margin: 1.5rem 0;
   stroke: $red;
   stroke-width: 2px;
 }

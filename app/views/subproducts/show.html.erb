@@ -62,25 +62,25 @@
 
 </div>
 
-<div class="contain mb-5 mt-5" id="requests">
-  <% if current_user && current_user.admin? %>
-  <h6 class="small_title">Requests for <%= @subproduct.name%></h6>
-  <div class="cards">
-    <% @subproduct.prices.reverse.each do |p|%>
-      <div class="card card-noheight" id="request_<%= p.document.request.id%>">
-        <p class="card_title">Document #<%= p.document.id %></p>
-        <p class="card_text"><strong>Content:</strong> <%= p.document.request.content%></p>
-        <p class="card_text"><strong>Bank:</strong> <%= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
-        <p class="card_text"><strong>Cost:</strong> <%= p.amount %></p>
-        <p class="card_text"><strong>Fee:</strong> <%= p.fee.name %></p>
-        <p class="card_text"><strong>Product Family:</strong> <%= p.subproduct.product.name%></p>
-        <p class="card_text"><strong>Files:</strong> <%= p.document.file_url%></p>
-        <p class="card_text"><strong>Date added:</strong> <%= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
-        <p class="card_text"><strong>Status:</strong> <%= p.document.request.status.capitalize%></p>
+<div class="contain mb-5 mt-5 " id="requests">
+  <%# if current_user && current_user.admin? %>
+  <h6 class="small_title hidden">Requests for <%#= @subproduct.name%></h6>
+  <div class="cards hidden">
+    <%# @subproduct.prices.reverse.each do |p|%>
+      <div class="card card-noheight" id="request_<%#= p.document.request.id%>">
+        <p class="card_title">Document #<%#= p.document.id %></p>
+        <p class="card_text"><strong>Content:</strong> <%#= p.document.request.content%></p>
+        <p class="card_text"><strong>Bank:</strong> <%#= link_to p.document.bank.name.capitalize, bank_path(p.bank), class: 'link' %></p>
+        <p class="card_text"><strong>Cost:</strong> <%#= p.amount %></p>
+        <p class="card_text"><strong>Fee:</strong> <%#= p.fee.name %></p>
+        <p class="card_text"><strong>Product Family:</strong> <%#= p.subproduct.product.name%></p>
+        <p class="card_text"><strong>Files:</strong> <%#= p.document.file_url%></p>
+        <p class="card_text"><strong>Date added:</strong> <%#= p.document.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
+        <p class="card_text"><strong>Status:</strong> <%#= p.document.request.status.capitalize%></p>
       </div>
-    <%end%>
+    <%#end%>
   </div>
-  <%end%>
+  <%#end%>
 </div>
 
 <%# <div class="container mb-5">
