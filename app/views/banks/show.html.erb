@@ -26,6 +26,7 @@
     <%end%>
     <p><strong>Address: </strong><%=@bank.address%></p>
     <p><strong>Country: </strong><%=@bank.country%></p>
+    <p><strong>Files Source: </strong><%=@bank.documents.find{ |doc| doc.file_ext.present?}.file_url%></p>
   </div>
 
 
