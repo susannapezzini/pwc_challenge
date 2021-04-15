@@ -4,7 +4,6 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @document = Document.find(params[:document_id])
-    
     @products = Product.all
     @bp_bank_id = @document.bank.bp_bank_id
     @document.request = @request
@@ -12,6 +11,7 @@ class RequestsController < ApplicationController
   end
 
   def create
+
     @document = Document.find(params[:document_id])
     @bp_bank_id = @document.bank.bp_bank_id
     @bank_portugal_pdf = "https://clientebancario.bportugal.pt/sites/default/files/precario/#{@bp_bank_id}_/#{@bp_bank_id}_PRE.pdf"
@@ -24,6 +24,7 @@ class RequestsController < ApplicationController
     @document.save
 
     if @request.save
+      ProductUpdateJob.perform_later(@document.bank_id, @bp_bank_id, @bank_portugal_pdf, @request.product, @document.file_url)
       redirect_to dashboard_path
     else
       render :new
