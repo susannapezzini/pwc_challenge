@@ -1,0 +1,149 @@
+<div class="contain-color mt-0">
+  <% p = @products.find_by(name: params[:id])%>
+  <% subs = @subproducts.where(product: p).where(active: true)%>
+  <% groups = []%>
+  <% subs.each do |s|%>
+    <% unless s.group.nil? %>
+    <% groups << s.group %>
+    <%end%>
+  <%end%>
+  <% groups = groups.uniq %>
+  <% groups.count %>
+  
+  <% my_subs = subs.where(bank: @my_bank).where(active: true)%>
+  <% my_subs.count%>
+  <% other_subs = subs.reject { |s| s.bank == @my_bank }%>
+  <% other_subs.count%>
+  <h2 class="small_title m-0"><%=@my_bank.name%>'s subproducts tot: <%= my_subs.count%></h2>
+
+
+  <div class="chart_form ">
+    <div class="chart_group hidden">
+        
+        <% groups.each_with_index do | g, i |%>
+            <% user_bank_subs_for_current_group = my_subs.where(group: g).where(active: true) %>
+            <% my_price = user_bank_subs_for_current_group.sum do |subproduct|%>
+              <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
+            <%end%>
+            <% my_sub_count = user_bank_subs_for_current_group.count == 0 ? 1 : user_bank_subs_for_current_group.count %>
+            <% my_avg = my_price.to_i/my_sub_count.to_i%>
+      
+            <% tot_subproducts_for_current_group = subs.where(group: g).where(active: true) %>
+            <%= tot_subproducts_for_current_group.count %>
+            <% banks_that_have_this_subproducts = []%>
+            <% g.banks.each do |b|%>
+              <% banks_that_have_this_subproducts << b.name%>
+            <%end%>
+            <%= banks_that_have_this_subproducts = banks_that_have_this_subproducts.uniq %>
+            <%= banks_that_have_this_subproducts.count %>
+            <% prices = tot_subproducts_for_current_group.sum do |subproduct|%>
+              <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
+            <%end%>
+            <% avg = prices.to_i/tot_subproducts_for_current_group.count.to_i%>
+            <%= avg_subproducts_offer_per_bank = (tot_subproducts_for_current_group.count.to_i/banks_that_have_this_subproducts.count.to_f).round(1)%>
+
+            <select class="sub-count" name="subproducts" id="<%=i%>">
+              <option value="<%= user_bank_subs_for_current_group%>"
+              id="<%= i %>"
+              data-tot="<%= my_avg %>"
+              data-bank="<%= g.name %> - <%= user_bank_subs_for_current_group.count%> accounts"
+              >
+              <%= user_bank_subs_for_current_group%>
+              </option>
+            </select>
+            <select class="sub-count" name="subproducts" id="<%=i%>">
+              <option value="<%= avg%>"
+              id="<%= i %>"
+              data-tot="<%= avg %>"
+              data-bank="AVG - <%= avg_subproducts_offer_per_bank%> accounts"
+              >
+              <%= avg%>
+              </option>
+            </select>
+        <%end%>
+    </div>
+  </div>
+  <div class="chart_wide">
+    <canvas id="subproduct-chart"></canvas>
+  </div>
+  <svg height="3" width="100%">
+    <line x1="0" y1="0" x2="100%" y2="0" />
+  </svg>
+  <div class="chart_form">
+    <div class="chart_group">
+      <div class="fancy_select">
+        <select class="select-group" name="subproducts" id="update_other_bank_groups">
+            <% my_groups = groups.select do |g|%>
+              <% g.banks.where(name: @my_bank.name).where(active: true)%>
+            <%end%>
+            <% my_groups.each_with_index do |g, i|%>
+              <% user_bank_subs_for_current_group = my_subs.where(group: g).where(active: true) %>
+            <% my_price = user_bank_subs_for_current_group.sum do |subproduct|%>
+                <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%> 
+              <%end%>
+              <% my_sub_count = user_bank_subs_for_current_group.count == 0 ? 1 : user_bank_subs_for_current_group.count %>
+              <% my_avg = my_price.to_i/my_sub_count.to_i%>
+              <% my_filtered_subs = @my_bank.subproducts.where(group: g)%>
+              <% my_filtered_prices = [] %>
+              <% my_filtered_fees = [] %>
+              <% my_filtered_subs.each do |s|%>
+                <% s.prices.each do |p|%>
+                <% my_filtered_prices << p.amount.as_json %>
+                <%end%>
+              <%end%>
+              <% my_filtered_subs.each do |s|%>
+                <% s.fees.each do |f|%>
+                <% my_filtered_fees << f.name.as_json %>
+                <%end%>
+              <%end%>
+              <% my_filtered_fees = my_filtered_fees.uniq %>
+              <option value="<%= g.name%>"
+              id="<%= i %>"
+              data-tot="<%= my_avg %>"
+              data-bank="<%= @my_bank.name%> - <%= user_bank_subs_for_current_group.count%> accounts"
+              data-fee="<%= my_filtered_fees%>"
+              data-price="<%= my_filtered_prices%>"
+              data-subproducts-count="<%= user_bank_subs_for_current_group.count%>"
+              >
+              <%= g.name%>
+              </option>
+            <%end%>       
+        </select>
+      </div>
+    </div>
+    <div class="chart_group hidden">
+      <% @other_banks.each_with_index do |b, i|%>
+          <select class="select-group" name="subproducts" id="<%=i+1%>">
+            <% uniq_groups_current_bank = b.groups.uniq{ |g| g.id }%>
+          <% uniq_groups_current_bank.each do |g|%>
+
+            <% prices = g.subproducts.where(bank: b).where(active: true).sum do |subproduct| %>
+              <% subproduct.prices.sum { |price| price.fee.active ? price.amount : 0 }%>
+            <%end%>
+            <% tot_subproducts_per_bank = g.subproducts.where(bank: b).where(active: true).count%>
+            <% avg = prices.to_i/tot_subproducts_per_bank.to_i%>
+            
+            <option value="<%= g.name%>"
+            id="<%= i %>"
+            data-tot="<%= avg %>"
+            data-bank="<%= b.name%> - <%= tot_subproducts_per_bank%> accounts"
+            >
+            <%= g.name%><%= avg%>
+            </option>
+          <%end%>
+
+          </select>
+      <%end%>
+    </div>
+
+  </div>
+  <%# <button id="compare-btn" class="btn mt-3 mb-3">Compare</button> %>
+  <div class="chart_container">
+    <div>
+      <canvas id="pie-chart-subproduct"></canvas>
+    </div>
+    <div class="another_chart">
+        <canvas id="one-subproduct-all-bank-chart"></canvas>
+    </div>
+  </div>
+</div>

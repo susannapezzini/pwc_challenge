@@ -80,7 +80,23 @@
   &-small {
   font-size: 0.75rem;
   }
+
+  &-big {
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: $headers-font;
+  }
+  &-dark {
+    color: $dark;
+  }
 }
+
+.special {
+  position: absolute;
+  right: 14vw;
+  top: 1rem;
+}
+
 
 .success {
   color: $green;

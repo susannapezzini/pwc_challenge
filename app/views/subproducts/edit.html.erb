@@ -1,7 +1,30 @@
-<div class="contain">
+<div class="contain form_container-height">
   <%= link_to "Back", :back, class: "btn-outline float-right" %>
-  <h1 class="mb-5">Edit Product</h1>
-    <%= render "form" %>
+  <h1 class="mb-5">Edit <%=@subproduct.name%></h1>
+    <%= simple_form_for [@product, @subproduct] do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :active %>
+      <%= f.input :name %>
+      <%= f.association :product %>
+      <%= f.association :bank %>
+      <%= f.association :group %>
+    </div>
+
+    <div class="form-actions mb-5">
+      <%= f.button :submit %>
+    </div>
+
+
+
+<% end %>
+
+    <h5 class="orange mt-3">Group Missing? Add a new one:</h5>
+      <%= simple_form_for [@subproduct, @group] do |w| %>
+        <%= w.input :name %>
+        <%= w.button :submit %>
+      <% end %>
 
 
 </div>

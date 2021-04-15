@@ -34,7 +34,7 @@
   <h3 class="mb-3">Actions:</h3>
   <%= link_to check_updates_path, method: "POST", class: 'link mb-2' do %>
   <i class="fas fa-sync-alt"></i>
-  <span>Look for new price list</span>
+  <span>Look for New Price List</span>
   <%end%>
 
   <%= link_to bank_websites_path(@bank), class: 'link mb-2' do %>
@@ -65,16 +65,10 @@
       <% @subproducts.reverse.each do |b|%>
         <div class="bank-card">
           <p class="card_title"><strong><%= link_to "#{b.name}", subproduct_path(b), class: 'card_title', style: "text-decoration: none;" %></strong></p>
-          <p class="card_text"><strong>Product Family:</strong><br><%= b.product.name %></p>
-          <p class="card_text"><strong>Fees:</strong>
-            <span class="small_text">
-              <% b.product.fees[0..2].each do |f|%><br>
-                <%= f.name%>
-              <%end%>
-            </span>
-            <span>...</span>
-            </p>
-          <p class="card_text"><strong>Total Price:</strong> € <%= b.prices.sum { |price| price.amount } %></p>
+          <p class="card_text"><strong>Status: </strong><span class=<%= b.active ? "text-success" : "text-danger"%>><%= b.active ? "Active" : "Inactive"%></span></p>
+          <p class="card_text"><strong>Product Family: </strong><%= b.product.name %></p>
+          <p class="card_text"><strong>Group: </strong> <%= b.group ? b.group.name : 'N/A' %></p>
+          <p class="card_text"><strong>Total Price: </strong> € <%= b.prices.sum { |price| price.amount } %></p>
 
           
             <div class="card_action">

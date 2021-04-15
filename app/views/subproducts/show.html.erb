@@ -1,7 +1,12 @@
 <div class="contain">
   <%= link_to 'Back', :back, class: 'btn-outline float-right'%>
   <h1><%= @subproduct.name%></h1>
-  <h2 class="small_title"><%= @subproduct.bank.name.capitalize%></h2>
+  <% hello = @subproduct.group ? @subproduct.group.name : '' %>
+  <h6><%="Status: " %><span class=<%= @subproduct.active ? "text-success" : "text-danger"%>><%= @subproduct.active ? "Active" : "Inactive"%></span></h6>
+  <h6><%= "Bank: #{@subproduct.bank.name}"%></h6>
+  <h6><%= "Group: #{hello}"%></h6>
+  
+  <%= link_to 'Manage subproduct', edit_subproduct_path(@subproduct), class: 'btn'%>
 </div>
 
 <%if current_user && current_user.admin?%>
@@ -19,22 +24,27 @@
     <div class="table" id="table">
       <div class="cell">
         <p class="headers_title">Fee</p>
-        <p class="headers_title">Cost
+        <span class="headers_title cell_content-admin">
           <%if current_user && current_user.admin?%>
-            /Edit
+            <span>Edit </span>
+            <span> / Status / </span> 
           <%end%>
-        </p>
+          Cost 
+        </span>
       </div>
       <% @subproduct.prices.each do |price| %>
         <div class="cell">
-          <span class="cell_content"><%= price.fee.name %></span>
-          <span class="cell_content">€ <%= price.amount %>
+          <div class="cell_content"><%= price.fee.name %></div>
+          <div class="cell_content cell_content-admin">
           <%if current_user && current_user.admin?%>
             <%= link_to edit_price_path(price), class: 'link' do %>
               <i class="far fa-edit"></i>
             <%end%>
+          <% status = price.fee.active ? 'Active' : 'Inactive' %>
+          <span><%= link_to status, fee_path(price.fee), method: :patch, class: 'link' %></span>
           <%end%>
-          </span>
+          € <%= price.amount %>  
+          </div>
         </div>
       <%end%>
       <svg height="3" width="100%" class="mt-4">
@@ -42,7 +52,7 @@
       </svg>
         <div class="cell mt-4">
           <p class="cell_content bold">Total</p>
-          <p class="cell_content bold">€ <%= @subproduct.prices.sum { |price| price.amount } %></p>
+          <p class="cell_content bold">€ <%= @subproduct.prices.sum { |price| price.fee.active ? price.amount : 0} %></p>
         </div>
     </div>
     <% if current_user && current_user.admin?%>
