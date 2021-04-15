@@ -21,23 +21,28 @@ class ProductUpdateJob < ApplicationJob
         "products": product
       }  
     }
+
+    puts @payload.to_json
     @result = HTTParty.post('https://bank-price-api.herokuapp.com/get_stats', 
       :body => @payload.to_json,
       :headers => { 'Content-Type' => 'application/json' } )
-    if @result['status'] == 'ok'
-      @data = retrieve_stats(@result['ident'])
-      count = 0
-      while @data['status'] == 'error' 
-        sleep 1
+      puts @result
+      
+      if @result['status'] == 'ok'
         @data = retrieve_stats(@result['ident'])
-        count += 1
-        break if count == 100
-        puts "Try #{count} times"
+        count = 0
+        puts @result
+        sleep 60
+        while @data['status'] == 'error' 
+          sleep 2
+          @data = retrieve_stats(@result['ident'])
+          count += 1
+          break if count == 30
+          puts "Try #{count} times"
+        end
         byebug
-      end
       # @pdfs =  @data.values[0]["list_pdfs"]["urls"]
       # @merged_pdfs = @data.values[0]["list_pdfs"]["cloud_merged_url"]
-      puts @merged_pdfs
       if @pdfs.empty?
       elsif @pdfs.count == @bank.documents.count
       else

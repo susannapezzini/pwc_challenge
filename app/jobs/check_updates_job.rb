@@ -8,17 +8,19 @@ class CheckUpdatesJob < ApplicationJob
     @bank = Bank.find(bank_id)
     @payload1 = {
       "#{@bank.id}": {
-        "url": @bank.websites.first.url,
-        "bp_bank_id": '', #test value
-        "last_updated": @bank.updated_at
+        url: @bank.websites.first.url,
+        bp_bank_id: @bank.bp_bank_id, #test value
+        last_updated: @bank.updated_at
       }  
     }
+    puts 'hi'
     @result = HTTParty.post('https://bank-price-api.herokuapp.com/merge_pdfs', 
       :body => @payload1.to_json,
       :headers => { 'Content-Type' => 'application/json' } )
     if @result['status'] == 'ok'
       @data = merged_pdfs(@result['ident'])
       count = 0
+      sleep 60
       while @data['status'] == 'error' 
         sleep 2
         @data = merged_pdfs(@result['ident'])
