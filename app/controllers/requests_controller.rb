@@ -23,14 +23,11 @@ class RequestsController < ApplicationController
     @document.request = @request
     @document.save
 
-    raise
-
     if @request.save
       redirect_to dashboard_path
     else
       render :new
     end
-
 
   end
   
