@@ -40,3 +40,6 @@ yarn-debug.log*
 *.swp
 .DS_Store
 .env*
+### Redis ###
+# Ignore redis binary dump (dump.rdb) files
+*.rdb
