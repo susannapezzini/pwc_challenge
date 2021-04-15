@@ -15,7 +15,11 @@
   <% my_subs.count%>
   <% other_subs = subs.reject { |s| s.bank == @my_bank }%>
   <% other_subs.count%>
-  <% my_active_subs = my_subs.where(active: true).reject { |s| s.group.name == 'Others'}%>
+  <% if params[:id] != 'Housing Credit'%>
+    <% my_active_subs = my_subs.where(active: true).reject { |s| s.group.name == 'Others'}%>
+  <%else%>
+    <% my_active_subs = my_subs.where(active: true) %>
+  <%end%>
   <h2 class="small_title m-0"><%=@my_bank.name%>'s Products (Total: <%= my_active_subs.count%>)</h2>
 
 
