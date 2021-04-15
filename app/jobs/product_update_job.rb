@@ -32,28 +32,30 @@ class ProductUpdateJob < ApplicationJob
         @data = retrieve_stats(@result['ident'])
         count = 0
         puts @result
-        sleep 60
-        while @data['status'] == 'error' 
+        sleep 30
+        while @data['status'] == 'error'
           sleep 2
           @data = retrieve_stats(@result['ident'])
           count += 1
+          puts count  
           break if count == 30
           puts "Try #{count} times"
         end
-        byebug
+        puts @data
+        # byebug
       # @pdfs =  @data.values[0]["list_pdfs"]["urls"]
       # @merged_pdfs = @data.values[0]["list_pdfs"]["cloud_merged_url"]
-      if @pdfs.empty?
-      elsif @pdfs.count == @bank.documents.count
-      else
-        puts 'creating PDF'
-        @pdfs.each do |pdf|
-          req_test = Request.create(status: 'pending')
-          Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: pdf)
-        end
-        req_test = Request.create(status: 'pending')
-        Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: @merged_pdfs, file_ext: 'Merged Pdf')
-      end
+      # if @pdfs.empty?
+      # elsif @pdfs.count == @bank.documents.count
+      # else
+      #   puts 'creating PDF'
+      #   @pdfs.each do |pdf|
+      #     req_test = Request.create(status: 'pending')
+      #     Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: pdf)
+      #   end
+      #   req_test = Request.create(status: 'pending')
+      #   Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: @merged_pdfs, file_ext: 'Merged Pdf')
+      # end
     end
   end
 

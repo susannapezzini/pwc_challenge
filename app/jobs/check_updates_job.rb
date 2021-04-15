@@ -18,9 +18,9 @@ class CheckUpdatesJob < ApplicationJob
       :body => @payload1.to_json,
       :headers => { 'Content-Type' => 'application/json' } )
     if @result['status'] == 'ok'
+      sleep 60  
       @data = merged_pdfs(@result['ident'])
       count = 0
-      sleep 60
       while @data['status'] == 'error' 
         sleep 2
         @data = merged_pdfs(@result['ident'])
