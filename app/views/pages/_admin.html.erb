@@ -18,14 +18,14 @@
       <% @pending.each do |p|%>
           <div class="card card-taller" id="request_<%= p.request.id%>">
             <p class="card_title">Request #<%= p.request.id %></p>
-            <p class="card_text"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
+            <p class="card_text"><strong>Status:</strong> <%= p.request.status%></p>
             <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
             <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name, bank_path(p.bank), class: 'link' %></p>
             <p class="card_text"><strong>Products:</strong> </p>
               <% if p.prices.any? %>
                 <% p.prices[1..4].each do |p|%>
                 <p class="card_text">
-                  <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link'%>
+                  <%= link_to p.subproduct.name, subproduct_path(p.subproduct), class: 'link'%>
                 </p>
                 <%end%>
               <%end%>
@@ -45,6 +45,10 @@
                 <%= link_to request_path(p.request), method: :patch, class: 'link' do%>
                   <i class="far fa-check-circle"></i>
                   <span>Mark as done</span>
+                <%end%>
+                <%= link_to new_document_request_path(p), class: 'link' do%>
+                  <i class="far fa-check-circle"></i>
+                  <span>Import Data</span>
                 <%end%>
             </div>
           </div>
