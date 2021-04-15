@@ -8,13 +8,15 @@
     <%end%>
   <%end%>
   <% groups = groups.uniq %>
+  <% groups = groups.reject { |g| g.name == 'Others'}%>
   <% groups.count %>
   
   <% my_subs = subs.where(bank: @my_bank).where(active: true)%>
   <% my_subs.count%>
   <% other_subs = subs.reject { |s| s.bank == @my_bank }%>
   <% other_subs.count%>
-  <h2 class="small_title m-0"><%=@my_bank.name%>'s subproducts tot: <%= my_subs.count%></h2>
+  <% my_active_subs = my_subs.where(active: true).reject { |s| s.group.name == 'Others'}%>
+  <h2 class="small_title m-0"><%=@my_bank.name%>'s Products (Total: <%= my_active_subs.count%>)</h2>
 
 
   <div class="chart_form ">
@@ -55,7 +57,7 @@
               <option value="<%= avg%>"
               id="<%= i %>"
               data-tot="<%= avg %>"
-              data-bank="<%= g.name%> AVG - <%= avg_subproducts_offer_per_bank%> accounts"
+              data-bank="Market - <%= avg_subproducts_offer_per_bank%> accounts"
               >
               <%= avg%>
               </option>
@@ -100,7 +102,7 @@
               <option value="<%= g.name%>"
               id="<%= i %>"
               data-tot="<%= my_avg %>"
-              data-bank="<%= @my_bank.name%> - <%= user_bank_subs_for_current_group.count%> accounts"
+              data-bank="<%= @my_bank.name%> - <%= user_bank_subs_for_current_group.count%> acct"
               data-fee="<%= my_filtered_fees%>"
               data-price="<%= my_filtered_prices%>"
               data-subproducts-count="<%= user_bank_subs_for_current_group.count%>"
@@ -126,7 +128,7 @@
             <option value="<%= g.name%>"
             id="<%= i %>"
             data-tot="<%= avg %>"
-            data-bank="<%= b.name%> - <%= tot_subproducts_per_bank%> accounts"
+            data-bank="<%= b.name%> - <%= tot_subproducts_per_bank%> acct"
             >
             <%= g.name%><%= avg%>
             </option>
@@ -140,7 +142,7 @@
   <%# <button id="compare-btn" class="btn mt-3 mb-3">Compare</button> %>
   <div class="wide_container">
     <div class="chart_container">
-      <div class="another_chart mr-4">
+      <div class="another_chart mr-4 ml-0">
           <canvas id="one-subproduct-all-bank-chart"></canvas>
       </div>
       <div class="ml-4">

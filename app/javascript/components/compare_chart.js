@@ -79,8 +79,9 @@ const compareChart = () => {
   // console.log({labels})
   let data = getCount(subs);
   let type = 'bar';
-  let position = 'bottom'
-  const avgChart = createChart(ctx4, labels, data, type, pairingColors, position);
+  let position = 'bottom';
+  let chartTitle = `Average Cost - Your Subproducts vs Market`;
+  const avgChart = createChart(ctx4, labels, data, type, pairingColors, position, chartTitle);
   }
 
   // one-subproduct-all-bank-chart
@@ -100,7 +101,8 @@ const compareChart = () => {
     let labels = getLabels(availabeData);
     let type = 'bar'; 
     let position = 'bottom';
-    let chart = createChart(ctx, labels, data, type, randomColor, position);
+    let chartTitle = 'Average Cost - Selected Subproduct vs Competitors';
+    let chart = createChart(ctx, labels, data, type, randomColor, position, chartTitle);
     
     // pie chart 
     let pieFees = getFeePieChart(userGroup).replace('[', '').replace(']', "").replace(/"/g,"").split(',');
@@ -112,7 +114,8 @@ const compareChart = () => {
 
     let pie = 'pie';
     let positionRight = 'right';
-    let pieChart = createChart(ctx2, pieFees, piePrices, pie, randomColor, positionRight);
+    let pieTitle = 'Selected Subproduct Fee Structure';
+    let pieChart = createChart(ctx2, pieFees, piePrices, pie, randomColor, positionRight, pieTitle);
     
     
     userGroup.addEventListener('change', (event) => {
