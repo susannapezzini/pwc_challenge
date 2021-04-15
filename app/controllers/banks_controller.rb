@@ -73,7 +73,7 @@ class BanksController < ApplicationController
 
   def check_updates
     CheckUpdatesJob.perform_later(@bank.id)
-    redirect_to bank_path(@bank), info: "Processing... This will "
+    redirect_to dashboard_path, info: "Processing... This will take a couple minutes! "
   end
 
   def merged_pdfs

@@ -32,15 +32,17 @@ class CheckUpdatesJob < ApplicationJob
       @merged_pdfs = @data.values[0]["list_pdfs"]["cloud_merged_url"]
       puts @merged_pdfs
       if @pdfs.empty?
-      elsif @pdfs.count == @bank.documents.count
+      elsif @pdfs.count == (@bank.documents.count - 1)
+        req_test = Request.create(status: 'pending', content: 'Latest merged pdf')
+        Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: @merged_pdfs, file_ext: 'Merged Pdf')
       else
         puts 'creating PDF'
-        @pdfs.each do |pdf|
-          req_test = Request.create(status: 'pending')
-          Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: pdf)
-        end
-        req_test = Request.create(status: 'pending')
+        req_test = Request.create(status: 'pending', content: 'Latest merged pdf.')
         Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: @merged_pdfs, file_ext: 'Merged Pdf')
+        req_test2 = Request.create(status: 'active', content: 'Pdfs retrieved')
+        @pdfs.each do |pdf|
+          Document.create!(bank: @bank, request: req_test2, data_added: Time.now, file_url: pdf)
+        end
       end
     end
   end

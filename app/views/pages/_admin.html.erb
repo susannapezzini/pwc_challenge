@@ -1,5 +1,9 @@
 <div class="contain">
   <%#= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'link right' %>
+  <%= link_to "https://matrix-pwc.herokuapp.com/sidekiq", class: 'link float-right mt-2', target: '_blank' do%>
+  <i class="fas fa-battery-half"></i>
+  <span>Check requests status</span>
+  <%end%>
   <h1>Welcome to your dashboard</h1>
   <h6>Admin: <%=current_user.name%></h6>
     <div class="bottom_nav">
@@ -15,28 +19,27 @@
   <div class="contain-color" id="pending">
     <h6 class="small_title">Pending Requests</h6>
     <div class="cards">
-      <% @pending.each do |p|%>
+      <% @pending.reverse.each do |p|%>
           <div class="card card-taller" id="request_<%= p.request.id%>">
             <p class="card_title">Request #<%= p.request.id %></p>
-            <p class="card_text"><strong>Status:</strong> <%= p.request.status%></p>
+            <p class="card_text"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
             <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
             <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name, bank_path(p.bank), class: 'link' %></p>
-            <p class="card_text"><strong>Products:</strong> </p>
-              <% if p.prices.any? %>
-                <% p.prices[1..4].each do |p|%>
-                <p class="card_text">
-                  <%= link_to p.subproduct.name, subproduct_path(p.subproduct), class: 'link'%>
-                </p>
-                <%end%>
-              <%end%>
-            <br>
+            <% if p.file_ext%>
+              <p class="card_text"><strong>Merged Pdfs:</strong> 
+                <%= link_to p.file_url, p.file_url, target: '_blank', class: 'link link-dark'%>
+              </p>
+              <%else%>
+            <p class="card_text"><strong>Files:</strong>
+              <%= link_to p.file_url, p.file_url, target: '_blank', class: 'link link-dark'%>
+            </p>
+            <%end%>
             <%# <p class="card_text card_text-small"><strong>Fees:</strong> %>
               <%#p.prices.each do |p|%>
                 <%#= p.fee.name %>
               <%#end%>
             <%# </p> %>
-            <p class="card_text card_text-small"><strong>Files:</strong> <%= p.file_url%></p>
-            <p class="card_text card_text-small"><strong>Date added:</strong> <%= p.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
+            <p class="card_text"><strong>Date added:</strong> <%= p.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
             <div class="card_action">
                 <%#= link_to subproduct_path(p.subproduct), class: 'link' do %> 
                   <%# <i class="fas fa-angle-right"></i>
@@ -47,7 +50,7 @@
                   <span>Mark as done</span>
                 <%end%>
                 <%= link_to new_document_request_path(p), class: 'link' do%>
-                  <i class="far fa-check-circle"></i>
+                  <i class="fas fa-database"></i>
                   <span>Import Data</span>
                 <%end%>
             </div>
@@ -61,29 +64,29 @@
 <div class="contain" id="completed">
 <h6 class="small_title">Completed Requests</h6>
   <div class="cards">
-      <% @completed.each do |p|%>
+      <% @completed.reverse.each do |p|%>
           <div class="card card-taller card-color" id="request_<%= p.request.id%>">
             <p class="card_title">Request #<%= p.request.id %></p>
             <p class="card_text"><strong>Status:</strong> <%= p.request.status.capitalize%></p>
             <p class="card_text"><strong>Content:</strong> <%= p.request.content%></p>
             <p class="card_text"><strong>Bank:</strong> <%= link_to p.bank.name, bank_path(p.bank), class: 'link' %></p>
-            <p class="card_text"><strong>Products:</strong> </p>
-            <% if p.prices.any? %>
-              <% p.prices[1..4].each do |p|%>
-              <p class="card_text">
-                <%= link_to p.subproduct.name.capitalize, subproduct_path(p.subproduct), class: 'link'%>
-              </p>
-              <%end%>
-              <%end%>
+            <% if p.file_ext%>
+            <p class="card_text"><strong>Merged Pdfs:</strong> 
+              <%= link_to p.file_url, p.file_url, target: '_blank', class: 'link link-dark'%>
+            </p>
+            <%else%>
+            <p class="card_text"><strong>Files:</strong>
+              <%= link_to p.file_url, p.file_url, target: '_blank', class: 'link link-dark'%>
+            </p>
+            <%end%>
             
             <%# <p class="card_text card_text-small"><strong>Fees:</strong> %>
               <%#p.prices.each do |p|%>
                 <%#= p.fee.name %>
               <%#end%>
             <%# </p> %>
-            <br>
-            <p class="card_text card_text-small"><strong>Files:</strong> <%= p.file_url%></p>
-            <p class="card_text card_text-small"><strong>Date added:</strong> <%= p.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
+  
+            <p class="card_text"><strong>Date added:</strong> <%= p.request.created_at.strftime("%d/%m/%Y at %I:%M%p")%></p>
             <div class="card_action success">
                 <%#= link_to subproduct_path(p.subproduct), class: 'link' do %> 
                   <%# <i class="fas fa-angle-right"></i>

@@ -25,7 +25,7 @@ class RequestsController < ApplicationController
 
     if @request.save
       ProductUpdateJob.perform_later(@document.bank_id, @bp_bank_id, @bank_portugal_pdf, @request.product, @document.file_url)
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: "This will take a while, hang in there!"
     else
       render :new
     end
