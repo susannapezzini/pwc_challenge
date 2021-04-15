@@ -58,10 +58,10 @@ const compareChart = () => {
     const option = element.options.selectedIndex;
     return element.attributes.id.ownerElement[option].dataset.fee;
   }
-  const getCountPieChart = (element) => {
-		const option = element.options.selectedIndex;
-    return element.attributes.id.ownerElement[option].dataset.subproductsCount;
-  }
+  // const getCountPieChart = (element) => {
+	// 	const option = element.options.selectedIndex;
+  //   return element.attributes.id.ownerElement[option].dataset.subproductsCount;
+  // }
 
   const setValue = (array, value) => {
     array.map(e => {
@@ -79,7 +79,8 @@ const compareChart = () => {
   // console.log({labels})
   let data = getCount(subs);
   let type = 'bar';
-  const avgChart = createChart(ctx4, labels, data, type, pairingColors);
+  let position = 'bottom'
+  const avgChart = createChart(ctx4, labels, data, type, pairingColors, position);
   }
 
   // one-subproduct-all-bank-chart
@@ -98,7 +99,8 @@ const compareChart = () => {
     let data = getCount(availabeData);
     let labels = getLabels(availabeData);
     let type = 'bar'; 
-    let chart = createChart(ctx, labels, data, type, randomColor);
+    let position = 'bottom';
+    let chart = createChart(ctx, labels, data, type, randomColor, position);
     
     // pie chart 
     let pieFees = getFeePieChart(userGroup).replace('[', '').replace(']', "").replace(/"/g,"").split(',');
@@ -109,7 +111,8 @@ const compareChart = () => {
     
 
     let pie = 'pie';
-    let pieChart = createChart(ctx2, pieFees, piePrices, pie, randomColor);
+    let positionRight = 'right';
+    let pieChart = createChart(ctx2, pieFees, piePrices, pie, randomColor, positionRight);
     
     
     userGroup.addEventListener('change', (event) => {
