@@ -1,0 +1,15 @@
+<div class="form_container form_container-height">
+  <h2 class="h2">Create new Request</h2>
+  <h5 class="mt-3">Bank: <%= @document.bank.name%></h5>
+  <h5 class="mt-3 mb-3">Document: <%= @document.file_url%></h5>
+  <%= simple_form_for [@document, @request] do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :content %>
+      <%= f.input :product, as: :select, collection: ["demand deposits", "housing credits"] %>
+    </div>
+
+      <%= f.submit class: 'btn'%>
+  <% end %>
+</div>
