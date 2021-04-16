@@ -29,16 +29,22 @@ class CheckUpdatesJob < ApplicationJob
         puts "Try #{count} times"
       end
       @pdfs =  @data.values[0]["list_pdfs"]["urls"]
+      @bp_pdf = @data.values[0]["bp_pdf_url"]
       @merged_pdfs = @data.values[0]["list_pdfs"]["cloud_merged_url"]
       puts @merged_pdfs
+      puts @bp_pdf
       if @pdfs.empty?
       elsif @pdfs.count == (@bank.documents.count - 1)
-        req_test = Request.create(status: 'pending', content: 'Latest merged pdf')
+        req_test = Request.create(status: 'active', content: 'Latest merged pdf')
+        req_test_bp = Request.create(status: 'pending', content: 'Banco Do Portugal Source')
         Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: @merged_pdfs, file_ext: 'Merged Pdf')
+        Document.create!(bank: @bank, request: req_test_bp, data_added: Time.now, file_url: @bp_pdf, file_ext: 'Banco Portugal')
       else
         puts 'creating PDF'
-        req_test = Request.create(status: 'pending', content: 'Latest merged pdf.')
+        req_test_bp = Request.create(status: 'pending', content: 'Banco Do Portugal Source')
+        req_test = Request.create(status: 'active', content: 'Latest merged pdf.')
         Document.create!(bank: @bank, request: req_test, data_added: Time.now, file_url: @merged_pdfs, file_ext: 'Merged Pdf')
+        Document.create!(bank: @bank, request: req_test_bp, data_added: Time.now, file_url: @bp_pdf, file_ext: 'Banco Portugal')
         req_test2 = Request.create(status: 'active', content: 'Pdfs retrieved')
         @pdfs.each do |pdf|
           Document.create!(bank: @bank, request: req_test2, data_added: Time.now, file_url: pdf)

@@ -26,10 +26,10 @@
     <%end%>
     <p><strong>Address: </strong><%=@bank.address%></p>
     <p><strong>Country: </strong><%=@bank.country%></p>
-    <% @file = @bank.documents.find{ |doc| doc.file_ext.present?} %>
+    <% @file = @bank.documents.select{ |doc| doc.file_ext == 'Merged Pdf'} %>
     <p><strong>Files Source: </strong>
-      <% if @file %>
-        <%= link_to @file.file_url, @file.file_url, class: 'link link-dark', target: '_blank'%>
+      <% if @file.any? %>
+        <%= link_to @file.last.file_url, @file.last.file_url, class: 'link link-dark', target: '_blank'%>
       <%else%>
         'No Source Available'
       <%end%>

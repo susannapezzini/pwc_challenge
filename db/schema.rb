@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_170732) do
+ActiveRecord::Schema.define(version: 2021_04_16_105030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 2021_04_15_170732) do
     t.string "bp_bank_pdf"
     t.string "product"
     t.string "bp_bank_id"
+    t.jsonb "raw_data"
+    t.jsonb "pages"
   end
 
   create_table "sessions", force: :cascade do |t|

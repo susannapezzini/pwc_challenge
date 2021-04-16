@@ -14,10 +14,11 @@ class PagesController < ApplicationController
     @requests = Request.all
     @completed = []
 
-    @documents_merged_pdfs = @documents.where(file_ext: 'Merged Pdf')
+    @documents_bp = @documents.where("file_ext LIKE 'Banco Portugal'")
+    @documents_active = @documents.where("file_ext LIKE 'Merged Pdf' OR file_ext LIKE 'Banco Portugal'")
 
-    @pending = @documents_merged_pdfs.select { |d| d.request.status == 'pending' }
-    @completed = @documents_merged_pdfs.select { |d| d.request.status == 'active' }
+    @pending = @documents_bp.select { |d| d.request.status == 'pending' }
+    @completed = @documents_active.select { |d| d.request.status == 'active' }
 
 
     if params[:query].present?
